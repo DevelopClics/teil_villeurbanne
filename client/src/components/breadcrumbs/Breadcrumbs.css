@@ -1,0 +1,24 @@
+.blue-bar {
+  background-color: var(--primary-color); /* Use primary color */
+  height: 6vh !important;
+  width: 100%;
+  color: white;
+  font-family: var(--body-font);
+  font-weight: 800;
+  font-size: 1.2rem !important;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--breadcrumb-padding-x);
+}
+.blue-bar {
+  font-size: 0.8rem !important;
+}
+
+
+@media (min-width: 576px) {
+  .blue-bar {
+    font-size: 1.2rem !important;
+  }
+}
+@media (min-width: 768px) {
+}

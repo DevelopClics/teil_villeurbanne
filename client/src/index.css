@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Lato:wght@400;700&family=Lexend+Exa:wght@100..900&family=Montserrat:wght@200;300;400;700&display=swap");
+
+:root {
+  --primary-color: #005468; /* Teal */
+  /* --secondary-color: #f5c5be;  */
+  --secondary-color: #f39a8b; /* Salmon */
+  --text-color: #333333;
+  --background-color: #ffffff;
+  --heading-font: "Lexend Exa", sans-serif;
+  --body-font: "Lexend Exa", sans-serif;
+  --title-font: "Holtwood One SC", serif;
+  --global-padding-x: 0.5rem; /* Default padding for small screens */
+  --breadcrumb-padding-x: 1.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h4 {
+  font-family: var(--title-font);
+  font-weight: 400; /* Holtwood One SC is a display font, usually doesn't have multiple weights */
+}
+
+h5 {
+  font-family: var(--body-font);
+  font-weight: 800;
+}
+
+h2 {
+  color: #f39a8b;
+}
+
+h4 {
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Remove default Bootstrap container padding as we'll manage it globally */
+.container-fluid,
+.container {
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.app-container-padding {
+  padding-left: var(--global-padding-x);
+  padding-right: var(--global-padding-x);
+}
+
+@media (min-width: 576px) {
+  :root {
+    --global-padding-x: 0.75rem;
+    --breadcrumb-padding-x: 2.25rem;
+  }
+}
+@media (min-width: 768px) {
+  :root {
+    --global-padding-x: 1rem;
+    --breadcrumb-padding-x: 3rem;
+  }
+}
+@media (min-width: 992px) {
+  :root {
+    --global-padding-x: 2rem;
+    --breadcrumb-padding-x: 6rem;
+  }
+}
+@media (min-width: 1200px) {
+  :root {
+    --global-padding-x: 4rem;
+    --breadcrumb-padding-x: 12rem;
+  }
+}
+@media (min-width: 1400px) {
+  :root {
+    --global-padding-x: 6rem;
+    --breadcrumb-padding-x: 18rem;
+  }
+}
+
+
+/* Custom button styles */
+.btn-salmon {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.btn-salmon:hover {
+  background-color: #e08a7a !important; /* A slightly darker salmon for hover */
+  border-color: #e08a7a !important;
+  color: white;
+}
+
+.btn-teal {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-teal:hover {
+  background-color: #004354; /* A slightly darker teal for hover */
+  border-color: #004354;
+  color: white;
+}

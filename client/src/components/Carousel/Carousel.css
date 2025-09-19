@@ -1,0 +1,193 @@
+/* Carousel Controls */
+.carousel-control-next,
+.carousel-control-prev {
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px; /* Increased height for larger icons */
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 50em !important; /* Huge icon width */
+  height: 50em !important; /* Huge icon height */
+  background-size: 50%, 50%;
+}
+
+/* Carousel Indicators */
+.carousel-indicators button {
+  background-color: white !important;
+  border-radius: 50% !important;
+  width: 2em !important;
+  height: 2em !important;
+  margin: 0 5px !important;
+  border: none !important;
+}
+
+.carousel-indicators .active {
+  background-color: var(--primary-color) !important;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-left: 0; /* Remove horizontal padding */
+  padding-right: 0; /* Remove horizontal padding */
+  background-color: var(--primary-color);
+}
+
+.hero-image {
+  width: 100%;
+  height: 55vh; /* Carousel heigth */
+  object-fit: cover;
+}
+
+.hero-text {
+  position: absolute;
+
+  left: var(--global-padding-x); /* Aligned to the left with global padding */
+
+  transform: translateY(-50%); /* Only vertical centering */
+  color: white;
+  text-align: left; /* Align text to the left */
+}
+
+.hero-title-block h1 {
+  font-size: 3em;
+  margin-bottom: 0 !important; /* Removed bottom margin */
+  color: var(--primary-color); /* Primary blue color */
+  background-color: white; /* White background */
+  display: inline-block; /* To make background fit content */
+  padding: 5px 10px; /* Add some padding around the text */
+}
+
+.reason-section p {
+  font-size: 1.2em;
+  color: black !important;
+  background-color: white !important;
+  text-align: left !important;
+  padding: 5px 0 !important;
+  margin-top: 0 !important;
+}
+
+.hero-paragraph-block p {
+  background-color: rgb(255, 255, 255) !important;
+  color: black !important;
+  padding: 10px 20px !important;
+}
+
+/* Opacity change when navbar is hovered */
+.navbar-hovered .hero-image,
+.navbar-hovered .hero-title-block,
+.navbar-hovered .hero-paragraph-block,
+.navbar-hovered .carousel-control-next,
+.navbar-hovered .carousel-control-prev,
+.navbar-hovered .carousel-indicators button {
+  opacity: 0.3;
+  transition: opacity 1.4s ease-in-out;
+}
+
+/* xs */
+@media (max-width: 767px) {
+  .hero-text {
+    top: 20vh;
+
+    left: 15vw;
+  }
+  .hero-paragraph-block p {
+    max-width: 100vw !important;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .hero-text {
+    top: 17vh;
+    left: 14.5vw;
+  }
+  .hero-paragraph-block p {
+    max-width: 44vw !important;
+  }
+}
+
+/* lg */
+@media (min-width: 992px) {
+  .hero-text {
+    top: 17vh;
+    left: 14vw;
+  }
+  .hero-paragraph-block p {
+    max-width: 46vw !important;
+  }
+}
+
+/* xl */
+@media (min-width: 1200px) {
+  .hero-paragraph-block p {
+    max-width: 42vw !important;
+  }
+}
+
+/* xxl */
+@media (min-width: 1400px) {
+  .hero-text {
+    top: 17vh;
+    left: 17vw;
+  }
+  .hero-paragraph-block p {
+    max-width: 44vw !important;
+  }
+}
+
+/* .empty-carousel-background {
+  background-color: var(--primary-color);
+} */
+
+.carousel-item-container {
+  position: relative;
+}
+
+.carousel-admin-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-admin-button {
+  width: 100px; /* Example fixed width */
+  height: 40px; /* Example fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Remove default padding to ensure exact size */
+}
+
+.carousel-edit-form-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.empty-carousel-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 55vh; /* Same height as hero-image */
+  background-color: #f0f0f0; /* Light gray background */
+  color: #666;
+  font-size: 1.2em;
+  text-align: center;
+  position: relative; /* To position admin buttons */
+}
+
+.empty-carousel-placeholder p {
+  margin-top: 20px;
+}

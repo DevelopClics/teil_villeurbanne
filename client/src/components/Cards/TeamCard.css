@@ -1,0 +1,38 @@
+div.card {
+  border-color: transparent !important;
+}
+div.card-body {
+  padding-left: 0 !important;
+}
+img.card-img-top {
+  border-radius: 0px !important;
+}
+.square-img-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* This creates the square aspect ratio */
+  overflow: hidden;
+}
+
+.square-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will make the image cover the square area, cropping if necessary */
+}
+
+div.card-title.h5 {
+  margin-bottom: 0 !important;
+  font-family: var(--body-font) !important;
+  font-weight: 800 !important;
+}
+
+p.card-text {
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  line-height: 1.2rem !important;
+  font-family: var(--body-font) !important;
+  font-weight: 300 !important;
+}

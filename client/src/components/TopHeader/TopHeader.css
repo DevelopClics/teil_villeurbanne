@@ -1,0 +1,70 @@
+.main-logo {
+  max-height: 18vh;
+}
+
+.social-icon-circle {
+  width: 5vw;
+  height: 5vh;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon-circle img {
+  width: 5vw;
+  max-height: 5vh;
+}
+
+.social-icons-container > *:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.social-icon-circle.facebook-icon {
+  margin-right: 0.5rem;
+}
+
+.social-icon-circle.linkedin-icon {
+  margin-right: 0.5rem;
+}
+
+.social-icon-separator {
+  width: 2px; /* Increased width for debugging */
+  height: 5vh;
+  background-color: black; /* Changed color for debugging */
+  margin-right: 0.5rem;
+  display: block;
+  visibility: visible;
+}
+
+.top-header {
+  position: relative;
+  z-index: 110;
+}
+
+/* sm */
+@media (min-width: 576px) {
+}
+
+/* md */
+@media (min-width: 768px) {
+}
+
+/* lg */
+@media (min-width: 992px) {
+}
+
+/* xl */
+@media (min-width: 1200px) {
+}
+
+/* xxl */
+@media (min-width: 1400px) {
+}
+
+.no-outline,
+.no-outline:focus,
+.no-outline:active {
+  outline: none !important;
+  box-shadow: none !important;
+}

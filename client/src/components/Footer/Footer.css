@@ -1,0 +1,274 @@
+.footer {
+  background-color: #f39a8b;
+  color: var(--text-color);
+  margin-top: 3rem;
+  padding: 6rem var(--global-padding-x) 4rem var(--global-padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer h5 {
+  font-family: var(--title-font);
+  font-weight: 400;
+  color: var(--primary-color);
+  letter-spacing: 0.1rem;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li a {
+  color: white;
+}
+
+.social-icons a {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Make it circular */
+}
+
+.social-icons a img {
+  width: 100%;
+  height: 100%;
+}
+
+.info-utiles-separator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 185px;
+  background-color: white;
+}
+.info-legales-separator {
+  position: absolute;
+  left: 22.5vw;
+  top: 0;
+  width: 2px;
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+}
+
+.separator-col {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+  flex-basis: auto; /* Let content determine width */
+  max-width: none; /* Remove max-width constraint */
+}
+.vertical-separator-left,
+.vertical-separator-right {
+  background-color: white;
+  width: 2px;
+
+  margin: 0; /* Remove auto margins */
+}
+
+.bottom-text-col {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  color: white;
+}
+
+.bottom-text-col p {
+  font-family: var(--title-font);
+  font-weight: 400;
+  color: white;
+  letter-spacing: 0.1rem;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.social-icons-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.white-square {
+  width: 70px; /* Adjust size as needed */
+  height: 70px; /* Adjust size as needed */
+  background-color: white;
+  margin-top: 20px; /* Space between icons and square */
+  margin-bottom: -10px; /* Adjust to align baseline */
+}
+
+.supporter-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.supporter-container .white-text {
+  margin-right: 20px;
+  color: white;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.1rem;
+  font-weight: 100;
+  font-family: var(--title-font);
+  text-transform: none;
+}
+
+.footer-logos-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Adjust as needed for spacing between logos */
+  /* margin-top: 2rem; /* Add space above the second row of logos */
+  margin-right: 4rem;
+}
+
+.footer-logo {
+  height: 40px;
+  /* height: 5vh;  */
+  width: auto;
+}
+
+/* xs */
+@media (max-width: 575.98px) {
+  .logo-tv {
+    min-height: 8vh;
+    max-height: 20vh;
+  }
+  .logo-ffr {
+    max-height: 10vh;
+  }
+  .vertical-separator-left {
+    height: 120px;
+  }
+  .vertical-separator-right {
+    height: 80px;
+  }
+}
+
+/* sm */
+@media (min-width: 576px) {
+  .logo-tv {
+    min-height: 8vh;
+    max-height: 30vh;
+  }
+  .logo-ffr {
+    max-height: 10vh;
+  }
+  .vertical-separator-left {
+    height: 120px;
+  }
+  .vertical-separator-right {
+    height: 80px;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .logo-tv {
+    max-height: 14vh;
+  }
+  .logo-ffr {
+    max-height: 9vh;
+  }
+  .footer-logo {
+    max-height: 12vh;
+  }
+  .vertical-separator-left {
+    height: 120px;
+  }
+  .vertical-separator-right {
+    height: 80px;
+  }
+}
+
+/* lg */
+@media (min-width: 992px) {
+  .logo-tv {
+    max-height: 12.5vh;
+  }
+  .logo-ffr {
+    max-height: 9vh;
+  }
+  .footer-logo {
+    max-height: 4.5vh;
+  }
+  .vertical-separator-left {
+    height: 130px;
+  }
+  .vertical-separator-right {
+    height: 80px;
+  }
+}
+
+/* xl */
+@media (min-width: 1200px) {
+  .logo-tv {
+    max-height: 10vh;
+  }
+  .logo-ffr {
+    max-height: 9vh;
+  }
+  .footer-logo {
+    max-height: 5vh;
+  }
+  .footer .info-utiles-col {
+    padding-left: 30px; /* Add some padding to separate content from border */
+  }
+  .vertical-separator-left {
+    height: 130px;
+  }
+  .vertical-separator-right {
+    height: 80px;
+  }
+}
+
+/* xxl */
+@media (min-width: 1400px) {
+  .logo-tv {
+    max-height: 9.6vh;
+  }
+  .logo-ffr {
+    max-height: 8vh;
+  }
+  .footer-logo {
+    max-height: 5vh;
+  }
+  .footer .info-utiles-col {
+    padding-left: 40px;
+  }
+  .footer .info-legales-col {
+    padding-left: 40px;
+  }
+  .footer .contact-col {
+    padding-left: 40px;
+  }
+  .footer .separator-col {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .vertical-separator-left {
+    height: 17vh;
+  }
+  .vertical-separator-right {
+    height: 9vh;
+  }
+  .footer ul li a {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 2.2;
+    /* letter-spacing: 0.1rem; */
+  }
+}

@@ -1,0 +1,21 @@
+.square-img-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* This creates the square aspect ratio */
+  overflow: hidden;
+}
+
+.square-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will make the image cover the square area, cropping if necessary */
+}
+/* .text {
+  margin-left: -0.5vw !important;
+} */
+.text {
+  margin-left: 0 !important;
+}

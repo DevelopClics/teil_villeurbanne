@@ -1,0 +1,1596 @@
+server.js is running
+JSON Server is running on port 3001
+server.js is running
+JSON Server is running on port 3001
+server.js is running
+JSON Server is running on port 3001
+server.js is running
+JSON Server is running on port 3001
+Login route hit!
+TypeError: Cannot destructure property 'id' of 'req.body' as it is undefined.
+    at /Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/server.js:25:11
+    at Layer.handle [as handle_request] (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/index.js:280:10)
+    at expressInit (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/layer.js:95:5)
+server.js is running
+JSON Server is running on port 3001
+Login route hit!
+TypeError: Cannot destructure property 'id' of 'req.body' as it is undefined.
+    at /Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/server.js:27:11
+    at Layer.handle [as handle_request] (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/json-server/node_modules/express/lib/router/index.js:280:10)
+    at cors (/Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/cors/lib/index.js:188:7)
+    at /Users/communication/Desktop/DEVELOPPEMENT/leteil-villeurbanne-main/server/node_modules/cors/lib/index.js:224:17
+server.js is running
+JSON Server is running on port 3001
+Login route hit!
+Login route hit!
+server.js is running
+JSON Server is running on port 3001
+Login route hit!
+Received ID: admin Received Password: 12345ABC
+Found User: {
+  id: 'admin',
+  name: 'Julien',
+  password: '$2b$10$LZSdH5P131sL4I7ZVqOU7OCQut5GKHByVtWXFu6erfO9zmeTagXPC',
+  role: 'admin'
+}
+Bcrypt compare result (isMatch): false
+Password mismatch for user: admin
+server.js is running
+JSON Server is running on port 3001
+Request Path: /reasonText/1
+Path: /reasonText/1, Is Public GET Path: true
+Request Path: /pageTitles/home-title
+Path: /pageTitles/home-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: home-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'home-title', content: "notre raison d'être !" }
+[0mGET /pageTitles/home-title [32m200[0m 1.038 ms - 63[0m
+Request Path: /pageTitles/home-title
+Path: /pageTitles/home-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: home-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'home-title', content: "notre raison d'être !" }
+[0mGET /pageTitles/home-title [32m200[0m 0.385 ms - 63[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /reasonText/1 [32m200[0m 0.799 ms - -[0m
+Request Path: /carouselText/0
+Path: /carouselText/0, Is Public GET Path: true
+[0mGET /carouselText/0 [32m200[0m 0.306 ms - 298[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+Request Path: /carouselText/0
+Path: /carouselText/0, Is Public GET Path: true
+[0mGET /carouselText/0 [32m200[0m 0.218 ms - 298[0m
+[0mGET /carouselImages [32m200[0m 0.241 ms - -[0m
+Request Path: /reasonText/1
+Path: /reasonText/1, Is Public GET Path: true
+[0mGET /carouselImages [32m200[0m 0.398 ms - -[0m
+[0mGET /reasonText/1 [32m200[0m 0.126 ms - -[0m
+Request Path: /reasonText/1
+Path: /reasonText/1, Is Public GET Path: true
+Request Path: /carouselText/0
+Path: /carouselText/0, Is Public GET Path: true
+[0mGET /carouselText/0 [32m200[0m 0.264 ms - 298[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+Request Path: /reasonText/1
+Path: /reasonText/1, Is Public GET Path: true
+Request Path: /pageTitles/home-title
+Path: /pageTitles/home-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: home-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'home-title', content: "notre raison d'être !" }
+[0mGET /pageTitles/home-title [32m200[0m 0.438 ms - 63[0m
+[0mGET /carouselImages [32m200[0m 0.229 ms - -[0m
+[0mGET /reasonText/1 [32m200[0m 0.813 ms - -[0m
+[0mGET /reasonText/1 [32m200[0m 0.591 ms - -[0m
+Request Path: /carouselText/0
+Path: /carouselText/0, Is Public GET Path: true
+[0mGET /carouselText/0 [32m200[0m 0.375 ms - 298[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+Request Path: /pageTitles/home-title
+Path: /pageTitles/home-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: home-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'home-title', content: "notre raison d'être !" }
+[0mGET /pageTitles/home-title [32m200[0m 0.266 ms - 63[0m
+[0mGET /carouselImages [32m200[0m 0.264 ms - -[0m
+server.js is running
+JSON Server is running on port 3001
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 2.984 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 1.584 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.536 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.452 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.158 ms - -[0m
+[0mGET /projects [36m304[0m 3.062 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.219 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 3.000 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.572 ms - -[0m
+Request Path: /carouselText/10
+Path: /carouselText/10, Is Public GET Path: true
+[0mGET /carouselText/10 [36m304[0m 0.244 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.200 ms - -[0m
+Request Path: /carouselText/10
+Path: /carouselText/10, Is Public GET Path: true
+[0mGET /carouselText/10 [36m304[0m 0.327 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.916 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.636 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.601 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.322 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.630 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.190 ms - -[0m
+[0mGET /projects [36m304[0m 3.506 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 2.759 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.209 ms - -[0m
+Request Path: /pageTitles/food-projects-title
+Path: /pageTitles/food-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: food-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'food-projects-title', content: 'Les projets alimentation !' }
+[0mGET /pageTitles/food-projects-title [36m304[0m 0.936 ms - -[0m
+Request Path: /carouselText/6
+Path: /carouselText/6, Is Public GET Path: true
+[0mGET /carouselText/6 [36m304[0m 0.160 ms - -[0m
+Request Path: /carouselText/6
+Path: /carouselText/6, Is Public GET Path: true
+[0mGET /carouselText/6 [36m304[0m 0.142 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.118 ms - -[0m
+Request Path: /pageTitles/food-projects-title
+Path: /pageTitles/food-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: food-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'food-projects-title', content: 'Les projets alimentation !' }
+[0mGET /pageTitles/food-projects-title [36m304[0m 0.252 ms - -[0m
+[0mGET /projects [36m304[0m 2.871 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 2.658 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.470 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [32m200[0m 0.473 ms - 57[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.522 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.614 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.403 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.156 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.249 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.308 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.496 ms - -[0m
+Request Path: /pageTitles/team-page-title
+Path: /pageTitles/team-page-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: team-page-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'team-page-title', content: "L'équipe !" }
+[0mGET /pageTitles/team-page-title [36m304[0m 0.394 ms - -[0m
+Request Path: /carouselText/2
+Path: /carouselText/2, Is Public GET Path: true
+[0mGET /carouselText/2 [36m304[0m 0.190 ms - -[0m
+Request Path: /pageTitles/team-page-title
+Path: /pageTitles/team-page-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: team-page-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'team-page-title', content: "L'équipe !" }
+[0mGET /pageTitles/team-page-title [36m304[0m 0.421 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.198 ms - -[0m
+Request Path: /teammembers
+Path: /teammembers, Is Public GET Path: true
+[0mGET /teammembers [36m304[0m 0.534 ms - -[0m
+Request Path: /carouselText/2
+Path: /carouselText/2, Is Public GET Path: true
+[0mGET /carouselText/2 [36m304[0m 0.239 ms - -[0m
+Request Path: /teammembers
+Path: /teammembers, Is Public GET Path: true
+[0mGET /teammembers [36m304[0m 0.175 ms - -[0m
+Request Path: /carouselText/3
+Path: /carouselText/3, Is Public GET Path: true
+[0mGET /carouselText/3 [36m304[0m 0.226 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.192 ms - -[0m
+Request Path: /pageTitles/places-title
+Path: /pageTitles/places-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: places-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'places-title', content: 'Les villes !' }
+[0mGET /pageTitles/places-title [32m200[0m 0.257 ms - 55[0m
+Request Path: /places
+Path: /places, Is Public GET Path: true
+Request Path: /carouselText/3
+Path: /carouselText/3, Is Public GET Path: true
+[0mGET /carouselText/3 [36m304[0m 0.112 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.254 ms - -[0m
+Request Path: /pageTitles/places-title
+Path: /pageTitles/places-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: places-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'places-title', content: 'Les villes !' }
+[0mGET /pageTitles/places-title [36m304[0m 0.184 ms - -[0m
+[0mGET /places [36m304[0m 2.689 ms - -[0m
+Request Path: /places
+Path: /places, Is Public GET Path: true
+[0mGET /places [36m304[0m 2.534 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.203 ms - -[0m
+Request Path: /carouselText/4
+Path: /carouselText/4, Is Public GET Path: true
+[0mGET /carouselText/4 [36m304[0m 0.350 ms - -[0m
+Request Path: /pageTitles/all-projects-title
+Path: /pageTitles/all-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: all-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'all-projects-title', content: 'Tous les projets' }
+[0mGET /pageTitles/all-projects-title [36m304[0m 0.411 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.120 ms - -[0m
+Request Path: /carouselText/4
+Path: /carouselText/4, Is Public GET Path: true
+[0mGET /carouselText/4 [36m304[0m 0.370 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /pageTitles/all-projects-title
+Path: /pageTitles/all-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: all-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'all-projects-title', content: 'Tous les projets' }
+[0mGET /pageTitles/all-projects-title [36m304[0m 0.249 ms - -[0m
+[0mGET /projects [36m304[0m 2.401 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 3.161 ms - -[0m
+Request Path: /reasonText/1
+Path: /reasonText/1, Is Public GET Path: true
+[0mGET /reasonText/1 [36m304[0m 0.796 ms - -[0m
+Request Path: /pageTitles/home-title
+Path: /pageTitles/home-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: home-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'home-title', content: "notre raison d'être !" }
+[0mGET /pageTitles/home-title [36m304[0m 0.457 ms - -[0m
+Request Path: /carouselText/0
+Path: /carouselText/0, Is Public GET Path: true
+[0mGET /carouselText/0 [36m304[0m 0.333 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.508 ms - -[0m
+Request Path: /reasonText/1
+Path: /reasonText/1, Is Public GET Path: true
+[0mGET /reasonText/1 [36m304[0m 0.246 ms - -[0m
+Request Path: /carouselText/0
+Path: /carouselText/0, Is Public GET Path: true
+[0mGET /carouselText/0 [36m304[0m 0.178 ms - -[0m
+Request Path: /pageTitles/home-title
+Path: /pageTitles/home-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: home-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'home-title', content: "notre raison d'être !" }
+[0mGET /pageTitles/home-title [36m304[0m 0.296 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.200 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.513 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.397 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.483 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.131 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.591 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.315 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.280 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.124 ms - -[0m
+Request Path: /teammembers
+Path: /teammembers, Is Public GET Path: true
+[0mGET /teammembers [36m304[0m 0.364 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.318 ms - -[0m
+Request Path: /carouselText/2
+Path: /carouselText/2, Is Public GET Path: true
+[0mGET /carouselText/2 [36m304[0m 0.765 ms - -[0m
+Request Path: /pageTitles/team-page-title
+Path: /pageTitles/team-page-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: team-page-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'team-page-title', content: "L'équipe !" }
+[0mGET /pageTitles/team-page-title [36m304[0m 0.968 ms - -[0m
+Request Path: /teammembers
+Path: /teammembers, Is Public GET Path: true
+[0mGET /teammembers [36m304[0m 0.203 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.221 ms - -[0m
+Request Path: /carouselText/2
+Path: /carouselText/2, Is Public GET Path: true
+[0mGET /carouselText/2 [36m304[0m 0.175 ms - -[0m
+Request Path: /pageTitles/team-page-title
+Path: /pageTitles/team-page-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: team-page-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'team-page-title', content: "L'équipe !" }
+[0mGET /pageTitles/team-page-title [36m304[0m 0.195 ms - -[0m
+Request Path: /places
+Path: /places, Is Public GET Path: true
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.386 ms - -[0m
+Request Path: /carouselText/3
+Path: /carouselText/3, Is Public GET Path: true
+[0mGET /carouselText/3 [36m304[0m 0.260 ms - -[0m
+Request Path: /pageTitles/places-title
+Path: /pageTitles/places-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: places-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'places-title', content: 'Les villes !' }
+[0mGET /pageTitles/places-title [36m304[0m 0.378 ms - -[0m
+Request Path: /pageTitles/places-title
+Path: /pageTitles/places-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: places-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'places-title', content: 'Les villes !' }
+[0mGET /pageTitles/places-title [36m304[0m 0.259 ms - -[0m
+[0mGET /places [36m304[0m 3.846 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.199 ms - -[0m
+Request Path: /carouselText/3
+Path: /carouselText/3, Is Public GET Path: true
+[0mGET /carouselText/3 [36m304[0m 0.114 ms - -[0m
+Request Path: /places
+Path: /places, Is Public GET Path: true
+[0mGET /places [36m304[0m 2.504 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.372 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselText/4
+Path: /carouselText/4, Is Public GET Path: true
+[0mGET /carouselText/4 [36m304[0m 0.386 ms - -[0m
+Request Path: /pageTitles/all-projects-title
+Path: /pageTitles/all-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: all-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'all-projects-title', content: 'Tous les projets' }
+[0mGET /pageTitles/all-projects-title [36m304[0m 0.683 ms - -[0m
+[0mGET /projects [36m304[0m 3.393 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.220 ms - -[0m
+Request Path: /carouselText/4
+Path: /carouselText/4, Is Public GET Path: true
+[0mGET /carouselText/4 [36m304[0m 0.168 ms - -[0m
+Request Path: /pageTitles/all-projects-title
+Path: /pageTitles/all-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: all-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'all-projects-title', content: 'Tous les projets' }
+[0mGET /pageTitles/all-projects-title [36m304[0m 0.291 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 3.083 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.542 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.338 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.396 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.180 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.171 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.394 ms - -[0m
+[0mGET /projects [36m304[0m 3.837 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 3.062 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.317 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /pageTitles/food-projects-title
+Path: /pageTitles/food-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: food-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'food-projects-title', content: 'Les projets alimentation !' }
+[0mGET /pageTitles/food-projects-title [36m304[0m 0.328 ms - -[0m
+Request Path: /carouselText/6
+Path: /carouselText/6, Is Public GET Path: true
+[0mGET /carouselText/6 [36m304[0m 0.290 ms - -[0m
+Request Path: /pageTitles/food-projects-title
+Path: /pageTitles/food-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: food-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'food-projects-title', content: 'Les projets alimentation !' }
+[0mGET /pageTitles/food-projects-title [36m304[0m 0.491 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.217 ms - -[0m
+[0mGET /projects [36m304[0m 4.412 ms - -[0m
+Request Path: /carouselText/6
+Path: /carouselText/6, Is Public GET Path: true
+[0mGET /carouselText/6 [36m304[0m 0.207 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 3.114 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.259 ms - -[0m
+Request Path: /carouselText/7
+Path: /carouselText/7, Is Public GET Path: true
+[0mGET /carouselText/7 [36m304[0m 0.549 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /pageTitles/youth-projects-title
+Path: /pageTitles/youth-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: youth-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+[0mGET /pageTitles/youth-projects-title [32m200[0m 0.222 ms - 73[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.128 ms - -[0m
+Request Path: /carouselText/7
+Path: /carouselText/7, Is Public GET Path: true
+[0mGET /carouselText/7 [36m304[0m 0.229 ms - -[0m
+Request Path: /pageTitles/youth-projects-title
+Path: /pageTitles/youth-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: youth-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+[0mGET /pageTitles/youth-projects-title [36m304[0m 0.287 ms - -[0m
+[0mGET /projects [36m304[0m 3.013 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 2.973 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.188 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselText/8
+Path: /carouselText/8, Is Public GET Path: true
+[0mGET /carouselText/8 [36m304[0m 0.163 ms - -[0m
+Request Path: /pageTitles/economy-projects-title
+Path: /pageTitles/economy-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: economy-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'economy-projects-title', content: 'Les projets économiques' }
+[0mGET /pageTitles/economy-projects-title [36m304[0m 0.303 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.174 ms - -[0m
+[0mGET /projects [36m304[0m 2.654 ms - -[0m
+Request Path: /carouselText/8
+Path: /carouselText/8, Is Public GET Path: true
+[0mGET /carouselText/8 [36m304[0m 0.242 ms - -[0m
+Request Path: /pageTitles/economy-projects-title
+Path: /pageTitles/economy-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: economy-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' }
+]
+[DEBUG] Found page title (from getState): { id: 'economy-projects-title', content: 'Les projets économiques' }
+[0mGET /pageTitles/economy-projects-title [36m304[0m 0.804 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 2.532 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.274 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [36m304[0m 0.176 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.251 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [36m304[0m 0.122 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.371 ms - -[0m
+Request Path: /carouselText/10
+Path: /carouselText/10, Is Public GET Path: true
+[0mGET /carouselText/10 [36m304[0m 0.219 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.151 ms - -[0m
+Request Path: /carouselText/10
+Path: /carouselText/10, Is Public GET Path: true
+[0mGET /carouselText/10 [36m304[0m 0.213 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.286 ms - -[0m
+Request Path: /carouselText/11
+Path: /carouselText/11, Is Public GET Path: true
+[0mGET /carouselText/11 [36m304[0m 0.327 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.200 ms - -[0m
+Request Path: /carouselText/11
+Path: /carouselText/11, Is Public GET Path: true
+[0mGET /carouselText/11 [36m304[0m 0.251 ms - -[0m
+server.js is running
+JSON Server is running on port 3001
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 4.230 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [36m304[0m 1.148 ms - -[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [32m200[0m 2.132 ms - 67[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.341 ms - -[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [36m304[0m 1.019 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [36m304[0m 0.525 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [32m200[0m 1.099 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [32m200[0m 0.183 ms - 297[0m
+[0mGET /genesisText/1 [32m200[0m 0.687 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [32m200[0m 0.859 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [32m200[0m 0.596 ms - 57[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [32m200[0m 0.121 ms - 297[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [32m200[0m 0.296 ms - 57[0m
+[0mGET /carouselImages [32m200[0m 0.200 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [32m200[0m 0.518 ms - 61[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [32m200[0m 0.299 ms - 67[0m
+[0mGET /carouselImages [32m200[0m 0.788 ms - -[0m
+[0mGET /carouselImages [32m200[0m 3.608 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [32m200[0m 0.213 ms - 61[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [32m200[0m 0.199 ms - 67[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [32m200[0m 1.526 ms - 67[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [32m200[0m 1.275 ms - 67[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.668 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 1.398 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.658 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.502 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.399 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.207 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.268 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.620 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.376 ms - -[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [36m304[0m 0.656 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.461 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [36m304[0m 0.350 ms - -[0m
+Request Path: /pageTitles/drop-project-title
+Path: /pageTitles/drop-project-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: drop-project-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): { id: 'drop-project-title', content: 'Déposer un projet' }
+[0mGET /pageTitles/drop-project-title [36m304[0m 0.380 ms - -[0m
+Request Path: /carouselText/9
+Path: /carouselText/9, Is Public GET Path: true
+[0mGET /carouselText/9 [36m304[0m 0.213 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.334 ms - -[0m
+Request Path: /carouselText/10
+Path: /carouselText/10, Is Public GET Path: true
+[0mGET /carouselText/10 [36m304[0m 0.359 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.125 ms - -[0m
+Request Path: /carouselText/10
+Path: /carouselText/10, Is Public GET Path: true
+[0mGET /carouselText/10 [36m304[0m 0.293 ms - -[0m
+Request Path: /pageTitles/join-us-title
+Path: /pageTitles/join-us-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: join-us-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): undefined
+[0mGET /pageTitles/join-us-title [33m404[0m 0.972 ms - 39[0m
+Request Path: /pageTitles/join-us-title
+Path: /pageTitles/join-us-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: join-us-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): undefined
+[0mGET /pageTitles/join-us-title [33m404[0m 0.308 ms - 39[0m
+Request Path: /carouselText/11
+Path: /carouselText/11, Is Public GET Path: true
+[0mGET /carouselText/11 [36m304[0m 0.584 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.324 ms - -[0m
+Request Path: /carouselText/11
+Path: /carouselText/11, Is Public GET Path: true
+[0mGET /carouselText/11 [36m304[0m 0.233 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.244 ms - -[0m
+Request Path: /pageTitles/contact-us-title
+Path: /pageTitles/contact-us-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: contact-us-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): undefined
+[0mGET /pageTitles/contact-us-title [33m404[0m 0.284 ms - 39[0m
+Request Path: /pageTitles/contact-us-title
+Path: /pageTitles/contact-us-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: contact-us-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' }
+]
+[DEBUG] Found page title (from getState): undefined
+[0mGET /pageTitles/contact-us-title [33m404[0m 0.202 ms - 39[0m
+Request Path: /pageTitles/contact-us-title
+[0mPUT /pageTitles/contact-us-title [32m201[0m 5.354 ms - 63[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.412 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.621 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.238 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' },
+  { id: 'contact-us-title', content: 'Nous contacter !' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.424 ms - -[0m
+Request Path: /carouselText/1
+Path: /carouselText/1, Is Public GET Path: true
+[0mGET /carouselText/1 [36m304[0m 0.292 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.194 ms - -[0m
+Request Path: /genesisText/1
+Path: /genesisText/1, Is Public GET Path: true
+[0mGET /genesisText/1 [36m304[0m 0.262 ms - -[0m
+Request Path: /pageTitles/genesis-title
+Path: /pageTitles/genesis-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: genesis-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' },
+  { id: 'contact-us-title', content: 'Nous contacter !' }
+]
+[DEBUG] Found page title (from getState): { id: 'genesis-title', content: 'La génèse !' }
+[0mGET /pageTitles/genesis-title [36m304[0m 0.314 ms - -[0m
+Request Path: /carouselText/4
+Path: /carouselText/4, Is Public GET Path: true
+[0mGET /carouselText/4 [36m304[0m 0.478 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.299 ms - -[0m
+Request Path: /pageTitles/all-projects-title
+Path: /pageTitles/all-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: all-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' },
+  { id: 'contact-us-title', content: 'Nous contacter !' }
+]
+[DEBUG] Found page title (from getState): { id: 'all-projects-title', content: 'Tous les projets' }
+[0mGET /pageTitles/all-projects-title [36m304[0m 0.798 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /pageTitles/all-projects-title
+Path: /pageTitles/all-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: all-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' },
+  { id: 'contact-us-title', content: 'Nous contacter !' }
+]
+[DEBUG] Found page title (from getState): { id: 'all-projects-title', content: 'Tous les projets' }
+[0mGET /pageTitles/all-projects-title [36m304[0m 0.497 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.373 ms - -[0m
+[0mGET /projects [36m304[0m 7.360 ms - -[0m
+Request Path: /carouselText/4
+Path: /carouselText/4, Is Public GET Path: true
+[0mGET /carouselText/4 [36m304[0m 0.243 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 4.321 ms - -[0m
+Request Path: /pageTitles/all-projects-title
+[0mPUT /pageTitles/all-projects-title [32m200[0m 4.373 ms - 67[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets !' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' },
+  { id: 'contact-us-title', content: 'Nous contacter !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.507 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.216 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.251 ms - -[0m
+Request Path: /pageTitles/culture-projects-title
+Path: /pageTitles/culture-projects-title, Is Public GET Path: true
+[DEBUG] GET /pageTitles/:id - id: culture-projects-title
+[DEBUG] All page titles (from getState): [
+  { id: 'home-reason-title', content: 'Raison' },
+  { id: 'team-page-title', content: "L'équipe !" },
+  { id: 'home-title', content: "notre raison d'être !" },
+  { id: 'genesis-title', content: 'La génèse !' },
+  { id: 'places-title', content: 'Les villes !' },
+  { id: 'all-projects-title', content: 'Tous les projets !' },
+  { id: 'culture-projects-title', content: 'Culture' },
+  { id: 'economy-projects-title', content: 'Les projets économiques' },
+  { id: 'food-projects-title', content: 'Les projets alimentation !' },
+  { id: 'youth-projects-title', content: 'Les projets jeunesse !' },
+  { id: 'drop-project-title', content: 'Déposer un projet' },
+  { id: 'contact-us-title', content: 'Nous contacter !' }
+]
+[DEBUG] Found page title (from getState): { id: 'culture-projects-title', content: 'Culture' }
+[0mGET /pageTitles/culture-projects-title [36m304[0m 0.530 ms - -[0m
+[0mGET /projects [36m304[0m 3.280 ms - -[0m
+Request Path: /carouselImages
+Path: /carouselImages, Is Public GET Path: true
+[0mGET /carouselImages [36m304[0m 0.201 ms - -[0m
+Request Path: /carouselText/5
+Path: /carouselText/5, Is Public GET Path: true
+[0mGET /carouselText/5 [36m304[0m 0.203 ms - -[0m
+Request Path: /projects
+Path: /projects, Is Public GET Path: true
+[0mGET /projects [36m304[0m 2.863 ms - -[0m

@@ -1,0 +1,99 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-container-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.main-content-padding {
+  padding-left: var(--global-padding-x);
+  padding-right: var(--global-padding-x);
+}
+
+/* Top Header */
+.top-blue-bar {
+  background-color: var(--primary-color); /* Use primary color */
+  height: 2.5vh;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+/* Reason Section */
+.reason-section {
+  padding: 50px 0;
+  padding-top: 2vh;
+}
+
+
+
+.reason-section h2 {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.reason-section p {
+  font-family: var(--body-font);
+}
+
+.bottom-blue-bar {
+  background-color: var(--primary-color); /* Use primary color */
+  height: 4vh;
+  width: 100%;
+}
+
+.bottom-blue-bar {
+  background-color: var(--primary-color); /* Use primary color */
+  height: 2.5vh;
+  width: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+/* Pagination styles */
+.pagination .page-item .page-link {
+  color: var(--primary-color) !important;
+  background-color: #fff !important;
+  border-color: var(--primary-color) !important;
+}
+
+.pagination .page-item.active .page-link {
+  color: #fff !important;
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.pagination .page-item .page-link:hover {
+  color: #fff !import ant;
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-main-blue {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.btn-main-blue:hover {
+  background-color: var(--primary-color);
+  opacity: 0.9;
+  color: white;
+  border-color: var(--primary-color);
+}

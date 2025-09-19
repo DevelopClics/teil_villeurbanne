@@ -1,0 +1,284 @@
+{
+  "allProjects": [
+    {
+      "id": 1,
+      "src": "images/photos/projects/food/AdobeStock_177891705.jpeg",
+      "alt": "alt",
+      "category": "Alimentation",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 2,
+      "src": "images/photos/projects/culture/AdobeStock_128079957.jpeg",
+      "alt": "alt",
+      "category": "Culture",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 3,
+      "src": "images/photos/projects/economy/AdobeStock_280115343.jpeg",
+      "alt": "alt",
+      "category": "économie",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 4,
+      "src": "images/photos/projects/youth/AdobeStock_244627948.jpeg",
+      "category": "jeunesse",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 5,
+      "src": "images/photos/projects/food/AdobeStock_204199437.jpeg",
+      "alt": "alt",
+      "category": "alimentation",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 6,
+      "src": "images/photos/projects/food/AdobeStock_177891705.jpeg",
+      "alt": "alt",
+      "category": "alimentation",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 9,
+      "src": "images/photos/projects/food/AdobeStock_204199437.jpeg",
+      "alt": "alt",
+      "category": "alimentation",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 7,
+      "src": "images/photos/projects/food/AdobeStock_177891705.jpeg",
+      "alt": "alt",
+      "category": "alimentation",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    },
+    {
+      "id": 8,
+      "src": "images/photos/culture/AdobeStock_270911862.jpeg",
+      "alt": "alt",
+      "category": "Culture",
+      "title": "Le titre du projet",
+      "text": "Un tout petit descriptif vraiment pas long du tout"
+    }
+  ],
+  "carouselText": [
+    {
+      "id": 0,
+      "content": "This is the default carousel text for Home. You can edit this in the admin panel."
+    },
+    {
+      "id": 1,
+      "content": "This is the default carousel text for Genesis. You can edit this in the admin panel."
+    },
+    {
+      "id": 2,
+      "content": "This is the default carousel text for Team. You can edit this in the admin panel."
+    },
+    {
+      "id": 3,
+      "content": "This is the default carousel text for Places. You can edit this in the admin panel."
+    },
+    {
+      "id": 4,
+      "content": "This is the default carousel text for All Projects. You can edit this in the admin panel."
+    },
+    {
+      "id": 5,
+      "content": "This is the default carousel text for Culture Projects. You can edit this in the admin panel."
+    },
+    {
+      "id": 6,
+      "content": "This is the default carousel text for Food Projects. You can edit this in the admin panel."
+    },
+    {
+      "id": 7,
+      "content": "This is the default carousel text for Youth Projects. You can edit this in the admin panel."
+    },
+    {
+      "id": 8,
+      "content": "This is the default carousel text for Economy Projects. You can edit this in the admin panel."
+    },
+    {
+      "id": 10,
+      "content": "This is the default carousel text for Join Us Contact. You can edit this in the admin panel."
+    },
+    {
+      "id": 11,
+      "content": "This is the default carousel text for Contact. You can edit this in the admin panel."
+    }
+  ],
+  "reasonText": [
+    {
+      "id": 1,
+      "content": "This is the default reason text. You can edit this in the admin panel."
+    }
+  ],
+  "genesisText": [
+    {
+      "id": 1,
+      "content": "This is the default genesis text. You can edit this in the admin panel."
+    }
+  ],
+  "carouselImages": [
+    {
+      "id": 2,
+      "src": "images/photos/carousel/cities/AdobeStock_570690849.jpeg",
+      "alt": "Cityscape 2"
+    }
+  ],
+  "teammembers": {
+    "office": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "role": "CEO",
+        "src": "images/photos/team/office/222.jpg"
+      }
+    ],
+    "employees": [
+      {
+        "id": 1,
+        "name": "Jane Smith",
+        "role": "Developer",
+        "src": "images/photos/team/employees/25.jpg"
+      }
+    ],
+    "administration": [
+      {
+        "id": 1,
+        "name": "Admin One",
+        "role": "Administrator",
+        "src": "images/photos/team/administration/222.jpg"
+      }
+    ],
+    "instruction": [
+      {
+        "id": 1,
+        "name": "Instructor A",
+        "role": "Lead Instructor",
+        "src": "images/photos/team/instruction/25.jpg"
+      }
+    ],
+    "scientific": [
+      {
+        "id": 1,
+        "name": "Scientist X",
+        "role": "Chief Scientist",
+        "src": "images/photos/team/scientific/222.jpg"
+      }
+    ]
+  },
+  "citiesProjects": [
+    {
+      "id": 1,
+      "title": "City Project 1",
+      "photo": "images/photos/projects/cities/city1.jpg",
+      "alt": "City 1",
+      "size": "Large",
+      "subtitle": "Subtitle 1",
+      "article": "Article content for city project 1.",
+      "contacts": "Contact info 1",
+      "links01": "link1",
+      "typelink01": "type1",
+      "namelink01": "name1",
+      "links02": "link2",
+      "typelink02": "type2",
+      "namelink02": "name2"
+    },
+    {
+      "id": 2,
+      "title": "City Project 2",
+      "photo": "images/photos/projects/cities/city2.jpg",
+      "alt": "City 2",
+      "size": "Medium",
+      "subtitle": "Subtitle 2",
+      "article": "Article content for city project 2.",
+      "contacts": "Contact info 2",
+      "links01": "link3",
+      "typelink01": "type3",
+      "namelink01": "name3",
+      "links02": "link4",
+      "typelink02": "type4",
+      "namelink02": "name4"
+    }
+  ],
+  "cultureProjects": [
+    {
+      "id": 1,
+      "title": "Culture Project 1",
+      "photo": "images/photos/projects/culture/culture1.jpg",
+      "alt": "Culture 1",
+      "size": "Large",
+      "subtitle": "Subtitle 1",
+      "article": "Article content for culture project 1.",
+      "contacts": "Contact info 1",
+      "links01": "link1",
+      "typelink01": "type1",
+      "namelink01": "name1",
+      "links02": "link2",
+      "typelink02": "type2",
+      "namelink02": "name2"
+    },
+    {
+      "id": 2,
+      "title": "Culture Project 2",
+      "photo": "images/photos/projects/culture/culture2.jpg",
+      "alt": "Culture 2",
+      "size": "Medium",
+      "subtitle": "Subtitle 2",
+      "article": "Article content for culture project 2.",
+      "contacts": "Contact info 2",
+      "links01": "link3",
+      "typelink01": "type3",
+      "namelink01": "name3",
+      "links02": "link4",
+      "typelink02": "type4",
+      "namelink02": "name4"
+    }
+  ],
+  "foodProjects": [
+    {
+      "id": 1,
+      "title": "Food Project 1",
+      "photo": "images/photos/projects/food/food1.jpg",
+      "alt": "Food 1",
+      "size": "Large",
+      "subtitle": "Subtitle 1",
+      "article": "Article content for food project 1.",
+      "contacts": "Contact info 1",
+      "links01": "link1",
+      "typelink01": "type1",
+      "namelink01": "name1",
+      "links02": "link2",
+      "typelink02": "type2",
+      "namelink02": "name2"
+    },
+    {
+      "id": 2,
+      "title": "Food Project 2",
+      "photo": "images/photos/projects/food/food2.jpg",
+      "alt": "Food 2",
+      "size": "Medium",
+      "subtitle": "Subtitle 2",
+      "article": "Article content for food project 2.",
+      "contacts": "Contact info 2",
+      "links01": "link3",
+      "typelink01": "type3",
+      "namelink01": "name3",
+      "links02": "link4",
+      "typelink02": "type4",
+      "namelink02": "name4"
+    }
+  ]
+}

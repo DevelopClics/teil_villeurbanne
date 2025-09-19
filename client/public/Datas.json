@@ -1,0 +1,36 @@
+{
+  "citiesProjects": [
+    {
+      "id": 1,
+      "title": "Le Teil",
+      "src": "images/photos/carousel/cities/AdobeStock_311575980.jpeg",
+      "alt": "Ville01",
+      "size": "30",
+      "subtitle": "Commune française",
+      "article": "Le Teil est une commune française située dans le département de l'Ardèche en région Auvergne-Rhône-Alpes. C'est une ville dynamique avec une riche histoire et un patrimoine culturel important. Elle offre un cadre de vie agréable avec de nombreux services et activités pour ses habitants.",
+      "contacts": "Mairie du Teil",
+      "links01": "https://www.leteil.fr/",
+      "typelink01": "Site web :",
+      "namelink01": "Mairie du Teil",
+      "links02": "",
+      "typelink02": "",
+      "namelink02": ""
+    },
+    {
+      "id": 2,
+      "title": "Villeurbanne",
+      "src": "images/photos/carousel/cities/AdobeStock_570690849.jpeg",
+      "alt": "Ville02",
+      "size": "30",
+      "subtitle": "Commune française",
+      "article": "Villeurbanne est une commune française située dans la métropole de Lyon en région Auvergne-Rhône-Alpes. C'est une ville moderne et cosmopolite, connue pour son dynamisme économique et culturel. Elle propose une grande diversité d'activités et d'infrastructures.",
+      "contacts": "Mairie de Villeurbanne",
+      "links01": "https://www.villeurbanne.fr/",
+      "typelink01": "Site web :",
+      "namelink01": "Mairie de Villeurbanne",
+      "links02": "",
+      "typelink02": "",
+      "namelink02": ""
+    }
+  ]
+}
