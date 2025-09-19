@@ -118,7 +118,12 @@ export default function AllProj({ isNavbarHovered }) {
                     <div
                       className="square-img-container"
                       onClick={() =>
-                        navigate(`/${item.category.toLowerCase()}`, { state: { projectId: item.id, projectCategory: item.category } })
+                        navigate(`/${item.category.toLowerCase()}`, {
+                          state: {
+                            projectId: item.id,
+                            projectCategory: item.category,
+                          },
+                        })
                       }
                       style={{ cursor: "pointer" }}
                     >
@@ -126,9 +131,7 @@ export default function AllProj({ isNavbarHovered }) {
                         "Navigating to:",
                         `/${item.category.toLowerCase()}/${item.id}`
                       )}
-                      <div className="project-category-label">
-                        {item.category}
-                      </div>
+                      <div className="project-category-label">{item.panel}</div>
 
                       <LazyLoadImage
                         wrapperClassName="square-img"

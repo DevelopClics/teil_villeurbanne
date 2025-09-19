@@ -454,6 +454,7 @@
     {
       "id": 1,
       "category": "culture",
+      "panel": "culture",
       "title": "Semaine de Musique d’ensemble  !",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/culture/AdobeStock_128079957.jpeg",
@@ -473,6 +474,7 @@
     {
       "id": 2,
       "category": "culture",
+      "panel": "culture",
       "title": "Créations croisées",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/culture/AdobeStock_347123057.jpeg",
@@ -491,6 +493,7 @@
     {
       "id": 3,
       "category": "food",
+      "panel": "alimentation",
       "title": "Mieux manger pour tous",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/food/AdobeStock_177891705.jpeg",
@@ -509,6 +512,7 @@
     {
       "id": 4,
       "category": "youth",
+      "panel": "jeunesse",
       "title": "Vis ma vie !",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_244627948.jpeg",
@@ -525,6 +529,8 @@
     {
       "id": 5,
       "category": "youth",
+      "panel": "jeunesse",
+
       "title": "Vacances",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_244627948.jpeg",
@@ -540,6 +546,8 @@
     {
       "id": 6,
       "category": "youth",
+      "panel": "jeunesse",
+
       "title": "Echanges de jeunes",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_271631234.jpeg",
@@ -551,6 +559,8 @@
     {
       "id": 7,
       "category": "youth",
+      "panel": "jeunesse",
+
       "title": "Vers l’enseignement supérieur",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_244627948.jpeg",
@@ -569,6 +579,8 @@
     {
       "id": 8,
       "category": "youth",
+      "panel": "jeunesse",
+
       "title": "Garantie logement social étudiant",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_271631234.jpeg",
@@ -593,6 +605,8 @@
     {
       "id": 10,
       "category": "youth",
+      "panel": "jeunesse",
+
       "title": "Stages de 3ème et 2nde",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_271631234.jpeg",
@@ -605,6 +619,8 @@
     {
       "id": 11,
       "category": "youth",
+      "panel": "jeunesse",
+
       "title": "Démocratisation et réussite dans l’enseignement supérieur des jeunes teillois",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/youth/AdobeStock_244627948.jpeg",
@@ -619,6 +635,8 @@
     {
       "id": 12,
       "category": "economy",
+      "panel": "économie",
+
       "title": "Produire des chiliennes à partir des déchets des deux territoires en employant des personnes éloignées de l’emploi",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/economy/AdobeStock_443596464.jpeg",
@@ -637,6 +655,8 @@
     {
       "id": 13,
       "category": "economy",
+      "panel": "économie",
+
       "title": "Le grand déplacement",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/economy/AdobeStock_280115343.jpeg",
@@ -655,6 +675,8 @@
     {
       "id": 14,
       "category": "economy",
+      "panel": "économie",
+
       "title": "Échange d’artisans",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
       "src": "images/photos/projects/economy/AdobeStock_280115343.jpeg",
