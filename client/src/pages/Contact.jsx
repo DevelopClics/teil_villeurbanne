@@ -7,6 +7,7 @@ import Breadcrumbscontact from "../components/breadcrumbs/Breadcrumbscontact";
 import FormContact from "../components/elements/FormContact";
 import CarouselComponent from "../components/Carousel/Carousel";
 import EditableTitle from "../components/EditableTitle";
+import EditableParagraph from "../components/EditableParagraph";
 
 export default function Contact({ isNavbarHovered }) {
   const TITLE = "Nous contacter";
@@ -51,13 +52,7 @@ export default function Contact({ isNavbarHovered }) {
           <Row>
             <Col>
               <EditableTitle textId="contact-us-title" defaultTitle={TITLE} />
-              <p>
-                CONTACTLorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer
-                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat.
-              </p>
+              <EditableParagraph textId="contact-us-paragraph" defaultText="CONTACTLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat." />
               <FormContact />
             </Col>
           </Row>

@@ -17,7 +17,7 @@ export default function DropProject({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        
+        title={SUB}
         category="projects"
         carouselTextId={9}
         isEditable={isAuthenticated}

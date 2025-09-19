@@ -1,6 +1,6 @@
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import "../../App.css";
@@ -15,7 +15,6 @@ export default function Food({ isNavbarHovered }) {
   const SUBTEXT =
     "Favorisons une production et une consommation alimentaire saine, responsable de l’environnement, qui fonctionne en circuit court, qui prend soin des producteurs et qui est accessible aux plus précaires.";
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsRef = useRef(null);
   const projectsPerPage = 10;
 
   const { id } = useParams();
@@ -23,6 +22,8 @@ export default function Food({ isNavbarHovered }) {
   const [foodProjects, setFoodProjects] = useState([]);
   const [singleProject, setSingleProject] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const projectRefs = useRef(new Map());
 
   
 
@@ -55,7 +56,22 @@ export default function Food({ isNavbarHovered }) {
             throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
           }
           const data = await response.json();
-          setFoodProjects(data.filter(project => project.category === "food"));
+          const filteredProjects = data.filter(project => project.category === "food");
+          setFoodProjects(filteredProjects);
+
+          // Check if we navigated from AllProj with a specific project
+          if (location.state && location.state.projectId) {
+            const { projectId } = location.state;
+            const projectIndex = filteredProjects.findIndex(
+              (project) => project.id === projectId
+            );
+            if (projectIndex !== -1) {
+              const calculatedPage = Math.floor(projectIndex / projectsPerPage) + 1;
+              setCurrentPage(calculatedPage);
+            }
+            // Clear the state after use
+            navigate(location.pathname, { replace: true, state: {} });
+          }
         }
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -63,7 +79,21 @@ export default function Food({ isNavbarHovered }) {
     };
 
     fetchProjects();
-  }, [isAuthenticated, id]);
+  }, [isAuthenticated, id, location.state, navigate, projectsPerPage]);
+
+  useEffect(() => {
+    if (location.state && location.state.projectId && foodProjects.length > 0) {
+      const { projectId } = location.state;
+      const targetElement = projectRefs.current.get(projectId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        // Clear the state after scrolling
+        navigate(location.pathname, { replace: true, state: {} });
+      }
+    }
+  }, [foodProjects, currentPage, location.state, navigate]);
+
+  
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -76,7 +106,7 @@ export default function Food({ isNavbarHovered }) {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    projectsRef.current.scrollIntoView({ behavior: "smooth" });
+    // projectsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleUpdateProject = async (projectId, updatedData, file) => {
@@ -137,21 +167,6 @@ export default function Food({ isNavbarHovered }) {
           <Row>
             <Col>
               <EditableTitle textId="food-projects-title" defaultTitle="Les projets alimentation" />
-              {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4">
-                  <Pagination>
-                    {[...Array(totalPages)].map((_, index) => (
-                      <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                  </Pagination>
-                </div>
-              )}
 
               {id && singleProject ? (
                 <ProjectLayout
@@ -164,12 +179,13 @@ export default function Food({ isNavbarHovered }) {
                 />
               ) : (
                 currentProjects.map((item) => (
-                  <ProjectLayout
-                    key={item.id}
-                    item={item}
-                    isEditable={isAuthenticated}
-                    onUpdate={handleUpdateProject}
-                  />
+                  <div key={item.id} ref={(el) => projectRefs.current.set(item.id, el)}>
+                    <ProjectLayout
+                      item={item}
+                      isEditable={isAuthenticated}
+                      onUpdate={handleUpdateProject}
+                    />
+                  </div>
                 ))
               )}
               {totalPages > 1 && (
@@ -187,7 +203,7 @@ export default function Food({ isNavbarHovered }) {
                   </Pagination>
                 </div>
               )}
-            </Col>{" "}
+            </Col>
           </Row>
         </Container>
       </section>

@@ -1,6 +1,6 @@
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import "../../App.css";
@@ -15,14 +15,15 @@ export default function Youth({ isNavbarHovered }) {
   const SUBTEXT =
     "Pour lutter contre le décrochage de la jeunesse, présentons leurs d’autres horizons académiques, professionnels et de loisirs, créons des occasions de rencontres entre jeunes des villes et jeunes ruraux et travaillons avec eux à la création de projets.";
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsRef = useRef(null);
-  const projectsPerPage = 10;
+  const projectsPerPage = 3;
 
   const { id } = useParams();
   const { isAuthenticated } = useAuth();
   const [youthProjects, setYouthProjects] = useState([]);
   const [singleProject, setSingleProject] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const projectRefs = useRef(new Map());
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -60,9 +61,25 @@ export default function Youth({ isNavbarHovered }) {
             );
           }
           const data = await response.json();
-          setYouthProjects(
-            data.filter((project) => project.category === "youth")
+          const filteredProjects = data.filter(
+            (project) => project.category === "youth"
           );
+          setYouthProjects(filteredProjects);
+
+          // Check if we navigated from AllProj with a specific project
+          if (location.state && location.state.projectId) {
+            const { projectId } = location.state;
+            const projectIndex = filteredProjects.findIndex(
+              (project) => project.id === projectId
+            );
+            if (projectIndex !== -1) {
+              const calculatedPage =
+                Math.floor(projectIndex / projectsPerPage) + 1;
+              setCurrentPage(calculatedPage);
+            }
+            // Clear the state after use
+            navigate(location.pathname, { replace: true, state: {} });
+          }
         }
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -70,7 +87,19 @@ export default function Youth({ isNavbarHovered }) {
     };
 
     fetchProjects();
-  }, [isAuthenticated, id]);
+  }, [isAuthenticated, id, location.state, navigate, projectsPerPage]);
+
+  useEffect(() => {
+    if (location.state && location.state.projectId && youthProjects.length > 0) {
+      const { projectId } = location.state;
+      const targetElement = projectRefs.current.get(projectId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        // Clear the state after scrolling
+        navigate(location.pathname, { replace: true, state: {} });
+      }
+    }
+  }, [youthProjects, currentPage, location.state, navigate]);
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -83,7 +112,7 @@ export default function Youth({ isNavbarHovered }) {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    projectsRef.current.scrollIntoView({ behavior: "smooth" });
+    // projectsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleUpdateProject = async (projectId, updatedData, file) => {
@@ -143,22 +172,10 @@ export default function Youth({ isNavbarHovered }) {
         <Container className="app-container-padding">
           <Row>
             <Col>
-              <EditableTitle textId="youth-projects-title" defaultTitle="Les projets jeunesse" />
-              {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4">
-                  <Pagination>
-                    {[...Array(totalPages)].map((_, index) => (
-                      <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                  </Pagination>
-                </div>
-              )}
+              <EditableTitle
+                textId="youth-projects-title"
+                defaultTitle="Les projets jeunesse"
+              />
 
               {id && singleProject ? (
                 <ProjectLayout
@@ -171,12 +188,16 @@ export default function Youth({ isNavbarHovered }) {
                 />
               ) : (
                 currentProjects.map((item) => (
-                  <ProjectLayout
+                  <div
                     key={item.id}
-                    item={item}
-                    isEditable={isAuthenticated}
-                    onUpdate={handleUpdateProject}
-                  />
+                    ref={(el) => projectRefs.current.set(item.id, el)}
+                  >
+                    <ProjectLayout
+                      item={item}
+                      isEditable={isAuthenticated}
+                      onUpdate={handleUpdateProject}
+                    />
+                  </div>
                 ))
               )}
               {totalPages > 1 && (
@@ -194,7 +215,7 @@ export default function Youth({ isNavbarHovered }) {
                   </Pagination>
                 </div>
               )}
-            </Col>{" "}
+            </Col>
           </Row>
         </Container>
       </section>

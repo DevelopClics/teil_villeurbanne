@@ -118,7 +118,7 @@ export default function AllProj({ isNavbarHovered }) {
                     <div
                       className="square-img-container"
                       onClick={() =>
-                        navigate(`/${item.category.toLowerCase()}/${item.id}`)
+                        navigate(`/${item.category.toLowerCase()}`, { state: { projectId: item.id, projectCategory: item.category } })
                       }
                       style={{ cursor: "pointer" }}
                     >
@@ -140,7 +140,7 @@ export default function AllProj({ isNavbarHovered }) {
                       />
                       <div className="project-info-box">
                         <h4 className="project-info-title">{item.title}</h4>
-                        <p className="project-info-text">{item.text}</p>
+                        <p className="project-info-text">{item.shortext}</p>
                       </div>
                     </div>
                   </Col>

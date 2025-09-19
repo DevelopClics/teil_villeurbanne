@@ -64,6 +64,7 @@ server.use((req, res, next) => {
     '/places',
     '/projects',
     '/pageTitles',
+    '/pageParagraphs',
   ];
 
   if (publicPaths.includes(req.path)) {
@@ -229,6 +230,44 @@ server.put("/pageTitles/:id", (req, res) => {
     allPageTitles.push(newTitle);
     router.db.write(); // Persist changes
     res.status(201).json(newTitle);
+  }
+});
+
+// Routes for page paragraphs
+server.get("/pageParagraphs/:id", (req, res) => {
+  const id = req.params.id;
+  const dbState = router.db.getState();
+  const allPageParagraphs = dbState.pageParagraphs;
+  const pageParagraph = allPageParagraphs ? allPageParagraphs.find(item => item.id === id) : undefined;
+  if (pageParagraph) {
+    res.json(pageParagraph);
+  } else {
+    res.status(404).json({ message: "Page paragraph not found" });
+  }
+});
+
+server.put("/pageParagraphs/:id", (req, res) => {
+  const id = req.params.id;
+  const updatedContent = req.body.content;
+  const dbState = router.db.getState();
+  let allPageParagraphs = dbState.pageParagraphs;
+
+  if (!allPageParagraphs) {
+    allPageParagraphs = [];
+    dbState.pageParagraphs = allPageParagraphs;
+  }
+
+  const pageParagraphIndex = allPageParagraphs.findIndex(item => item.id === id);
+
+  if (pageParagraphIndex !== -1) {
+    allPageParagraphs[pageParagraphIndex].content = updatedContent;
+    router.db.write();
+    res.json(allPageParagraphs[pageParagraphIndex]);
+  } else {
+    const newParagraph = { id: id, content: updatedContent };
+    allPageParagraphs.push(newParagraph);
+    router.db.write();
+    res.status(201).json(newParagraph);
   }
 });
 

@@ -80,7 +80,7 @@ body {
 }
 
 .pagination .page-item .page-link:hover {
-  color: #fff !import ant;
+  color: #fff !important;
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }

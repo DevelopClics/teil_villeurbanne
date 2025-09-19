@@ -1,6 +1,6 @@
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import "../../App.css";
@@ -15,7 +15,6 @@ export default function Economy({ isNavbarHovered }) {
   const SUBTEXT =
     "Travaillons à remodeler nos modèles économiques en encourageant le réemploi, la mutualisation des forces et des biens, les circuits-courts, le transfert de compétences… tout en cherchant à solidifier les emplois de chacun.";
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsRef = useRef(null);
   const projectsPerPage = 10;
 
   const { id } = useParams();
@@ -23,6 +22,8 @@ export default function Economy({ isNavbarHovered }) {
   const [economyProjects, setEconomyProjects] = useState([]);
   const [singleProject, setSingleProject] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const projectRefs = useRef(new Map());
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -60,9 +61,22 @@ export default function Economy({ isNavbarHovered }) {
             );
           }
           const data = await response.json();
-          setEconomyProjects(
-            data.filter((project) => project.category === "economy")
-          );
+          const filteredProjects = data.filter((project) => project.category === "economy");
+          setEconomyProjects(filteredProjects);
+
+          // Check if we navigated from AllProj with a specific project
+          if (location.state && location.state.projectId) {
+            const { projectId } = location.state;
+            const projectIndex = filteredProjects.findIndex(
+              (project) => project.id === projectId
+            );
+            if (projectIndex !== -1) {
+              const calculatedPage = Math.floor(projectIndex / projectsPerPage) + 1;
+              setCurrentPage(calculatedPage);
+            }
+            // Clear the state after use
+            navigate(location.pathname, { replace: true, state: {} });
+          }
         }
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -70,7 +84,21 @@ export default function Economy({ isNavbarHovered }) {
     };
 
     fetchProjects();
-  }, [isAuthenticated, id]);
+  }, [isAuthenticated, id, location.state, navigate, projectsPerPage]);
+
+  useEffect(() => {
+    if (location.state && location.state.projectId && economyProjects.length > 0) {
+      const { projectId } = location.state;
+      const targetElement = projectRefs.current.get(projectId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        // Clear the state after scrolling
+        navigate(location.pathname, { replace: true, state: {} });
+      }
+    }
+  }, [economyProjects, currentPage, location.state, navigate]);
+
+  
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -83,7 +111,7 @@ export default function Economy({ isNavbarHovered }) {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    projectsRef.current.scrollIntoView({ behavior: "smooth" });
+    // projectsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleUpdateProject = async (projectId, updatedData, file) => {
@@ -144,21 +172,6 @@ export default function Economy({ isNavbarHovered }) {
           <Row>
             <Col>
               <EditableTitle textId="economy-projects-title" defaultTitle="Les projets économiques" />
-              {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4">
-                  <Pagination>
-                    {[...Array(totalPages)].map((_, index) => (
-                      <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                  </Pagination>
-                </div>
-              )}
 
               {id && singleProject ? (
                 <ProjectLayout
@@ -171,12 +184,13 @@ export default function Economy({ isNavbarHovered }) {
                 />
               ) : (
                 currentProjects.map((item) => (
-                  <ProjectLayout
-                    key={item.id}
-                    item={item}
-                    isEditable={isAuthenticated}
-                    onUpdate={handleUpdateProject}
-                  />
+                  <div key={item.id} ref={(el) => projectRefs.current.set(item.id, el)}>
+                    <ProjectLayout
+                      item={item}
+                      isEditable={isAuthenticated}
+                      onUpdate={handleUpdateProject}
+                    />
+                  </div>
                 ))
               )}
               {totalPages > 1 && (
@@ -194,7 +208,7 @@ export default function Economy({ isNavbarHovered }) {
                   </Pagination>
                 </div>
               )}
-            </Col>{" "}
+            </Col>
           </Row>
         </Container>
       </section>

@@ -1,1 +1,21 @@
-{}
+{
+  "pageTitles": [
+    {
+      "id": "join-us-title",
+      "content": "Rejoignez-nous"
+    }
+  ],
+  "pageParagraphs": [
+    {
+      "id": "contact-us-paragraph",
+      "content": "Ceci est un paragraphe de contact par défaut."
+    }
+  ],
+  "user": [
+    {
+      "id": "admin",
+      "password": "$2b$10$.l484wxRhTBiUbgGhHMhMeMIQiPEMr3c.42adDt6Epm4hZGruhWAS",
+      "role": "admin"
+    }
+  ]
+}

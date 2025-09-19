@@ -1,6 +1,6 @@
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import EditableTitle from "../../components/EditableTitle";
@@ -14,13 +14,14 @@ import ProjectLayout from "../../components/layouts/ProjectLayout";
 export default function Culture({ isNavbarHovered }) {
   const SUB = "Culture";
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsRef = useRef(null);
   const projectsPerPage = 10;
   const { id } = useParams();
   const { isAuthenticated } = useAuth();
   const [cultureProjects, setCultureProjects] = useState([]);
   const [singleProject, setSingleProject] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const projectRefs = useRef(new Map());
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -58,9 +59,22 @@ export default function Culture({ isNavbarHovered }) {
             );
           }
           const data = await response.json();
-          setCultureProjects(
-            data.filter((project) => project.category === "culture")
-          );
+          const filteredProjects = data.filter((project) => project.category === "culture");
+          setCultureProjects(filteredProjects);
+
+          // Check if we navigated from AllProj with a specific project
+          if (location.state && location.state.projectId) {
+            const { projectId } = location.state;
+            const projectIndex = filteredProjects.findIndex(
+              (project) => project.id === projectId
+            );
+            if (projectIndex !== -1) {
+              const calculatedPage = Math.floor(projectIndex / projectsPerPage) + 1;
+              setCurrentPage(calculatedPage);
+            }
+            // Clear the state after use
+            navigate(location.pathname, { replace: true, state: {} });
+          }
         }
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -68,7 +82,21 @@ export default function Culture({ isNavbarHovered }) {
     };
 
     fetchProjects();
-  }, [isAuthenticated, id]);
+  }, [isAuthenticated, id, location.state, navigate, projectsPerPage]);
+
+  useEffect(() => {
+    if (location.state && location.state.projectId && cultureProjects.length > 0) {
+      const { projectId } = location.state;
+      const targetElement = projectRefs.current.get(projectId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+        // Clear the state after scrolling
+        navigate(location.pathname, { replace: true, state: {} });
+      }
+    }
+  }, [cultureProjects, currentPage, location.state, navigate]);
+
+  
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -81,7 +109,7 @@ export default function Culture({ isNavbarHovered }) {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    projectsRef.current.scrollIntoView({ behavior: "smooth" });
+    // projectsRef.current.scrollIntoView({ behavior: "smooth" }); // This is no longer needed here
   };
 
   const handleUpdateProject = async (projectId, updatedData, file) => {
@@ -152,12 +180,13 @@ export default function Culture({ isNavbarHovered }) {
                 />
               ) : (
                 currentProjects.map((item) => (
-                  <ProjectLayout
-                    key={item.id}
-                    item={item}
-                    isEditable={isAuthenticated}
-                    onUpdate={handleUpdateProject}
-                  />
+                  <div key={item.id} ref={(el) => projectRefs.current.set(item.id, el)}>
+                    <ProjectLayout
+                      item={item}
+                      isEditable={isAuthenticated}
+                      onUpdate={handleUpdateProject}
+                    />
+                  </div>
                 ))
               )}
 

@@ -6,6 +6,7 @@ import "../../App.css";
 import Breadcrumbscontact from "../../components/breadcrumbs/Breadcrumbscontact";
 import FormJoinus from "../../components/elements/FormJoinus";
 import CarouselComponent from "../../components/Carousel/Carousel";
+import EditableParagraph from "../../components/EditableParagraph";
 import EditableTitle from "../../components/EditableTitle";
 
 export default function JoinContact({ isNavbarHovered }) {
@@ -31,13 +32,11 @@ export default function JoinContact({ isNavbarHovered }) {
           <Row>
             <Col>
               <EditableTitle textId="join-us-title" defaultTitle={SUB} />
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer
-                adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat.
-              </p>
+              <EditableParagraph
+                textId="join-us-paragraph"
+                initialContent="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+                isEditable={isAuthenticated}
+              />
               <FormJoinus />
             </Col>
           </Row>
