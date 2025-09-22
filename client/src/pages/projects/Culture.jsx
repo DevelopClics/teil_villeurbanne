@@ -59,7 +59,9 @@ export default function Culture({ isNavbarHovered }) {
             );
           }
           const data = await response.json();
-          const filteredProjects = data.filter((project) => project.category === "culture");
+          const filteredProjects = data.filter(
+            (project) => project.category === "culture"
+          );
           setCultureProjects(filteredProjects);
 
           // Check if we navigated from AllProj with a specific project
@@ -69,7 +71,8 @@ export default function Culture({ isNavbarHovered }) {
               (project) => project.id === projectId
             );
             if (projectIndex !== -1) {
-              const calculatedPage = Math.floor(projectIndex / projectsPerPage) + 1;
+              const calculatedPage =
+                Math.floor(projectIndex / projectsPerPage) + 1;
               setCurrentPage(calculatedPage);
             }
             // Clear the state after use
@@ -85,7 +88,11 @@ export default function Culture({ isNavbarHovered }) {
   }, [isAuthenticated, id, location.state, navigate, projectsPerPage]);
 
   useEffect(() => {
-    if (location.state && location.state.projectId && cultureProjects.length > 0) {
+    if (
+      location.state &&
+      location.state.projectId &&
+      cultureProjects.length > 0
+    ) {
       const { projectId } = location.state;
       const targetElement = projectRefs.current.get(projectId);
       if (targetElement) {
@@ -95,8 +102,6 @@ export default function Culture({ isNavbarHovered }) {
       }
     }
   }, [cultureProjects, currentPage, location.state, navigate]);
-
-  
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -167,7 +172,10 @@ export default function Culture({ isNavbarHovered }) {
         <Container className="app-container-padding">
           <Row>
             <Col>
-              <EditableTitle textId="culture-projects-title" defaultTitle={SUB} />
+              <EditableTitle
+                textId="culture-projects-title"
+                defaultTitle={SUB}
+              />
 
               {id && singleProject ? (
                 <ProjectLayout
@@ -180,7 +188,10 @@ export default function Culture({ isNavbarHovered }) {
                 />
               ) : (
                 currentProjects.map((item) => (
-                  <div key={item.id} ref={(el) => projectRefs.current.set(item.id, el)}>
+                  <div
+                    key={item.id}
+                    ref={(el) => projectRefs.current.set(item.id, el)}
+                  >
                     <ProjectLayout
                       item={item}
                       isEditable={isAuthenticated}

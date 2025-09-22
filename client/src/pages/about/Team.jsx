@@ -9,6 +9,7 @@ import CarouselComponent from "../../components/Carousel/Carousel";
 import TeamMemberCard from "../../components/Cards/TeamMemberCardcop";
 import { useAuth } from "../../context/AuthContext";
 import EditableTitle from "../../components/EditableTitle"; // Import EditableTitle
+import EditableParagraph from "../../components/EditableParagraph";
 
 export default function Team({ isNavbarHovered }) {
   const SUB = "L'équipe";
@@ -123,42 +124,46 @@ export default function Team({ isNavbarHovered }) {
               <div style={{ marginBottom: "8vh" }}>
                 <h4>Bureau</h4>
                 <hr />
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                  nostrud exerci tation ullamcorper suscipit.
-                </p>
+                <EditableParagraph
+                  textId="bureau-paragraph"
+                  defaultText="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+                />
                 <Row className="g-4">
                   {renderTeamMembers(teamMembers.office, "office")}
                 </Row>
+                <EditableParagraph
+                  textId="employees-email"
+                  defaultText="adresse email"
+                  isEditable={isLoggedIn}
+                />
               </div>
               {/* END OFFICE */}
               {/* EMPLOYEES */}
               <div style={{ marginBottom: "8vh" }}>
                 <h4>Employés</h4>
                 <hr />
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                  nostrud exerci tation ullamcorper suscipit.
-                </p>
+                <EditableParagraph
+                  textId="employees-paragraph"
+                  defaultText="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+                />
                 <Row className="g-4">
                   {renderTeamMembers(teamMembers.employees, "employees")}
                 </Row>
+                <EditableParagraph
+                  textId="employees-email"
+                  defaultText="adresse email"
+                  isEditable={isLoggedIn}
+                />
               </div>
               {/* END EMPLOYEES */}
               {/* ADMINISTRATION ADVISOR */}
               <div style={{ marginBottom: "8vh" }}>
                 <h4>conseil d'administration</h4>
                 <hr />
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                  nostrud exerci tation ullamcorper suscipit.
-                </p>
+                <EditableParagraph
+                  textId="administration-paragraph"
+                  defaultText="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+                />
                 <Row className="g-4">
                   {renderTeamMembers(
                     teamMembers.administration,
@@ -171,12 +176,10 @@ export default function Team({ isNavbarHovered }) {
               <div style={{ marginBottom: "8vh" }}>
                 <h4>comité d'instruction</h4>
                 <hr />
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                  nostrud exerci tation ullamcorper suscipit.
-                </p>
+                <EditableParagraph
+                  textId="instruction-paragraph"
+                  defaultText="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+                />
                 <Row className="g-4">
                   {renderTeamMembers(teamMembers.instruction, "instruction")}
                 </Row>
@@ -186,12 +189,10 @@ export default function Team({ isNavbarHovered }) {
               <div style={{ marginBottom: "8vh" }}>
                 <h4>conseil scientifique</h4>
                 <hr />
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                  aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                  nostrud exerci tation ullamcorper suscipit.
-                </p>
+                <EditableParagraph
+                  textId="scientific-paragraph"
+                  defaultText="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+                />
                 <Row className="g-4">
                   {renderTeamMembers(teamMembers.scientific, "scientific")}
                 </Row>

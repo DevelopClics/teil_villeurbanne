@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
-export default function EditableParagraph({ textId, defaultText }) {
+export default function EditableParagraph({ textId, defaultText, endpoint = "pageParagraphs" }) {
   const { isAuthenticated } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(defaultText);
@@ -11,7 +11,7 @@ export default function EditableParagraph({ textId, defaultText }) {
   useEffect(() => {
     const fetchText = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/pageParagraphs/${textId}`);
+        const response = await axios.get(`http://localhost:3001/${endpoint}/${textId}`);
         setText(response.data.content);
         setEditedText(response.data.content);
       } catch (error) {
@@ -31,7 +31,7 @@ export default function EditableParagraph({ textId, defaultText }) {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:3001/pageParagraphs/${textId}`,
+        `http://localhost:3001/${endpoint}/${textId}`,
         { content: editedText },
         {
           headers: {

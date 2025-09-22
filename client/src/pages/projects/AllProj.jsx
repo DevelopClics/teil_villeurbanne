@@ -117,20 +117,18 @@ export default function AllProj({ isNavbarHovered }) {
                   >
                     <div
                       className="square-img-container"
-                      onClick={() =>
-                        navigate(`/${item.category.toLowerCase()}`, {
-                          state: {
-                            projectId: item.id,
-                            projectCategory: item.category,
-                          },
-                        })
-                      }
+                      onClick={() => {
+                        if (item.category) {
+                          navigate(`/${item.category.toLowerCase()}`, {
+                            state: {
+                              projectId: item.id,
+                              projectCategory: item.category,
+                            },
+                          });
+                        }
+                      }}
                       style={{ cursor: "pointer" }}
                     >
-                      {console.log(
-                        "Navigating to:",
-                        `/${item.category.toLowerCase()}/${item.id}`
-                      )}
                       <div className="project-category-label">{item.panel}</div>
 
                       <LazyLoadImage
@@ -142,7 +140,7 @@ export default function AllProj({ isNavbarHovered }) {
                         height="100%"
                       />
                       <div className="project-info-box">
-                        <h4 className="project-info-title">{item.title}</h4>
+                        <h4 className="project-info-title">{item.shortitle}</h4>
                         <p className="project-info-text">{item.shortext}</p>
                       </div>
                     </div>

@@ -18,7 +18,10 @@ export default function EditableTitle({ textId, defaultTitle }) {
             headers["Authorization"] = `Bearer ${token}`;
           }
         }
-        const response = await axios.get(`http://localhost:3001/pageTitles/${textId}`, { headers });
+        const response = await axios.get(
+          `http://localhost:3001/pageTitles/${textId}`,
+          { headers }
+        );
         setTitle(response.data.content);
         setEditedTitle(response.data.content);
       } catch (error) {

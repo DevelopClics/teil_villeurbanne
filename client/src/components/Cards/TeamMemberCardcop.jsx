@@ -134,15 +134,6 @@ export default function TeamMemberCard({
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>E-mail</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="contact"
-                  value={formData.contact || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
                 <Form.Label>Photo</Form.Label>
                 <Form.Control
                   type="file"
@@ -177,8 +168,6 @@ export default function TeamMemberCard({
               </Card.Title>
               <Card.Text>
                 <span style={{ fontSize: "0.75em" }}>{item.occupation}</span>
-                <br />
-                <span style={{ fontSize: "0.75em" }}>{item.contact}</span>
               </Card.Text>
               {isEditable && isAuthenticated && (
                 <>

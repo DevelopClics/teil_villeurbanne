@@ -4,7 +4,13 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "../../App.css";
 
-export default function ProjectLayout({ item, isEditable = false, onUpdate, onBackClick, backButtonText }) {
+export default function ProjectLayout({
+  item,
+  isEditable = false,
+  onUpdate,
+  onBackClick,
+  backButtonText,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -69,6 +75,33 @@ export default function ProjectLayout({ item, isEditable = false, onUpdate, onBa
               as="textarea"
               name="article"
               value={formData.article || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Panel</Form.Label>
+            <Form.Control
+              type="text"
+              name="panel"
+              value={formData.panel || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Short Title</Form.Label>
+            <Form.Control
+              type="text"
+              name="shortitle"
+              value={formData.shortitle || ""}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Short Text</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="shortext"
+              value={formData.shortext || ""}
               onChange={handleChange}
             />
           </Form.Group>
@@ -163,7 +196,7 @@ export default function ProjectLayout({ item, isEditable = false, onUpdate, onBa
         </Form>
       ) : (
         <>
-          <h4 style={{ color: 'var(--primary-color)' }}>{item.title}</h4>
+          <h4 style={{ color: "var(--primary-color)" }}>{item.title}</h4>
           <hr />
           <div>
             <div
@@ -171,11 +204,15 @@ export default function ProjectLayout({ item, isEditable = false, onUpdate, onBa
               style={{ width: item.size + "%" }}
             >
               <LazyLoadImage
-                src={`${
-                  item.src.startsWith("http")
-                    ? item.src
-                    : import.meta.env.BASE_URL + item.src
-                }?v=${item.cacheBust || 0}`}
+                src={
+                  item.src
+                    ? `${
+                        item.src.startsWith("http")
+                          ? item.src
+                          : import.meta.env.BASE_URL + item.src
+                      }?v=${item.cacheBust || 0}`
+                    : ""
+                }
                 alt={item.alt}
                 effect="blur"
                 width="100%"
@@ -183,6 +220,7 @@ export default function ProjectLayout({ item, isEditable = false, onUpdate, onBa
             </div>
 
             <h5 className="text-uppercase">{item.subtitle}</h5>
+
             <p className="lh-1 no-padding-left">{item.article}</p>
             <p>
               <strong>
@@ -212,9 +250,13 @@ export default function ProjectLayout({ item, isEditable = false, onUpdate, onBa
                 </Button>
               </div>
             )}
-          </div> {/* End of main content block */}
+          </div>{" "}
+          {/* End of main content block */}
           {onBackClick && backButtonText && (
-            <Button className="btn-main-blue mt-3 text-start d-block" onClick={onBackClick}>
+            <Button
+              className="btn-main-blue mt-3 text-start d-block"
+              onClick={onBackClick}
+            >
               {backButtonText}
             </Button>
           )}

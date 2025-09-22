@@ -73,7 +73,6 @@ server.use((req, res, next) => {
 
   if (req.method === 'GET') {
     const isPublicGetPath = publicGetPaths.some(p => req.path.startsWith(p));
-    console.log(`Path: ${req.path}, Is Public GET Path: ${isPublicGetPath}`);
     if (isPublicGetPath) {
       return next();
     }
@@ -124,6 +123,17 @@ server.get("/youthProjects", (req, res) => {
 server.get("/economyProjects", (req, res) => {
   const economyProjects = router.db.get("economyProjects").value();
   res.json(economyProjects);
+});
+
+server.put("/cultureProjects/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const updatedContent = req.body.content;
+  const cultureProject = router.db.get("cultureProjects").find({ id }).assign({ description: updatedContent }).write();
+  if (cultureProject) {
+    res.json(cultureProject);
+  } else {
+    res.status(404).json({ message: "Culture project not found" });
+  }
 });
 
 // Routes for carousel text
@@ -424,6 +434,57 @@ const placesStorage = multer.diskStorage({
   },
 });
 const placesUpload = multer({ storage: placesStorage });
+
+// Multer setup for project image uploads
+const projectUploadsDir = path.join(__dirname, '..', 'client', 'public', 'images', 'photos', 'projects');
+if (!fs.existsSync(projectUploadsDir)) {
+  fs.mkdirSync(projectUploadsDir, { recursive: true });
+}
+const projectStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const category = req.body.category || 'uncategorized';
+    const dest = path.join(projectUploadsDir, category);
+    fs.mkdir(dest, { recursive: true }, (err) => {
+      if (err) return cb(err);
+      cb(null, dest);
+    });
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const projectUpload = multer({ storage: projectStorage });
+
+// PUT route for updating a project with image upload
+server.put("/projects/:id", projectUpload.single("image"), (req, res) => {
+  const projectId = req.params.id; // Keep as string to match db.json
+  const db = router.db;
+  db.read(); // Explicitly read the database to ensure it's fresh
+  const projects = db.get("projects");
+
+  let project = projects.value().find(p => p.id === projectId);
+
+  if (!project) {
+    return res.status(404).json({ message: "Project not found" });
+  }
+
+  const updatedProjectData = { ...req.body };
+
+  if (req.file) {
+    const category = req.body.category || 'uncategorized';
+    updatedProjectData.src = `images/photos/projects/${category}/${req.file.filename}`;
+  } else {
+    updatedProjectData.src = project.src;
+  }
+
+  const newProject = { ...project, ...updatedProjectData };
+
+  projects.find({ id: projectId }).assign(newProject).write();
+
+  res.json(newProject);
+});
+
+
 
 
 
