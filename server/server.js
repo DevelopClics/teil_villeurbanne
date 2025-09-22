@@ -462,7 +462,12 @@ server.put("/projects/:id", projectUpload.single("image"), (req, res) => {
   db.read(); // Explicitly read the database to ensure it's fresh
   const projects = db.get("projects");
 
-  let project = projects.value().find(p => p.id === projectId);
+  console.log(`[DEBUG] PUT /projects/:id - projectId: ${projectId}, type: ${typeof projectId}`);
+  db.read(); // Ensure db is fresh
+  const allProjects = projects.value();
+  console.log(`[DEBUG] All projects from db.json:`, allProjects.map(p => ({ id: p.id, type: typeof p.id })));
+  let project = allProjects.find(p => parseInt(p.id, 10) === parseInt(projectId, 10));
+  console.log(`[DEBUG] Found project:`, project);
 
   if (!project) {
     return res.status(404).json({ message: "Project not found" });

@@ -105,47 +105,51 @@ export default function AllProj({ isNavbarHovered }) {
                 </div>
               )}
               <Row className="g-4">
-                {currentProjects.map((item) => (
-                  <Col
-                    key={`${item.category}-${item.id}`}
-                    xs={XS}
-                    sm={SM}
-                    md={MD}
-                    lg={LG}
-                    xl={XL}
-                    xxl={XXL}
-                  >
-                    <div
-                      className="square-img-container"
-                      onClick={() => {
-                        if (item.category) {
-                          navigate(`/${item.category.toLowerCase()}`, {
-                            state: {
-                              projectId: item.id,
-                              projectCategory: item.category,
-                            },
-                          });
-                        }
-                      }}
-                      style={{ cursor: "pointer" }}
+                {currentProjects.length > 0 ? (
+                  currentProjects.map((item) => (
+                    <Col
+                      key={`${item.category}-${item.id}`}
+                      xs={XS}
+                      sm={SM}
+                      md={MD}
+                      lg={LG}
+                      xl={XL}
+                      xxl={XXL}
                     >
-                      <div className="project-category-label">{item.panel}</div>
+                      <div
+                        className="square-img-container"
+                        onClick={() => {
+                          if (item.category) {
+                            navigate(`/${item.category.toLowerCase()}`, {
+                              state: {
+                                projectId: item.id,
+                                projectCategory: item.category,
+                              },
+                            });
+                          }
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <div className="project-category-label">{item.panel}</div>
 
-                      <LazyLoadImage
-                        wrapperClassName="square-img"
-                        src={`${import.meta.env.BASE_URL}${item.src}`}
-                        alt={item.alt}
-                        effect="blur"
-                        width="100%"
-                        height="100%"
-                      />
-                      <div className="project-info-box">
-                        <h4 className="project-info-title">{item.shortitle}</h4>
-                        <p className="project-info-text">{item.shortext}</p>
+                        <LazyLoadImage
+                          wrapperClassName="square-img"
+                          src={`${import.meta.env.BASE_URL}${item.src}`}
+                          alt={item.alt}
+                          effect="blur"
+                          width="100%"
+                          height="100%"
+                        />
+                        <div className="project-info-box">
+                          <h4 className="project-info-title">{item.shortitle}</h4>
+                          <p className="project-info-text">{item.shortext}</p>
+                        </div>
                       </div>
-                    </div>
-                  </Col>
-                ))}
+                    </Col>
+                  ))
+                ) : (
+                  <div>No projects to display.</div>
+                )}
               </Row>
               {totalPages > 1 && (
                 <div className="d-flex justify-content-center mt-4">

@@ -597,6 +597,7 @@
     {
       "id": 9,
       "category": "youth",
+      "panel": "jeunesse",
       "title": "Aider les étudiants à trouver leur place dans la ville",
       "shortitle": "shortitle",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
