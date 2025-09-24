@@ -97,6 +97,7 @@ server.use((req, res, next) => {
     "/pageParagraphs/:id",
     "/carouselImages",
     "/teammembers",
+    "/projects",
   ];
 
   if (req.method === "GET") {
@@ -451,6 +452,40 @@ server.delete("/teammembers/:category/:id", (req, res) => {
     res.status(404).json({ message: "Team member not found" });
   }
 });
+
+server.post(
+  "/teammembers/:category",
+  teamUpload.single("image"),
+  (req, res) => {
+    const category = req.params.category;
+    const db = router.db;
+    const categoryMembers = db.get("teammembers").get(category);
+
+    if (!categoryMembers.value()) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    const newMemberData = { ...req.body };
+
+    if (req.file) {
+      newMemberData.src = `images/photos/team/${category}/${req.file.filename}`;
+    }
+
+    const lastId =
+      categoryMembers.value().length > 0
+        ? Math.max(...categoryMembers.value().map((m) => m.id))
+        : 0;
+    newMemberData.id = lastId + 1;
+
+    if (req.file) {
+      newMemberData.cacheBust = Date.now();
+    }
+
+    categoryMembers.push(newMemberData).write();
+
+    res.status(201).json(newMemberData);
+  }
+);
 
 const carouselUploadsDir = path.join(
   __dirname,

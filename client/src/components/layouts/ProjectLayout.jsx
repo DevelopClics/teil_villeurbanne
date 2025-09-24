@@ -69,7 +69,7 @@ export default function ProjectLayout({
             <Col md={6} lg={6}>
               <Form.Group className="mb-3">
                 <Form.Label>
-                  <strong>Sous-titre</strong> (date)
+                  <strong>Sous-titre</strong>
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -79,48 +79,52 @@ export default function ProjectLayout({
                 />
               </Form.Group>
             </Col>
-            <Col md={6} lg={4}>
-              <Form.Group className="mb-5">
-                <Form.Label>
-                  <strong>Titre encadré</strong> (visible dans Tous les projets)
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="panel"
-                  value={formData.panel || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
+            {item.panel !== undefined && (
+              <>
+                <Col md={6} lg={4}>
+                  <Form.Group className="mb-5">
+                    <Form.Label>
+                      <strong>Titre encadré</strong> (visible dans Tous les projets)
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="panel"
+                      value={formData.panel || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
 
-            <Col md={6} lg={4}>
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  <strong>Titre raccourci</strong> (visible dans Tous les
-                  projets)
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="shortitle"
-                  value={formData.shortitle || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
-            <Col md={6} lg={4}>
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  <strong>Texte raccourci</strong> (visible dans Tous les
-                  projets)
-                </Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="shortext"
-                  value={formData.shortext || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
+                <Col md={6} lg={4}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>
+                      <strong>Titre raccourci</strong> (visible dans Tous les
+                      projets)
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="shortitle"
+                      value={formData.shortitle || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6} lg={4}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>
+                      <strong>Texte raccourci</strong> (visible dans Tous les
+                      projets)
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="shortext"
+                      value={formData.shortext || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </>
+            )}
 
             <h4>CONTACTS ET LIENS</h4>
 
@@ -176,43 +180,47 @@ export default function ProjectLayout({
                 />
               </Form.Group>
             </Col>
-            <Col md={6} lg={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  <strong>Adresse URL du 2ème lien</strong>
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="links02"
-                  value={formData.links02 || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
-            {/* <Col md={6} lg={4}>
-              <Form.Group className="mb-3">
-                <Form.Label>Lien 2 Type</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="typelink02"
-                  value={formData.typelink02 || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col> */}
-            <Col md={6} lg={6}>
-              <Form.Group className="mb-5">
-                <Form.Label>
-                  <strong>Nom du 2ème lien</strong>
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="namelink02"
-                  value={formData.namelink02 || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
+            {formData.links02 !== undefined && (
+              <>
+                <Col md={6} lg={6}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>
+                      <strong>Adresse URL du 2ème lien</strong>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="links02"
+                      value={formData.links02 || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                {/* <Col md={6} lg={4}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Lien 2 Type</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="typelink02"
+                      value={formData.typelink02 || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col> */}
+                <Col md={6} lg={6}>
+                  <Form.Group className="mb-5">
+                    <Form.Label>
+                      <strong>Nom du 2ème lien</strong>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="namelink02"
+                      value={formData.namelink02 || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </>
+            )}
             <h4>VISUEL ET ARTICLE</h4>
             <Row>
               <Col md={12} lg={4}>

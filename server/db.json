@@ -3,13 +3,13 @@
     "office": [
       {
         "id": 1,
-        "src": "images/photos/team/office/1758697386573-eÌquipe.jpg",
+        "src": "images/photos/team/office/1758703794604-garantie logement.png",
         "alt": "photo de Philippe Genet",
         "lastname": "Genet",
         "surname": "Philippe",
         "occupation": "Président",
         "contact": "bernadette.dubosc@adct-asso.org",
-        "cacheBust": 1758697386580
+        "cacheBust": 1758703813496
       },
       {
         "id": 2,
@@ -387,7 +387,7 @@
     {
       "id": 1,
       "title": "La génèse !",
-      "content": "Génèse ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
+      "content": "Génèsia ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
     },
     {
       "id": 2,
@@ -432,7 +432,7 @@
     {
       "id": 10,
       "title": "Nous rejoindre",
-      "content": "Texte pour nous rejoindre"
+      "content": "Texte pour nous rejoindre !"
     },
     {
       "id": 11,
@@ -507,9 +507,6 @@
       "links01": "https://www.leteil.fr/",
       "typelink01": "Site web :",
       "namelink01": "Mairie du Teil",
-      "links02": "",
-      "typelink02": "",
-      "namelink02": "",
       "cacheBust": 1758699300100
     },
     {
@@ -524,9 +521,6 @@
       "links01": "https://www.villeurbanne.fr/",
       "typelink01": "Site web :",
       "namelink01": "Mairie de Villeurbanne",
-      "links02": "",
-      "typelink02": "",
-      "namelink02": "",
       "cacheBust": 1758701780148
     }
   ],
@@ -535,22 +529,22 @@
       "id": "1",
       "category": "culture",
       "panel": "culture",
-      "title": "Semaine de Musique d’ensemble  !",
-      "shortitle": "shortitle XXXXXXXX",
-      "shortext": "Un 2 3 4",
+      "title": "Semaine de Musique d’ensemble ",
+      "shortitle": "titre court",
+      "shortext": "texte court",
       "src": "images/photos/projects/culture/1758701427212-page de garde.jpg",
       "alt": "alt",
       "size": "30",
-      "subtitle": "Du 7 au 11 juillet 2025",
+      "subtitle": "Du 7 au 11 juillet 2024",
       "article": "Des groupes de musiciens, en formation pour devenir professeurs de musique, ont investi les locaux de six structures du Teil, pour une résidence de création musicale. En étant au cœur de lieux tournés vers les habitants, ils ont pensé leur création en incluant dans leur processus les usagers et les personnes y travaillant. Par exemple, dans une maison de retraite, les musiciens ont partagé pendant leur performance les récits de voyage des résidents. A la fin de la semaine, les différents groupes se sont produits au sein des structures qui les ont accueillis, permettant aux habitants et usagers de s’embarquer dans un voyage musical en itinérance, au plus près de chez eux. Le public a été ravi de sa découverte à chaque escale : du Jazz cap-verdien à la résidence Les Peupliers (maison de retraite), de la Pop des années 80 à Zone 5 (association de permaculture), de la comédie musicale au Tilt (tiers-lieux artistique), de la musique de la Renaissance au centre socio-culturel Les Clefs et du tango argentin au Secours Populaire. ",
-      "contacts": "Contacts : CEFEDEM (centre de formation des professeurs de musique) :",
+      "contacts": "Contacts : CEFEDEM (centre de formation des professeurs de musique)",
       "links01": "https://cefedem-aura.org/",
       "typelink01": "",
       "namelink01": "Cefedem | centre de ressources professionnelles et d'enseignement supérieur artistique",
       "links02": "https://youtu.be/xWWm5XjZgzo?si=3i2eCGL20DG0XEYH",
       "typelink02": "",
       "namelink02": "Vidéo des restitutions musicales",
-      "cacheBust": 1758701427218
+      "cacheBust": "1758701427218"
     },
     {
       "id": "2",
@@ -796,7 +790,7 @@
     },
     {
       "id": "genesis-title",
-      "content": "La génèse !"
+      "content": "La génèse"
     },
     {
       "id": "places-title",
@@ -829,6 +823,10 @@
     {
       "id": "contact-us-title",
       "content": "Nous contacter !"
+    },
+    {
+      "id": "join-us-title",
+      "content": "Nous rejoindre"
     }
   ],
   "pageParagraphs": [

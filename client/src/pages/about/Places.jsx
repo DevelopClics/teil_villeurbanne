@@ -44,23 +44,19 @@ export default function Places({ isNavbarHovered }) {
         formData.append("image", file);
       }
 
-      const response = await axios.put(
-        `/api/places/${id}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.put(`/api/places/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       if (response.status === 200) {
         console.log("Server response:", response.data);
         setCitiesProjects((prevProjects) =>
-        prevProjects.map((project) =>
-          project.id === id ? response.data : project
-        )
-      );
+          prevProjects.map((project) =>
+            project.id === id ? response.data : project
+          )
+        );
       }
     } catch (error) {
       console.error("Error updating place:", error);
