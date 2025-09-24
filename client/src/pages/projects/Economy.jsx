@@ -159,11 +159,11 @@ export default function Economy({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         text={SUBTEXT}
         category="economy"
         carouselTextId={8}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Les projets" breadcrumbssub={SUB} />
 

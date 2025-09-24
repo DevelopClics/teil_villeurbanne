@@ -8,7 +8,7 @@ const EditPlace = () => {
   const [place, setPlace] = useState({
     title: "",
     subtitle: "",
-    photo: "",
+    image: "", // Changed from photo to image
     alt: "",
     article: "",
     contacts: "", // Will be comma-separated string
@@ -22,11 +22,16 @@ const EditPlace = () => {
         const response = await axios.get(`http://localhost:3001/places/${id}`);
         const fetchedPlace = response.data;
         setPlace({
-          ...fetchedPlace,
+          id: fetchedPlace.id,
+          title: fetchedPlace.title || "",
+          subtitle: fetchedPlace.subtitle || "",
+          image: fetchedPlace.image || "", // Explicitly use 'image'
+          alt: fetchedPlace.alt || "",
+          article: fetchedPlace.article || "",
           contacts: fetchedPlace.contacts
             ? fetchedPlace.contacts.join(", ")
             : "",
-          links: fetchedPlace.links ? JSON.stringify(fetchedPlace.links) : "", // Store as JSON string for editing
+          links: fetchedPlace.links ? JSON.stringify(fetchedPlace.links) : "",
         });
       } catch (error) {
         console.error("Error fetching place:", error);
@@ -63,8 +68,8 @@ const EditPlace = () => {
 
     if (file) {
       formData.append("image", file); // Assuming 'image' is the field name for file uploads
-    } else {
-      formData.append("photo", place.photo); // If no new file, send existing photo path
+    } else if (place.image) { // Changed from place.photo to place.image
+      formData.append("image", place.image); // If no new file, send existing image path under 'image' key
     }
 
     try {
@@ -140,9 +145,9 @@ const EditPlace = () => {
         </div>
         <div className="form-group">
           <label>Current Photo:</label>
-          {place.photo && (
+          {place.image && ( // Changed from place.photo to place.image
             <img
-              src={`http://localhost:3001${place.photo}`}
+              src={`http://localhost:3001${place.image}`}
               alt={place.alt}
               width="100"
             />

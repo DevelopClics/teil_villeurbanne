@@ -17,11 +17,10 @@ export default function Volunteer({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
-        text={SUBTEXT}
         category="volunteer"
         carouselTextId={10}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
 
       <Breadcrumbs breadcrumbsnav="Nous rejoindre" breadcrumbssub={SUB} />

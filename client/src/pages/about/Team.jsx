@@ -44,6 +44,7 @@ export default function Team({ isNavbarHovered }) {
   }, []);
 
   const handleUpdateTeamMember = async (category, id, updatedMember) => {
+    console.log("Team.jsx: updatedMember before fetch", updatedMember);
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -107,10 +108,10 @@ export default function Team({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         category="team"
         carouselTextId={2}
         isEditable={isLoggedIn}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
 

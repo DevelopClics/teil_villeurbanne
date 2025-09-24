@@ -40,11 +40,10 @@ export default function Contact({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
-        text={SUBTEXT}
-        slides={carouselSlides}
+        category="welcome"
         carouselTextId={11}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbscontact breadcrumbsnav={TITLE} />
       <section className="reason-section">

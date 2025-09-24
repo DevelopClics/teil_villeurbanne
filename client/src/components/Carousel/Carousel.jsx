@@ -8,15 +8,19 @@ import { useAuth } from "../../context/AuthContext"; // Added import
 
 const CarouselComponent = ({
   isNavbarHovered,
-  title,
-  carouselTextId,
   isEditable,
   category, // New prop for carousel category
+  stationaryText,
+  carouselTextId,
+  textPerSlide = false,
 }) => {
   const [isEditingText, setIsEditingText] = useState(false);
-  const [text, setText] = useState("");
-  const [editedText, setEditedText] = useState("");
   const [localSlides, setLocalSlides] = useState([]); // Initialize as empty array
+
+  const [carouselTitle, setCarouselTitle] = useState("");
+  const [carouselContent, setCarouselContent] = useState("");
+  const [editedTitle, setEditedTitle] = useState("");
+  const [editedContent, setEditedContent] = useState("");
 
   const formRef = useRef(null); // Add this line
   const textEditRef = useRef(null); // Add this line
@@ -27,8 +31,25 @@ const CarouselComponent = ({
   const [formData, setFormData] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
   const [isCreatingNewSlide, setIsCreatingNewSlide] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const { token } = useAuth(); // Get token from AuthContext
+
+  useEffect(() => {
+    if (carouselTextId !== undefined) {
+      axios
+        .get(`http://localhost:3001/carouselText/${carouselTextId}`)
+        .then((response) => {
+          setCarouselTitle(response.data.title);
+          setCarouselContent(response.data.content);
+          setEditedTitle(response.data.title);
+          setEditedContent(response.data.content);
+        })
+        .catch((error) => {
+          console.error("Error fetching carousel text:", error);
+        });
+    }
+  }, [carouselTextId]);
 
   useEffect(() => {
     const fetchCarouselImages = async () => {
@@ -41,50 +62,35 @@ const CarouselComponent = ({
             },
           }
         );
-        // Filter slides based on the category prop
-        setLocalSlides(response.data[category] || []);
+        if (category) {
+          // Filter slides based on the category prop
+          setLocalSlides(response.data[category] || []);
+        } else {
+          // If no category, flatten all slides from all categories
+          const allSlides = Object.values(response.data).flat();
+          setLocalSlides(allSlides);
+        }
       } catch (error) {
         console.error("Error fetching carousel images:", error);
         setLocalSlides([]); // Set to empty array on error
       }
     };
 
-    if (category) {
-      fetchCarouselImages();
-    }
-  }, [category]); // Re-fetch when category changes
-
-  useEffect(() => {
-    const fetchCarouselText = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/carouselText/${carouselTextId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setText(response.data.content);
-        setEditedText(response.data.content);
-      } catch (error) {
-        console.error("Error fetching carousel text:", error);
-      }
-    };
-    if (carouselTextId !== undefined) {
-      fetchCarouselText();
-    }
-  }, [carouselTextId]);
+    fetchCarouselImages();
+  }, [category, token]); // Re-fetch when category or token changes
 
   useEffect(() => {
     if (isEditingText && textEditRef.current) {
-      textEditRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      textEditRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
   }, [isEditingText]);
 
   useEffect(() => {
     if ((editingSlideId || isCreatingNewSlide) && formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, [editingSlideId, isCreatingNewSlide]);
 
@@ -92,28 +98,8 @@ const CarouselComponent = ({
     setIsEditingText(true);
   };
 
-  const handleSaveTextClick = async () => {
-    try {
-      // const token = localStorage.getItem("token"); // Token is already available from useAuth()
-      await axios.put(
-        `http://localhost:3001/carouselText/${carouselTextId}`,
-        { content: editedText },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setText(editedText);
-      setIsEditingText(false);
-    } catch (error) {
-      console.error("Error updating carousel text:", error);
-    }
-  };
-
-  const handleCancelTextClick = () => {
-    setIsEditingText(false);
-    setEditedText(text);
+  const handleEditTextClick = () => {
+    setIsEditingText(true);
   };
 
   const handleDelete = async (slideId) => {
@@ -196,7 +182,10 @@ const CarouselComponent = ({
 
     // Scroll up to the hero section
     if (heroSectionRef.current) {
-      heroSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      heroSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
   };
 
@@ -207,6 +196,36 @@ const CarouselComponent = ({
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
+  };
+
+  const handleSelect = (selectedIndex, e) => {
+    setActiveIndex(selectedIndex);
+  };
+
+  const handleCancelTextClick = () => {
+    setIsEditingText(false);
+    setEditedTitle(carouselTitle);
+    setEditedContent(carouselContent);
+  };
+
+  const handleSaveText = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        `http://localhost:3001/carouselText/${carouselTextId}`,
+        { title: editedTitle, content: editedContent },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setCarouselTitle(editedTitle);
+      setCarouselContent(editedContent);
+      setIsEditingText(false);
+    } catch (error) {
+      console.error("Error updating carousel text:", error);
+    }
   };
 
   const handleSaveSlideClick = async () => {
@@ -290,7 +309,10 @@ const CarouselComponent = ({
 
       // Scroll up to the hero section
       if (heroSectionRef.current) {
-        heroSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        heroSectionRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
     } catch (error) {
       console.error("Error saving slide:", error);
@@ -305,105 +327,268 @@ const CarouselComponent = ({
         }`}
         ref={heroSectionRef}
       >
-        <Carousel controls={true} indicators={true}>
-          {localSlides.length > 0 ? (
-            localSlides.map((slide) => (
-              <Carousel.Item key={slide.id} className="carousel-item-container">
-                {isEditable && (
-                  <div className="carousel-admin-buttons">
-                    <Button variant="success" size="sm" onClick={handleCreate} className="carousel-admin-button">
-                      Ajouter
+        {stationaryText ? (
+          <>
+            <Carousel
+              controls={true}
+              indicators={true}
+              activeIndex={activeIndex}
+              onSelect={handleSelect}
+            >
+              {localSlides.length > 0 ? (
+                localSlides.map((slide) => (
+                  <Carousel.Item
+                    key={slide.id}
+                    className="carousel-item-container"
+                  >
+                    {isEditable && (
+                      <div className="carousel-admin-buttons">
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={handleCreate}
+                          className="carousel-admin-button"
+                        >
+                          Ajouter
+                        </Button>
+                        <Button
+                          variant="warning"
+                          size="sm"
+                          onClick={() => handleEditSlideClick(slide)}
+                          className="carousel-admin-button"
+                        >
+                          Modifier
+                        </Button>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => handleDelete(slide.id)}
+                          className="carousel-admin-button"
+                        >
+                          Supprimer
+                        </Button>
+                      </div>
+                    )}
+                    <LazyLoadImage
+                      src={`${import.meta.env.BASE_URL}${
+                        slide.src
+                      }?v=${Date.now()}`}
+                      alt={slide.alt}
+                      className="d-block w-100 hero-image"
+                      effect="blur"
+                      width="100%"
+                      height="100%"
+                    />
+                  </Carousel.Item>
+                ))
+              ) : (
+                <Carousel.Item className="carousel-item-container">
+                  <div className="empty-carousel-placeholder">
+                    {isEditable && (
+                      <div className="carousel-admin-buttons">
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={handleCreate}
+                        >
+                          Ajouter
+                        </Button>
+                      </div>
+                    )}
+                    <p>
+                      Aucune image. Cliquer sur le bouton "Ajouter" pour en
+                      afficher une.
+                    </p>
+                  </div>
+                </Carousel.Item>
+              )}
+            </Carousel>
+            {localSlides.length > 0 && (
+              <div className="carousel-custom-caption-container">
+                {isEditingText && !textPerSlide ? (
+                  <div ref={textEditRef}>
+                    <Form.Control
+                      type="text"
+                      value={editedTitle}
+                      onChange={(e) => setEditedTitle(e.target.value)}
+                      className="mb-2"
+                    />
+                    <Form.Control
+                      as="textarea"
+                      rows={5}
+                      value={editedContent}
+                      onChange={(e) => setEditedContent(e.target.value)}
+                    />
+                    <Button
+                      variant="success"
+                      size="sm"
+                      onClick={handleSaveText}
+                      className="mt-2"
+                    >
+                      Sauvegarder
                     </Button>
                     <Button
-                      variant="warning"
+                      variant="secondary"
                       size="sm"
-                      onClick={() => handleEditSlideClick(slide)}
-                      className="carousel-admin-button"
+                      onClick={handleCancelTextClick}
+                      className="mt-2 ms-2"
                     >
-                      Modifier
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleDelete(slide.id)}
-                      className="carousel-admin-button"
-                    >
-                      Supprimer
+                      Annuler
                     </Button>
                   </div>
+                ) : (
+                  <>
+                    <div className="hero-title-block">
+                      <h1>
+                        {textPerSlide
+                          ? localSlides[activeIndex].title
+                          : carouselTitle}
+                      </h1>
+                    </div>
+                    <div className="hero-paragraph-block">
+                      <p>
+                        {textPerSlide
+                          ? localSlides[activeIndex].text
+                          : carouselContent}
+                      </p>
+                    </div>
+                    {isEditable && !textPerSlide && (
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        onClick={handleEditTextClick}
+                      >
+                        Modifier le titre et le texte
+                      </Button>
+                    )}
+                  </>
                 )}
-                <LazyLoadImage
-                  src={`${import.meta.env.BASE_URL}${
-                    slide.src
-                  }?v=${Date.now()}`}
-                  alt={slide.alt}
-                  className="d-block w-100 hero-image"
-                  effect="blur"
-                  width="100%"
-                  height="100%"
-                />
-              </Carousel.Item>
-            ))
-          ) : (
-            <Carousel.Item className="carousel-item-container">
-              <div className="empty-carousel-placeholder">
-                {isEditable && (
-                  <div className="carousel-admin-buttons">
-                    <Button variant="success" size="sm" onClick={handleCreate}>
-                      Ajouter
-                    </Button>
-                  </div>
-                )}
-                <p>
-                  Aucune image. Cliquer sur le bouton "Ajouter" pour en afficher
-                  une.
-                </p>
               </div>
-            </Carousel.Item>
-          )}
-        </Carousel>
-
-        <div className="hero-text">
-          <div className="hero-title-block">
-            <h1>{title}</h1>
-          </div>
-          <div className="hero-paragraph-block">
-            {isEditable && isEditingText ? (
-              <>
-                <textarea
-                  className="form-control"
-                  value={editedText}
-                  onChange={(e) => setEditedText(e.target.value)}
-                  rows="10"
-                  ref={textEditRef}
-                />
-                <Button
-                  variant="success"
-                  className="mt-2"
-                  onClick={handleSaveTextClick}
-                >
-                  Enregistrer
-                </Button>
-                <Button
-                  variant="secondary"
-                  className="mt-2 ms-2"
-                  onClick={handleCancelTextClick}
-                >
-                  Annuler
-                </Button>
-              </>
-            ) : (
-              <p>
-                {isEditable && (
-                  <Button variant="main-blue" onClick={handleEditClick}>
-                    Modifier le texte
-                  </Button>
-                )}
-                {text}
-              </p>
             )}
-          </div>
-        </div>
+          </>
+        ) : (
+          <Carousel controls={true} indicators={true}>
+            {localSlides.length > 0 ? (
+              localSlides.map((slide) => (
+                <Carousel.Item
+                  key={slide.id}
+                  className="carousel-item-container"
+                >
+                  {isEditable && (
+                    <div className="carousel-admin-buttons">
+                      <Button
+                        variant="success"
+                        size="sm"
+                        onClick={handleCreate}
+                        className="carousel-admin-button"
+                      >
+                        Ajouter
+                      </Button>
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        onClick={() => handleEditSlideClick(slide)}
+                        className="carousel-admin-button"
+                      >
+                        Modifier
+                      </Button>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => handleDelete(slide.id)}
+                        className="carousel-admin-button"
+                      >
+                        Supprimer
+                      </Button>
+                    </div>
+                  )}
+                  <LazyLoadImage
+                    src={`${import.meta.env.BASE_URL}${
+                      slide.src
+                    }?v=${Date.now()}`}
+                    alt={slide.alt}
+                    className="d-block w-100 hero-image"
+                    effect="blur"
+                    width="100%"
+                    height="100%"
+                  />
+                  <Carousel.Caption className="carousel-custom-caption">
+                    {isEditingText && !textPerSlide ? (
+                      <div ref={textEditRef}>
+                        <Form.Control
+                          type="text"
+                          value={editedTitle}
+                          onChange={(e) => setEditedTitle(e.target.value)}
+                          className="mb-2"
+                        />
+                        <Form.Control
+                          as="textarea"
+                          rows={5}
+                          value={editedContent}
+                          onChange={(e) => setEditedContent(e.target.value)}
+                        />
+                        <Button
+                          variant="success"
+                          size="sm"
+                          onClick={handleSaveText}
+                          className="mt-2"
+                        >
+                          Sauvegarder
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={handleCancelTextClick}
+                          className="mt-2 ms-2"
+                        >
+                          Annuler
+                        </Button>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="hero-title-block">
+                          <h1>{textPerSlide ? slide.title : carouselTitle}</h1>
+                        </div>
+                        <div className="hero-paragraph-block">
+                          <p>{textPerSlide ? slide.text : carouselContent}</p>
+                        </div>
+                        {isEditable && !textPerSlide && (
+                          <Button
+                            variant="warning"
+                            size="sm"
+                            onClick={handleEditTextClick}
+                          >
+                            Modifier le texte
+                          </Button>
+                        )}
+                      </>
+                    )}
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))
+            ) : (
+              <Carousel.Item className="carousel-item-container">
+                <div className="empty-carousel-placeholder">
+                  {isEditable && (
+                    <div className="carousel-admin-buttons">
+                      <Button
+                        variant="success"
+                        size="sm"
+                        onClick={handleCreate}
+                      >
+                        Ajouter
+                      </Button>
+                    </div>
+                  )}
+                  <p>
+                    Aucune image. Cliquer sur le bouton "Ajouter" pour en
+                    afficher une.
+                  </p>
+                </div>
+              </Carousel.Item>
+            )}
+          </Carousel>
+        )}
       </section>
 
       {isEditable && (editingSlideId || isCreatingNewSlide) && (
@@ -423,6 +608,29 @@ const CarouselComponent = ({
                   onChange={handleFileChange}
                 />
               </Form.Group>
+              {textPerSlide && (
+                <>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Titre</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="title"
+                      value={formData.title || ""}
+                      onChange={handleFormChange}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Texte</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="text"
+                      value={formData.text || ""}
+                      onChange={handleFormChange}
+                      rows="3"
+                    />
+                  </Form.Group>
+                </>
+              )}
               <Form.Group className="mb-3">
                 <Form.Label>
                   Texte alternatif (Alt) au cas où l'imge ne s'affiche pas

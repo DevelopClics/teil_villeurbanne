@@ -160,11 +160,11 @@ export default function Youth({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         text={SUBTEXT}
         category="youth"
         carouselTextId={7}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Les projets" breadcrumbssub={SUB} />
 

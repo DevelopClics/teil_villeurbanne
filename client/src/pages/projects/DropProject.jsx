@@ -17,10 +17,10 @@ export default function DropProject({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         category="projects"
         carouselTextId={9}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
       <section className="reason-section" style={{ paddingTop: "50px" }}>

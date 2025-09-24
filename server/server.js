@@ -43,36 +43,67 @@ server.post("/login", (req, res) => {
 
 server.use(middlewares);
 
+// Multer setup for dynamic team member file uploads
+const teamUploadStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const category = req.params.category;
+    const dest = path.join(
+      __dirname,
+      "..",
+      "client",
+      "public",
+      "images",
+      "photos",
+      "team",
+      category
+    );
+    fs.mkdir(dest, { recursive: true }, (err) => {
+      if (err) return cb(err);
+      cb(null, dest);
+    });
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const teamUpload = multer({ storage: teamUploadStorage });
+
+// Upload route for team member images by category
+server.post("/upload/:category", teamUpload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded." });
+  }
+  const fileUrl = `images/photos/team/${req.params.category}/${req.file.filename}`;
+  res.json({ url: fileUrl });
+});
+
 // Authentication middleware
 server.use((req, res, next) => {
-  console.log('Request Path:', req.path);
-  const publicPaths = [
-    '/login',
-  ];
+  console.log("Request Path:", req.path);
+  const publicPaths = ["/login"];
+
   const publicGetPaths = [
-    '/carouselText',
-    '/genesisText',
-    '/reasonText',
-    '/teammembers',
-    '/carouselImages',
-    '/citiesProjects',
-    '/cultureProjects',
-    '/foodProjects',
-    '/youthProjects',
-    '/economyProjects',
-    '/allProjects',
-    '/places',
-    '/projects',
-    '/pageTitles',
-    '/pageParagraphs',
+    "/login",
+    "/places",
+    "/citiesProjects",
+    "/cultureProjects",
+    "/foodProjects",
+    "/youthProjects",
+    "/economyProjects",
+    "/carouselText/:id",
+    "/reasonText/:id",
+    "/genesisText/:id",
+    "/pageTitles/:id",
+    "/pageParagraphs/:id",
+    "/carouselImages",
+    "/teammembers",
   ];
 
-  if (publicPaths.includes(req.path)) {
-    return next();
-  }
-
-  if (req.method === 'GET') {
-    const isPublicGetPath = publicGetPaths.some(p => req.path.startsWith(p));
+  if (req.method === "GET") {
+    const isPublicGetPath = publicGetPaths.some((p) => {
+      const regex = new RegExp(`^${p.replace(/\/:[^/]+/g, "/[^/]+")}$`);
+      return regex.test(req.path);
+    });
     if (isPublicGetPath) {
       return next();
     }
@@ -98,7 +129,6 @@ server.use((req, res, next) => {
 });
 
 // Explicit routes for projects that were returning 404
-
 
 server.get("/citiesProjects", (req, res) => {
   const citiesProjects = router.db.get("citiesProjects").value();
@@ -128,7 +158,11 @@ server.get("/economyProjects", (req, res) => {
 server.put("/cultureProjects/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedContent = req.body.content;
-  const cultureProject = router.db.get("cultureProjects").find({ id }).assign({ description: updatedContent }).write();
+  const cultureProject = router.db
+    .get("cultureProjects")
+    .find({ id })
+    .assign({ description: updatedContent })
+    .write();
   if (cultureProject) {
     res.json(cultureProject);
   } else {
@@ -149,8 +183,12 @@ server.get("/carouselText/:id", (req, res) => {
 
 server.put("/carouselText/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const updatedContent = req.body.content;
-  const carouselText = router.db.get("carouselText").find({ id }).assign({ content: updatedContent }).write();
+  const { title, content } = req.body;
+  const carouselText = router.db
+    .get("carouselText")
+    .find({ id })
+    .assign({ title, content })
+    .write();
   if (carouselText) {
     res.json(carouselText);
   } else {
@@ -172,7 +210,11 @@ server.get("/reasonText/:id", (req, res) => {
 server.put("/reasonText/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedContent = req.body.content;
-  const reasonText = router.db.get("reasonText").find({ id }).assign({ content: updatedContent }).write();
+  const reasonText = router.db
+    .get("reasonText")
+    .find({ id })
+    .assign({ content: updatedContent })
+    .write();
   if (reasonText) {
     res.json(reasonText);
   } else {
@@ -194,7 +236,11 @@ server.get("/genesisText/:id", (req, res) => {
 server.put("/genesisText/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedContent = req.body.content;
-  const genesisText = router.db.get("genesisText").find({ id }).assign({ content: updatedContent }).write();
+  const genesisText = router.db
+    .get("genesisText")
+    .find({ id })
+    .assign({ content: updatedContent })
+    .write();
   if (genesisText) {
     res.json(genesisText);
   } else {
@@ -206,10 +252,13 @@ server.put("/genesisText/:id", (req, res) => {
 server.get("/pageTitles/:id", (req, res) => {
   const id = req.params.id; // ID can be a string now
   console.log(`[DEBUG] GET /pageTitles/:id - id: ${id}`);
+  router.db.read(); // Ensure the database state is fresh
   const dbState = router.db.getState(); // Get the current state of the database
   const allPageTitles = dbState.pageTitles; // Access pageTitles from the state
   console.log(`[DEBUG] All page titles (from getState):`, allPageTitles);
-  const pageTitle = allPageTitles ? allPageTitles.find(item => item.id === id) : undefined;
+  const pageTitle = allPageTitles
+    ? allPageTitles.find((item) => item.id === id)
+    : undefined;
   console.log(`[DEBUG] Found page title (from getState):`, pageTitle);
   if (pageTitle) {
     res.json(pageTitle);
@@ -229,7 +278,7 @@ server.put("/pageTitles/:id", (req, res) => {
     dbState.pageTitles = allPageTitles;
   }
 
-  const pageTitleIndex = allPageTitles.findIndex(item => item.id === id);
+  const pageTitleIndex = allPageTitles.findIndex((item) => item.id === id);
 
   if (pageTitleIndex !== -1) {
     allPageTitles[pageTitleIndex].content = updatedContent;
@@ -248,7 +297,9 @@ server.get("/pageParagraphs/:id", (req, res) => {
   const id = req.params.id;
   const dbState = router.db.getState();
   const allPageParagraphs = dbState.pageParagraphs;
-  const pageParagraph = allPageParagraphs ? allPageParagraphs.find(item => item.id === id) : undefined;
+  const pageParagraph = allPageParagraphs
+    ? allPageParagraphs.find((item) => item.id === id)
+    : undefined;
   if (pageParagraph) {
     res.json(pageParagraph);
   } else {
@@ -267,7 +318,9 @@ server.put("/pageParagraphs/:id", (req, res) => {
     dbState.pageParagraphs = allPageParagraphs;
   }
 
-  const pageParagraphIndex = allPageParagraphs.findIndex(item => item.id === id);
+  const pageParagraphIndex = allPageParagraphs.findIndex(
+    (item) => item.id === id
+  );
 
   if (pageParagraphIndex !== -1) {
     allPageParagraphs[pageParagraphIndex].content = updatedContent;
@@ -290,7 +343,11 @@ server.get("/carouselImages", (req, res) => {
 server.put("/carouselImages/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedSlide = req.body;
-  const carouselImage = router.db.get("carouselImages").find({ id }).assign(updatedSlide).write();
+  const carouselImage = router.db
+    .get("carouselImages")
+    .find({ id })
+    .assign(updatedSlide)
+    .write();
   if (carouselImage) {
     res.json(carouselImage);
   } else {
@@ -307,7 +364,10 @@ server.delete("/carouselImages/:id", (req, res) => {
 server.post("/carouselImages", (req, res) => {
   const newSlide = req.body;
   const carouselImages = router.db.get("carouselImages");
-  const lastId = carouselImages.value().length > 0 ? Math.max(...carouselImages.value().map(s => s.id)) : 0;
+  const lastId =
+    carouselImages.value().length > 0
+      ? Math.max(...carouselImages.value().map((s) => s.id))
+      : 0;
   newSlide.id = lastId + 1;
   carouselImages.push(newSlide).write();
   res.status(201).json(newSlide);
@@ -318,8 +378,6 @@ server.put("/carouselImages", (req, res) => {
   router.db.set("carouselImages", updatedCarouselImages).write();
   res.status(200).json(updatedCarouselImages);
 });
-
-
 
 // PUT route for updating a team member by category and id
 server.get("/teammembers", (req, res) => {
@@ -332,7 +390,16 @@ server.put("/teammembers/:category/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedMember = req.body;
 
-  console.log("PUT /teammembers - Category:", category, "ID:", id, "Updated Member:", updatedMember); // Added log
+  console.log(`Server: PUT /teammembers/${category}/${id} - req.body:`, updatedMember);
+
+  console.log(
+    "PUT /teammembers - Category:",
+    category,
+    "ID:",
+    id,
+    "Updated Member:",
+    updatedMember
+  ); // Added log
 
   const teammembers = router.db.get("teammembers");
   const categoryMembers = teammembers.get(category);
@@ -342,10 +409,12 @@ server.put("/teammembers/:category/:id", (req, res) => {
     return res.status(404).json({ message: "Category not found" });
   }
 
-  try { // Added try-catch block
+  try {
+    // Added try-catch block
     const memberToUpdate = categoryMembers.find({ id });
 
-    if (memberToUpdate.value()) { // Check if member exists before updating
+    if (memberToUpdate.value()) {
+      // Check if member exists before updating
       const updated = memberToUpdate.assign(updatedMember).write();
       console.log("Successfully updated member:", updatedMember); // Log the updatedMember
       res.status(200).json(updatedMember);
@@ -355,7 +424,10 @@ server.put("/teammembers/:category/:id", (req, res) => {
     }
   } catch (error) {
     console.error("Error during team member update:", error); // Added error log
-    res.status(500).json({ message: "Internal Server Error during update", error: error.message });
+    res.status(500).json({
+      message: "Internal Server Error during update",
+      error: error.message,
+    });
   }
 });
 
@@ -380,33 +452,15 @@ server.delete("/teammembers/:category/:id", (req, res) => {
   }
 });
 
-// Multer setup for dynamic team member file uploads
-const teamUploadStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const category = req.params.category;
-    const dest = path.join(__dirname, '..', 'client', 'public', 'images', 'photos', 'team', category);
-    fs.mkdir(dest, { recursive: true }, (err) => {
-      if (err) return cb(err);
-      cb(null, dest);
-    });
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
-});
-const teamUpload = multer({ storage: teamUploadStorage });
-
-// Upload route for team member images by category
-server.post("/upload/:category", teamUpload.single("image"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: "No file uploaded." });
-  }
-  const fileUrl = `images/photos/team/${req.params.category}/${req.file.filename}`;
-  res.json({ url: fileUrl });
-});
-
-// Multer setup for carousel image uploads
-const carouselUploadsDir = path.join(__dirname, '..', 'client', 'public', 'images', 'photos', 'carousel');
+const carouselUploadsDir = path.join(
+  __dirname,
+  "..",
+  "client",
+  "public",
+  "images",
+  "photos",
+  "carousel"
+);
 if (!fs.existsSync(carouselUploadsDir)) {
   fs.mkdirSync(carouselUploadsDir, { recursive: true });
 }
@@ -421,7 +475,15 @@ const carouselStorage = multer.diskStorage({
 const carouselUpload = multer({ storage: carouselStorage });
 
 // Multer setup for places image uploads
-const placesUploadsDir = path.join(__dirname, '..', 'client', 'public', 'images', 'photos', 'places');
+const placesUploadsDir = path.join(
+  __dirname,
+  "..",
+  "client",
+  "public",
+  "images",
+  "photos",
+  "places"
+);
 if (!fs.existsSync(placesUploadsDir)) {
   fs.mkdirSync(placesUploadsDir, { recursive: true });
 }
@@ -436,13 +498,21 @@ const placesStorage = multer.diskStorage({
 const placesUpload = multer({ storage: placesStorage });
 
 // Multer setup for project image uploads
-const projectUploadsDir = path.join(__dirname, '..', 'client', 'public', 'images', 'photos', 'projects');
+const projectUploadsDir = path.join(
+  __dirname,
+  "..",
+  "client",
+  "public",
+  "images",
+  "photos",
+  "projects"
+);
 if (!fs.existsSync(projectUploadsDir)) {
   fs.mkdirSync(projectUploadsDir, { recursive: true });
 }
 const projectStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const category = req.body.category || 'uncategorized';
+    const category = req.body.category || "uncategorized";
     const dest = path.join(projectUploadsDir, category);
     fs.mkdir(dest, { recursive: true }, (err) => {
       if (err) return cb(err);
@@ -457,17 +527,11 @@ const projectUpload = multer({ storage: projectStorage });
 
 // PUT route for updating a project with image upload
 server.put("/projects/:id", projectUpload.single("image"), (req, res) => {
-  const projectId = req.params.id; // Keep as string to match db.json
+  const projectId = req.params.id;
   const db = router.db;
-  db.read(); // Explicitly read the database to ensure it's fresh
   const projects = db.get("projects");
 
-  console.log(`[DEBUG] PUT /projects/:id - projectId: ${projectId}, type: ${typeof projectId}`);
-  db.read(); // Ensure db is fresh
-  const allProjects = projects.value();
-  console.log(`[DEBUG] All projects from db.json:`, allProjects.map(p => ({ id: p.id, type: typeof p.id })));
-  let project = allProjects.find(p => parseInt(p.id, 10) === parseInt(projectId, 10));
-  console.log(`[DEBUG] Found project:`, project);
+  let project = projects.find({ id: projectId }).value();
 
   if (!project) {
     return res.status(404).json({ message: "Project not found" });
@@ -476,24 +540,22 @@ server.put("/projects/:id", projectUpload.single("image"), (req, res) => {
   const updatedProjectData = { ...req.body };
 
   if (req.file) {
-    const category = req.body.category || 'uncategorized';
+    const category = req.body.category || "uncategorized";
     updatedProjectData.src = `images/photos/projects/${category}/${req.file.filename}`;
-  } else {
-    updatedProjectData.src = project.src;
   }
 
   const newProject = { ...project, ...updatedProjectData };
 
+  if (req.file) {
+    newProject.cacheBust = Date.now();
+  }
+
   projects.find({ id: projectId }).assign(newProject).write();
 
-  res.json(newProject);
+  const responseProject = { ...newProject };
+
+  res.json(responseProject);
 });
-
-
-
-
-
-
 
 // POST route for creating a new place with image upload
 server.post("/places", placesUpload.single("image"), (req, res, next) => {
@@ -517,16 +579,30 @@ server.put("/places/:id", placesUpload.single("image"), (req, res) => {
   const db = router.db; // lowdb instance
   const places = db.get("places");
 
+  console.log(
+    `[DEBUG] PUT /places/:id - placeId: ${placeId}, type: ${typeof placeId}`
+  );
+  console.log(`[DEBUG] req.file:`, req.file);
+  console.log(`[DEBUG] req.body:`, req.body);
+
   let place = places.find({ id: placeId }).value();
 
   if (!place) {
+    console.log(`[DEBUG] Place not found for id: ${placeId}`);
     return res.status(404).json({ message: "Place not found" });
   }
 
+  console.log(`[DEBUG] Place before update:`, place);
+
   const updatedPlaceData = { ...req.body };
 
+  // Ensure the ID in the body is also a number if it exists, or remove it
+  if (updatedPlaceData.id) {
+    delete updatedPlaceData.id;
+  }
+
   if (req.file) {
-    updatedPlaceData.photo = `/images/photos/places/${req.file.filename}`;
+    updatedPlaceData.src = `images/photos/places/${req.file.filename}`;
   }
 
   if (updatedPlaceData.contacts) {
@@ -548,11 +624,18 @@ server.put("/places/:id", placesUpload.single("image"), (req, res) => {
   // Merge existing place data with updated data
   const newPlace = { ...place, ...updatedPlaceData };
 
+  if (req.file) {
+    newPlace.cacheBust = Date.now();
+  }
+
   places.find({ id: placeId }).assign(newPlace).write();
 
-  res.json(newPlace);
-});
+  const responsePlace = { ...newPlace }; // Create a new object for the response
 
+  console.log("[GEMINI-DEBUG] Place after update (responsePlace):", responsePlace);
+
+  res.json(responsePlace);
+});
 
 server.use(router);
 

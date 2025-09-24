@@ -191,3 +191,88 @@
 .empty-carousel-placeholder p {
   margin-top: 20px;
 }
+
+.carousel-custom-caption-container {
+  position: absolute;
+  left: var(--global-padding-x);
+  top: 50%;
+  color: white;
+  text-align: left;
+  right: auto; /* Override default right:15% */
+  bottom: auto; /* Override default bottom:0 */
+  padding-top: 0; /* Override default padding */
+  padding-bottom: 0; /* Override default padding */
+  z-index: 10;
+}
+
+.carousel-custom-caption {
+  position: absolute;
+  left: var(--global-padding-x);
+  color: white;
+  text-align: left;
+  right: auto; /* Override default right:15% */
+  bottom: auto; /* Override default bottom:0 */
+  padding-top: 0; /* Override default padding */
+  padding-bottom: 0; /* Override default padding */
+}
+
+
+/* xs */
+@media (max-width: 767px) {
+  .carousel-custom-caption-container,
+  .carousel-custom-caption {
+    top: 20vh;
+    left: 15vw;
+  }
+  .carousel-custom-caption-container .hero-paragraph-block p,
+  .carousel-custom-caption .hero-paragraph-block p {
+    max-width: 100vw !important;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .carousel-custom-caption-container,
+  .carousel-custom-caption {
+    top: 17vh;
+    left: 14.5vw;
+  }
+  .carousel-custom-caption-container .hero-paragraph-block p,
+  .carousel-custom-caption .hero-paragraph-block p {
+    max-width: 44vw !important;
+  }
+}
+
+/* lg */
+@media (min-width: 992px) {
+  .carousel-custom-caption-container,
+  .carousel-custom-caption {
+    top: 17vh;
+    left: 14vw;
+  }
+  .carousel-custom-caption-container .hero-paragraph-block p,
+  .carousel-custom-caption .hero-paragraph-block p {
+    max-width: 46vw !important;
+  }
+}
+
+/* xl */
+@media (min-width: 1200px) {
+  .carousel-custom-caption-container .hero-paragraph-block p,
+  .carousel-custom-caption .hero-paragraph-block p {
+    max-width: 42vw !important;
+  }
+}
+
+/* xxl */
+@media (min-width: 1400px) {
+  .carousel-custom-caption-container,
+  .carousel-custom-caption {
+    top: 17vh;
+    left: 17vw;
+  }
+  .carousel-custom-caption-container .hero-paragraph-block p,
+  .carousel-custom-caption .hero-paragraph-block p {
+    max-width: 44vw !important;
+  }
+}

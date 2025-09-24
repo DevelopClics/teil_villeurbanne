@@ -21,9 +21,15 @@ export default function Home({ isNavbarHovered }) {
         category="home"
         carouselTextId={0}
         isEditable={isAuthenticated}
+        stationaryText={true}
+        textPerSlide={true}
       />
       {/* <ReasonComp title="NOTRE RAISON D'ÊTRE" /> */}
-      <PageLayout title={SUB} titleId="home-title" DescriptionComponent={<ReasonComp />} />
+      <PageLayout
+        title={SUB}
+        titleId="home-title"
+        DescriptionComponent={<ReasonComp />}
+      />
     </>
   );
 }

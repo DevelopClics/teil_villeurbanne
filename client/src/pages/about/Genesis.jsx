@@ -15,13 +15,17 @@ export default function Genesis({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         category="genesis"
         carouselTextId={1}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
-      <PageLayout title={SUB} titleId="genesis-title" DescriptionComponent={<GenesisComp />} />
+      <PageLayout
+        title={SUB}
+        titleId="genesis-title"
+        DescriptionComponent={<GenesisComp />}
+      />
     </>
   );
 }

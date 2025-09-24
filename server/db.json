@@ -3,43 +3,45 @@
     "office": [
       {
         "id": 1,
-        "src": "images/photos/team/office/1757948530798-25.jpg",
-        "alt": "photo de Bernadette Dubosc",
-        "lastname": "Dubosc",
-        "surname": "Bernadette",
-        "occupation": "Secrétaire",
+        "src": "images/photos/team/office/1758697386573-eÌquipe.jpg",
+        "alt": "photo de Philippe Genet",
+        "lastname": "Genet",
+        "surname": "Philippe",
+        "occupation": "Président",
         "contact": "bernadette.dubosc@adct-asso.org",
-        "cacheBust": 1757948530802
+        "cacheBust": 1758697386580
       },
       {
         "id": 2,
         "src": "images/photos/team/office/1758020814085-222.jpg",
         "alt": "Concert",
-        "lastname": "Dupond",
-        "surname": "Jean",
-        "occupation": "Chargé d'accueil",
+        "lastname": "Bayle",
+        "surname": "Cécile",
+        "occupation": "Vice-Présidente ",
         "contact": "jerome.dupond@adct-asso.org",
-        "cacheBust": 1758020814089
+        "cacheBust": 1758634996179
       },
       {
         "id": 3,
         "src": "images/photos/team/office/03.jpg",
-        "alt": "Concert",
-        "lastname": "Robert",
-        "surname": "Linda",
-        "occupation": "Responsable des ressources humaines",
-        "contact": "linda.robert@adct-asso.org"
+        "alt": "Photo d'Annabelle Dubois",
+        "lastname": "Dubois",
+        "surname": "Annabelle ",
+        "occupation": "Trésorière",
+        "contact": "linda.robert@adct-asso.org",
+        "cacheBust": 1758635041834
       }
     ],
     "employees": [
       {
         "id": 1,
         "src": "images/photos/team/office/01.jpg",
-        "alt": "office01",
-        "lastname": "Dubois",
-        "surname": "Sylvia",
-        "occupation": "Secrétaire",
-        "contact": "jeanne.dubois@adct-asso.org"
+        "alt": "Photo d'Alice Sébastien",
+        "lastname": "Sébastien",
+        "surname": "Alice",
+        "occupation": "Chargée de mission Coopération Le Teil-Villeurbanne ",
+        "contact": "jeanne.dubois@adct-asso.org",
+        "cacheBust": 1758635126708
       },
       {
         "id": 2,
@@ -64,121 +66,134 @@
       {
         "id": 1,
         "src": "images/photos/team/administration/04.jpg",
-        "alt": "Concert",
-        "lastname": "Jones",
-        "surname": "Robert",
-        "occupation": "Président du conseil d'administration",
-        "contact": "robert.jones@villeurbane-leteil.fr"
+        "alt": "Photo de Cécile Bayle",
+        "lastname": "Bayle",
+        "surname": "Cécile",
+        "occupation": "Collège des collectivités publiques",
+        "contact": "robert.jones@villeurbane-leteil.fr",
+        "cacheBust": 1758637313076
       },
       {
         "id": 2,
         "src": "images/photos/team/administration/05.jpg",
-        "alt": "Concert",
-        "lastname": "Richardin",
-        "surname": "Barbara",
-        "occupation": "Vice-présidente",
-        "contact": "barbara.richard@adct-asso.org"
+        "alt": "Photo d'Agnès Thouvenot",
+        "lastname": "Thouvenot",
+        "surname": "Agnès ",
+        "occupation": "Collège des collectivités publiques",
+        "contact": "barbara.richard@adct-asso.org",
+        "cacheBust": 1758637317740
       },
       {
         "id": 3,
         "src": "images/photos/team/administration/06.jpg",
-        "alt": "Concert",
-        "lastname": "Muller",
-        "surname": "Richard",
-        "occupation": "Secrétaire",
-        "contact": "richard.miller@adct-asso.org"
+        "alt": "Photo de Fanny Valla",
+        "lastname": "Valla",
+        "surname": "Fanny",
+        "occupation": "Collège des collectivités publiques",
+        "contact": "richard.miller@adct-asso.org",
+        "cacheBust": 1758637323187
       },
       {
         "id": 4,
         "src": "images/photos/team/administration/07.jpg",
-        "alt": "Concert",
-        "lastname": "Leroy",
-        "surname": "Jennifer",
-        "occupation": "Trésorière",
-        "contact": "jennifer.leroy@adct-asso.org"
+        "alt": "Photo d'Antoine Colliat",
+        "lastname": "Colliat",
+        "surname": "Antoine ",
+        "occupation": "Collège des collectivités publiques",
+        "contact": "jennifer.leroy@adct-asso.org",
+        "cacheBust": 1758637327931
       },
       {
         "id": 5,
         "src": "images/photos/team/administration/08.jpg",
-        "alt": "Concert",
-        "lastname": "Wilson",
-        "surname": "Joseph",
-        "occupation": "Administrateur ",
-        "contact": "joseph.wilson@adct-asso.org"
+        "alt": "Photo de Morgane Guillat",
+        "lastname": "Guillat",
+        "surname": "Morgane ",
+        "occupation": "Collège des collectivités publiques ",
+        "contact": "joseph.wilson@adct-asso.org",
+        "cacheBust": 1758637372788
       },
       {
         "id": 6,
         "src": "images/photos/team/administration/09.jpg",
-        "alt": "Concert",
-        "lastname": "Doe",
-        "surname": "Marion",
-        "occupation": "Directrice Générale",
-        "contact": "jane.doe@adct-asso.org"
+        "alt": "Photo de Philippe Genet",
+        "lastname": "Genet",
+        "surname": "Philippe",
+        "occupation": "Collège des associations et entreprises",
+        "contact": "jane.doe@adct-asso.org",
+        "cacheBust": 1758637420595
       },
       {
         "id": 7,
         "src": "images/photos/team/administration/10.jpg",
-        "alt": "Concert",
-        "lastname": "Lefebvre",
-        "surname": "Paul",
-        "occupation": "Administrateur indépendant ",
-        "contact": "paul.lefebvre@adct-asso.org"
+        "alt": "Photo de Marie-Claire Poncet",
+        "lastname": "Poncet",
+        "surname": "Marie-Claire",
+        "occupation": "Collège des associations et entreprises",
+        "contact": "paul.lefebvre@adct-asso.org",
+        "cacheBust": 1758637473108
       },
       {
         "id": 8,
         "src": "images/photos/team/administration/11.jpg",
-        "alt": "Concert",
-        "lastname": "White",
-        "surname": "Dorothy",
-        "occupation": "Présidente de comité d'audit",
-        "contact": "dorothy.white@adct-asso.org"
+        "alt": "Photo d'Olivier Rey",
+        "lastname": "Rey",
+        "surname": "Olivier",
+        "occupation": "Collège des associations et entreprises",
+        "contact": "dorothy.white@adct-asso.org",
+        "cacheBust": 1758637518900
       },
       {
         "id": 12,
         "src": "images/photos/team/administration/12.jpg",
-        "alt": "Concert",
-        "lastname": "Doe",
-        "surname": "John",
-        "occupation": "Président de comité de rémunération",
-        "contact": "john.doe@adct-asso.org"
+        "alt": "Photo de Sophie Diaquin",
+        "lastname": "Diaquin",
+        "surname": "Sophie",
+        "occupation": "Collège des associations et entreprises",
+        "contact": "john.doe@adct-asso.org",
+        "cacheBust": 1758637596670
       },
       {
         "id": 9,
         "src": "images/photos/team/administration/13.jpg",
-        "alt": "Concert",
-        "lastname": "Simon",
-        "surname": "Susanne",
-        "occupation": "Administratrice honoraire",
-        "contact": "susanne.simon@adct-asso.org"
+        "alt": "Photo de Patrick Hérault",
+        "lastname": "Hérault ",
+        "surname": "Patrick ",
+        "occupation": "Collège des associations et entreprises",
+        "contact": "susanne.simon@adct-asso.org",
+        "cacheBust": 1758637653645
       },
       {
         "id": 10,
         "src": "images/photos/team/administration/14.jpg",
-        "alt": "Concert",
-        "lastname": "Anderson",
-        "surname": "Charles",
-        "occupation": "Observateur",
-        "contact": "charles.anderson@adct-asso.org"
+        "alt": "Photo de Peggy Aubert",
+        "lastname": "Aubert",
+        "surname": "Peggy",
+        "occupation": "Collège des associations et entreprises",
+        "contact": "charles.anderson@adct-asso.org",
+        "cacheBust": 1758637694940
       },
       {
         "id": 11,
         "src": "images/photos/team/administration/15.jpg",
-        "alt": "Concert",
-        "lastname": "Laurent",
-        "surname": "Marguerite",
-        "occupation": "Administratrice de la collectivité",
-        "contact": "marguerite.laurent@adct-asso.org"
+        "alt": "Photo d'Annabelle Dubois",
+        "lastname": "Dubois",
+        "surname": "Annabelle",
+        "occupation": "Collège citoyen",
+        "contact": "marguerite.laurent@adct-asso.org",
+        "cacheBust": 1758637770655
       }
     ],
     "instruction": [
       {
         "id": 1,
         "src": "images/photos/team/instruction/16.jpg",
-        "alt": "Concert",
+        "alt": "Photo de",
         "lastname": "Jackson",
         "surname": "Daniel",
         "occupation": "Président du comité d'instruction",
-        "contact": "daniel.jackson@adct-asso.org"
+        "contact": "daniel.jackson@adct-asso.org",
+        "cacheBust": 1758637625068
       }
     ],
     "scientific": [
@@ -259,22 +274,64 @@
   "carouselImages": {
     "home": [
       {
-        "src": "images/photos/team/carousel/1758025723602-AdobeStock_509081778.jpeg",
-        "id": 5
+        "src": "images/photos/team/carousel/1758636291582-page de garde.jpg",
+        "id": 5,
+        "title": "Coopération territoriale",
+        "text": "Faisons alliance à tous les niveaux (collectivités, associations, entreprises et habitants) pour initier une nouvelle relation ville-campagne qui résout réduit les inégalités territoriales, protège mutuellement les territoires et combat le repli sur soi. ",
+        "alt": "Photo de carousel ccopération"
+      },
+      {
+        "alt": "Photo de carousel culture",
+        "src": "images/photos/team/carousel/1758635509507-carrouseul culture.jpg",
+        "id": 7,
+        "title": "Culture",
+        "text": "En ville comme à la campagne, facilitons un accès à la culture pour tous au cœur des territoires : diffusions itinérantes, production en dehors des lieux usuels de diffusion, rencontres entre artistes, habitants au cœur des processus de création…"
+      },
+      {
+        "title": "Alimentation durable",
+        "text": "Favorisons une production et une consommation alimentaire saine, responsable de l’environnement, qui fonctionne en circuit court, qui prend soin des producteurs et qui est accessible aux plus précaires. ",
+        "alt": "Photo de carousel alimentation",
+        "id": 13,
+        "src": "images/photos/team/carousel/1758635488803-carrouseul alimentation.jpg"
+      },
+      {
+        "title": "Jeunesse",
+        "text": "Pour lutter contre le décrochage de la jeunesse, présentons leur d’autres horizons académiques, professionnels et de loisirs, créons des occasions de rencontres entre jeunes des villes et jeunes ruraux et travaillons avec eux à la création de projets. ",
+        "alt": "Photo de carousel jeunesse",
+        "src": "images/photos/team/carousel/1758635602075-carrousel jeunesse.jpg",
+        "id": 14
+      },
+      {
+        "title": "Economie sociale et solidaire",
+        "text": "Travaillons à remodeler nos modèles économiques en encourageant le réemploi, la mutualisation des forces et des biens, les circuits-courts, le transfert de compétences… tout en cherchant à solidifier les emplois de chacun. ",
+        "alt": "Photo de carousel économie",
+        "id": 15,
+        "src": "images/photos/team/carousel/1758635656257-carrousel eÌco.jpg"
       }
     ],
     "genesis": [
       {
         "id": 1,
-        "src": "images/photos/team/carousel/1758023491491-AdobeStock_657203187.jpeg",
+        "src": "images/photos/team/carousel/1758701032673-qui sommes nous 2.jpg",
         "alt": "Home1"
+      },
+      {
+        "alt": "ryrh",
+        "src": "images/photos/team/carousel/1758628190068-eÌchanges artisans.jpg",
+        "id": 9
+      },
+      {
+        "alt": "dff",
+        "src": "images/photos/team/carousel/1758628389382-qui sommes nous 3.jpg",
+        "id": 11
       }
     ],
     "team": [
       {
         "id": 1,
-        "src": "images/photos/team/carousel/1758023531702-AdobeStock_336269917.jpeg",
-        "alt": "Home1"
+        "src": "images/photos/team/carousel/1758636721251-eÌquipe.jpg",
+        "alt": "Photo carousel l'équipe",
+        "title": "o"
       }
     ],
     "city": [
@@ -282,6 +339,11 @@
         "id": 1,
         "src": "images/photos/team/carousel/1758023556019-AdobeStock_311575980.jpeg",
         "alt": "Home1"
+      },
+      {
+        "alt": "hyjhj",
+        "src": "images/photos/team/carousel/1758628467439-carrouseul culture.jpg",
+        "id": 12
       }
     ],
     "projects": [
@@ -292,7 +354,7 @@
     ],
     "culture": [
       {
-        "src": "images/photos/team/carousel/1758023624063-AdobeStock_128079957.jpeg",
+        "src": "images/photos/team/carousel/1758701051816-qui sommes nous 3.jpg",
         "id": 3
       }
     ],
@@ -308,56 +370,74 @@
         "src": "images/photos/team/carousel/1758112158781-AdobeStock_479884948.jpeg",
         "id": 6
       }
+    ],
+    "economy": [
+      {
+        "src": "images/photos/team/carousel/1758701093114-qui sommes nous 3.jpg",
+        "id": 16
+      }
     ]
   },
   "carouselText": [
     {
-      "content": "HOMINGG vo lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 1)",
-      "id": 0
+      "id": 0,
+      "title": "notre raison d'être",
+      "content": "bla quip. (Slide 1)"
     },
     {
-      "content": "Génèse loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)",
-      "id": 1
+      "id": 1,
+      "title": "La génèse !",
+      "content": "Génèse ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
     },
     {
-      "content": "This is the text for Team.",
-      "id": 2
+      "id": 2,
+      "title": "L'équipe ",
+      "content": "Place pour indiquer le texte de l'équipe"
     },
     {
-      "content": "This is the text for  Cities",
-      "id": 3
+      "id": 3,
+      "title": "Les villes",
+      "content": "This is the text for  Cities"
     },
     {
-      "content": "This is the text for  All projects.",
-      "id": 4
+      "id": 4,
+      "title": "Tous les projets",
+      "content": "This is the text for  All projects."
     },
     {
-      "content": "This is the text for  Culture !",
-      "id": 5
+      "id": 5,
+      "title": "Culture",
+      "content": "This is the text for  Culture !"
     },
     {
-      "content": "This is the text for  Food !",
-      "id": 6
+      "id": 6,
+      "title": "Alimentation",
+      "content": "This is the text for  Food !"
     },
     {
-      "content": "This is the text for  Youth.",
-      "id": 7
+      "id": 7,
+      "title": "Jeunesse",
+      "content": "This is the text for  Youth."
     },
     {
-      "content": "This is the text for  Economy.",
-      "id": 8
+      "id": 8,
+      "title": "Economie",
+      "content": "This is the text for  Economy."
     },
     {
-      "content": "Texte pour déposer un projet !",
-      "id": 9
+      "id": 9,
+      "title": "Déposer un projet",
+      "content": "Texte pour déposer un projet !"
     },
     {
-      "content": "Texte pour nous rejoindre",
-      "id": 10
+      "id": 10,
+      "title": "Nous rejoindre",
+      "content": "Texte pour nous rejoindre"
     },
     {
-      "content": "Texte pour nous contacter",
-      "id": 11
+      "id": 11,
+      "title": "Nous contacter",
+      "content": "Texte pour nous contacter"
     }
   ],
   "citiesProjects": [
@@ -396,14 +476,14 @@
   ],
   "genesisText": [
     {
-      "content": "D’un côté, Villeurbanne : grande ville de 160 000 habitants, universitaire, dotée d’hôpitaux et traversée par une ligne de métro, des tramways, des bus. Ville dont la majeure partie se situe à l’intérieur du périphérique lyonnais, comme si Montreuil était à la place des 19ème et 20ème arrondissement. Un dynamisme économique et démographique important, et des prix de l’immobilier qui flambent. Une ville saturée aussi, qui n’a plus de place dans ses cimetières, dans ses classes d’écoles - renforcées par des équipements provisoires en containers. Plus de place dans ses logements sociaux, dans ses clubs de sport, dans ses piscines municipales. Une ville également clivée entre ses quartiers en voie de gentrification et ses cinq quartiers prioritaires à la Politique de la Ville (QPV). Politiquement parlant, elle a connu 100 ans de continuité politique et incarne assez bien l’idée du socialisme municipal. Le vote Rassemblement National y est modéré, et plus bas que dans le reste du département (18% au premier tour des élections législatives de 2024, contre 26% à l’échelle départementale).\nDe l’autre côté, Le Teil, ville de 9 000 habitants, a perdu le quart de sa population en 30 ans suite à la désindustrialisation. Le taux de chômage y est élevé, notamment dans ses deux QPV et la ville ne bénéficie pas de l’attractivité touristique du reste de l’Ardèche. Il n’y a pas de gare ferroviaire, et un seul arrêt de bus connecte la ville au reste de l’Ardèche et de la Drôme. Les professionnels de santé ne sont pas très loin, à Montélimar, mais saturés. En 2019, la ville est l’épicentre d’un séisme, un sixième des habitants quittent leur logement. Quelques années plus tard, cette catastrophe a permis à de nombreux travaux d’aménagement de voir le jour, notamment la déviation de la RN102, qui passait autrefois dans le centre du Teil, encombrant circulation et habitants, avec un trafic moyen de 15.000 voitures par jour. Commune la plus peuplée de la communauté de communes Ardèche Drôme Coiron, Le Teil est une centralité parmi son environnement : elle accueille une cité scolaire de 3 000 élèves et dispose d’un nombre d’équipements culturels surprenant au regard de sa taille : cinéma, théâtre, lieu d’exposition, tiers-lieu accueillant 70 artistes, etc. Bien qu’elle soit dirigée par la gauche depuis 2008, la ville affiche un vote Rassemblement National élevé (46% au premier tour des élections législatives de 2024).\nPour résumer, c’est configuration qui recoupe assez bien le clivage entre le centre d’une Métropole qui continue à s’intensifier, mais qui sature, et qui s’enrichit de l’appauvrissement de son environnement (la venue des jeunes en ville, la concentration des acteurs économiques,…) et une commune qui peut se considérer comme excentrée, privée d’accès aux aménités urbaines spécifiques aux grandes métropoles, en déprime économique et démographique. Les réalités sont évidemment nuancées, mais Le Teil rassemble beaucoup des caractéristiques de la ville moyenne en déprise décrite par Achille Warnant.\nCes contrastes se traduisent par des injustices, notamment dans l’accès aux droits programmatiques : droit à l’éducation, droit à la santé, droits culturels et fondamentalement, cette composante du droit à la ville décrit par Henri Lefebvre, qui est la capacité des citoyens à influer sur le cours de leur vie individuelle et collective. Un enjeu essentiel des coopérations territoriales et l’accomplissement de la promesse républicaine à garantir l’égalité d’accès aux droits.\n\nMais pourquoi deux communes distantes de 150km s’engagent-elles dans un processus de co-développement ? Parce qu’elles ont aussi des points communs. Ce sont deux communes empruntes d’une longue histoire ouvrière et par la recherche de l’émancipation par l’éducation populaire, les expérimentations locales, qu’elles soient économiques, sociales, culturelles. Un élément important et largement sous-estimé est la proximité des manières d’être, marquées par la jovialité, un rapport aux projets à la fois nécessaire et ludique, une horizontalité et une simplicité des relations entre élus, techniciens municipaux, et société civile, qui fait la part belle aux connivences. Un certain niveau d’homogénéité sociologique des émotions (Burnay, 2022) est peut-être la condition d’un partenariat qui dure.\nC’est simultanément autour de rencontres personnelles et de l’émergence du dispositif Territoire Zéro Chômeur de Longue durée dans les deux communes que les relations se sont tissées. Puis en 2021, Villeurbanne cherchait des espaces pour ceux de ses citoyens qui ne partent jamais en congés. Le Teil s’est montré enclin à accueillir mais a proposé de réfléchir plus largement. Des premières visites croisées ont permis de vérifier l’envie de faire et les perspectives communes. Depuis, chaque année, ce sont environ 70 personnes des deux communes, élus, agents municipaux, acteurs de la culture, de la solidarité, de l’éducation populaire, de l’économie bleue, des citoyens curieux pour explorer de nouvelles pistes de coopération.\nEnseignement musical ; garantie d’accès au logement social étudiant pour les lycéens du Teil (qui s’autocensurent dans leur stratégie Parcoursup face à l’hypothèse de ne pouvoir se loger à Lyon) ; production communes par les dispositif Territoire Zéro Chômeur, à partir de matériau de réemploi ; découverte mutuelle par les jeunes des deux territoires, à travers l’implication dans les évènements culturels locaux ; accueil de stagiaires pour les métiers qui n’existent pas chez l’autre ; ateliers cuisine pour lutter contre l’isolement et l’exclusion en ville à partir de la production agricole du Teil, dans le cadre d’un dispositif d’insertion ; résidences d’artistes ;… les projets se multiplient et la tendance s’accélère, à la faveur de la formalisation du partenariat.\n\nEn 2023, les deux conseils municipaux ont délibéré sur un « Contrat de réciprocité », qui donne un cadre de référence à la dynamique locale En 2024, une association a été créée, l’Association pour le Développement des Coopérations Territoriales : un collège collectivités, un collège associations et entreprises, un collège citoyen. La gouvernance est assurée à parité entre les deux territoires et avec une représentation égale des différents collèges. Les moyens sont affectés autant que faire se peut à parité entre les deux territoires.\nLe projet a rencontré l’intérêt de la Fondation de France qui a fait le choix d’un soutien significatif : 350 000€ sur trois ans, qui a permis à la fois d’embaucher une salariée, de soutenir les projets concrets de coopération et les moyens sont prévus pour l’accueil d’une doctorante en Cifre, qui permettra de documenter cette initiative, de mieux l’inscrire dans un cadre intellectuel structuré, et de la relier à d’autres expériences.\n\nLa suite : élargissement et intensification ?\nL’association poursuit sa recherche de moyens complémentaires pour pouvoir accompagner les projets opérationnels de coopération qui émergent à un rythme de plus en plus rapide. C’est le développement de ces liens organiques qui signent la spécificité de ce partenariat, qui n’est pas qu’institutionnel, mais qui vise à s’adosser dans le temps à des intérêts partagés et des amicalités individuelles, pour devenir systémique dans le cours ordinaire des jours des deux communes.\n\nMais il y a 36 000 communes en France et si chacune des cent plus grandes villes contracte avec une petite, il restera 35 800 communes non reliées. L’enjeu est de s’appuyer sur cette expérience pour nourrir une approche plus systémique.\nVoisine de Villeurbanne, la Ville de Lyon a signé en 2024 un contrat de réciprocité avec la petite ville de Thurins et lancé un appel à manifestation d’intérêt en lien avec l’Association des Maires Ruraux de France, auprès des petites communes à environ 50km alentour. 11 communes ont répondu et engagent un travail, depuis juin 2025, avec la Ville de Lyon. Celle-ci a proposé à la Ville de Villeurbanne de s’y associer, de manière à favoriser les coopérations ville-campagne sur les enjeux identifiés par les uns et les autres, mais aussi les coopérations campagne-campagne, que les villes peuvent favoriser, ne serait-ce que par l’expertise dont elles disposent dans l’administration que n’ont pas les bourgs ruraux.\nConcomitamment au Manifeste d’Evreux, publié le 4 juin 2025 par le réseau Villes & Banlieues et par l’Association des Maires Ruraux de France, pour « Faire République Ensemble » et déconstruire l’opposition entre territoire au profit de projets communs, un temps politique semble s’ouvrir sérieusement pour que depuis la multitude des niveaux locaux, se dessine une stratégie horizontale de cohésion sociale.\n\nPhotos : rencontre annuelle + dessins de Sébastien",
+      "content": "D’un côté, Villeurbanne : grande ville de 160 000 habitants, universitaire, dotée d’hôpitaux et traversée par une ligne de métro, des tramways, des bus. Ville dont la majeure partie se situe à l’intérieur du périphérique lyonnais, comme si Montreuil était à la place des 19ème et 20ème arrondissement. Un dynamisme économique et démographique important, et des prix de l’immobilier qui flambent. Une ville saturée aussi, qui n’a plus de place dans ses cimetières, dans ses classes d’écoles - renforcées par des équipements provisoires en containers. Plus de place dans ses logements sociaux, dans ses clubs de sport, dans ses piscines municipales. Une ville également clivée entre ses quartiers en voie de gentrification et ses cinq quartiers prioritaires à la Politique de la Ville (QPV). Politiquement parlant, elle a connu 100 ans de continuité politique et incarne assez bien l’idée du socialisme municipal. Le vote Rassemblement National y est modéré, et plus bas que dans le reste du département (18% au premier tour des élections législatives de 2024, contre 26% à l’échelle départementale).<br />De l’autre côté, Le Teil, ville de 9 000 habitants, a perdu le quart de sa population en 30 ans suite à la désindustrialisation. Le taux de chômage y est élevé, notamment dans ses deux QPV et la ville ne bénéficie pas de l’attractivité touristique du reste de l’Ardèche. Il n’y a pas de gare ferroviaire, et un seul arrêt de bus connecte la ville au reste de l’Ardèche et de la Drôme. Les professionnels de santé ne sont pas très loin, à Montélimar, mais saturés. En 2019, la ville est l’épicentre d’un séisme, un sixième des habitants quittent leur logement. Quelques années plus tard, cette catastrophe a permis à de nombreux travaux d’aménagement de voir le jour, notamment la déviation de la RN102, qui passait autrefois dans le centre du Teil, encombrant circulation et habitants, avec un trafic moyen de 15.000 voitures par jour. Commune la plus peuplée de la communauté de communes Ardèche Drôme Coiron, Le Teil est une centralité parmi son environnement : elle accueille une cité scolaire de 3 000 élèves et dispose d’un nombre d’équipements culturels surprenant au regard de sa taille : cinéma, théâtre, lieu d’exposition, tiers-lieu accueillant 70 artistes, etc. Bien qu’elle soit dirigée par la gauche depuis 2008, la ville affiche un vote Rassemblement National élevé (46% au premier tour des élections législatives de 2024).<br />Pour résumer, c’est configuration qui recoupe assez bien le clivage entre le centre d’une Métropole qui continue à s’intensifier, mais qui sature, et qui s’enrichit de l’appauvrissement de son environnement (la venue des jeunes en ville, la concentration des acteurs économiques,…) et une commune qui peut se considérer comme excentrée, privée d’accès aux aménités urbaines spécifiques aux grandes métropoles, en déprime économique et démographique. <br /><br />Ces contrastes se traduisent par des injustices, notamment dans l’accès aux droits programmatiques : droit à l’éducation, droit à la santé, droits culturels et fondamentalement, cette composante du droit à la ville décrit par Henri Lefebvre, qui est la capacité des citoyens à influer sur le cours de leur vie individuelle et collective. Un enjeu essentiel des coopérations territoriales et l’accomplissement de la promesse républicaine à garantir l’égalité d’accès aux droits.<br /><br />Mais pourquoi deux communes distantes de 150km s’engagent-elles dans un processus de co-développement ? Parce qu’elles ont aussi des points communs. Ce sont deux communes empruntes d’une longue histoire ouvrière et par la recherche de l’émancipation par l’éducation populaire, les expérimentations locales, qu’elles soient économiques, sociales, culturelles. Un élément important et largement sous-estimé est la proximité des manières d’être, marquées par la jovialité, un rapport aux projets à la fois nécessaire et ludique, une horizontalité et une simplicité des relations entre élus, techniciens municipaux, et société civile, qui fait la part belle aux connivences. Un certain niveau d’homogénéité sociologique des émotions (Burnay, 2022) est peut-être la condition d’un partenariat qui dure.  <br />C’est simultanément autour de rencontres personnelles et de l’émergence du dispositif Territoire Zéro Chômeur de Longue durée dans les deux communes que les relations se sont tissées. Puis en 2021, Villeurbanne cherchait des espaces pour ceux de ses citoyens qui ne partent jamais en congés. Le Teil s’est montré enclin à accueillir mais a proposé de réfléchir plus largement. Des premières visites croisées ont permis de vérifier l’envie de faire et les perspectives communes. Depuis, chaque année, ce sont environ 70 personnes des deux communes, élus, agents municipaux, acteurs de la culture, de la solidarité, de l’éducation populaire, de l’économie bleue, des citoyens curieux pour explorer de nouvelles pistes de coopération. <br />Enseignement musical ; garantie d’accès au logement social étudiant pour les lycéens du Teil (qui s’autocensurent dans leur stratégie Parcoursup face à l’hypothèse de ne pouvoir se loger à Lyon) ; production communes par les dispositif Territoire Zéro Chômeur, à partir de matériau de réemploi ; découverte mutuelle par les jeunes des deux territoires, à travers l’implication dans les évènements culturels locaux ; accueil de stagiaires pour les métiers qui n’existent pas chez l’autre ; ateliers cuisine pour lutter contre l’isolement et l’exclusion en ville à partir de la production agricole du Teil, dans le cadre d’un dispositif d’insertion ; résidences d’artistes ;… les projets se multiplient et la tendance s’accélère, à la faveur de la formalisation du partenariat.<br /><br />En 2023, les deux conseils municipaux ont délibéré sur un « Contrat de réciprocité », qui donne un cadre de référence à la dynamique locale En 2024, une association a été créée, l’Association pour le Développement des Coopérations Territoriales : un collège collectivités, un collège associations et entreprises, un collège citoyen. La gouvernance est assurée à parité entre les deux territoires et avec une représentation égale des différents collèges. Les moyens sont affectés autant que faire se peut à parité entre les deux territoires. <br />Le projet a rencontré l’intérêt de la Fondation de France qui a fait le choix d’un soutien significatif : 350 000€ sur trois ans, qui a permis à la fois d’embaucher une salariée, de soutenir les projets concrets de coopération et les moyens sont prévus pour l’accueil d’une doctorante en Cifre, qui permettra de documenter cette initiative, de mieux l’inscrire dans un cadre intellectuel structuré, et de la relier à d’autres expériences.<br /><br />La suite : élargissement et intensification ?<br />L’association poursuit sa recherche de moyens complémentaires pour pouvoir accompagner les projets opérationnels de coopération qui émergent à un rythme de plus en plus rapide. C’est le développement de ces liens organiques qui signent la spécificité de ce partenariat, qui n’est pas qu’institutionnel, mais qui vise à s’adosser dans le temps à des intérêts partagés et des amicalités individuelles, pour devenir systémique dans le cours ordinaire des jours des deux communes. ",
       "id": 1
     }
   ],
   "reasonText": [
     {
       "id": 1,
-      "content": "A ’ADCT, nous croyons que la coopération des villes et des campagnes peut apporter des solutions à nos défis climatiques et sociaux, elles ont la capacité de se protéger mutuellement et de réduire les inégalités croissantes. Nous travaillons à mobiliser les forces de chaque territoire pour apporter des solutions à des problématiques partagées (décrochage de la jeunesse, emploi, accès à la culture, à une alimentation durable…).<br /><br />Nous mettons en lien les associations, les entreprises, les collectivités et les habitants de deux territoires et nous les accompagnons pour imaginer des actions concrètes. En favorisant des rencontres et des projets communs entre territoires, l’ADCT vise à faciliter une compréhension accrue des enjeux et des réalités des habitants, qui contribue à l’émergence d’une nouvelle relation ville-campagne qui résiste au repli sur soi.<br /><br />Notre action s’inscrit entre Le Teil, une commune d’Ardèche de 9000 habitants, et Villeurbanne, ville de 160 000 habitants au sein de la métropole de Lyon. Malgré leur différence de taille, et leur éloignement,XXXXX<br /><br />Partager nos apprentissages – recherche"
+      "content": "A l’ADCT, nous croyons que la coopération des villes et des campagnes peut apporter des solutions à nos défis climatiques et sociaux ; elles ont la capacité de se protéger mutuellement et de réduire les inégalités croissantes. Nous travaillons ainsi à mobiliser les forces de chaque territoire pour apporter des solutions à des problématiques partagées (décrochage de la jeunesse, emploi, accès à la culture, à une alimentation durable…). <br /><br />Notre action s’inscrit entre Le Teil, une commune d’Ardèche de 9000 habitants, et Villeurbanne, ville de 160 000 habitants au sein de la métropole de Lyon. <br />Nous nous appuyons sur une alliance entre collectivités, associations, entreprises, et  habitants de deux territoires et nous les accompagnons pour imaginer des actions concrètes. En favorisant des rencontres et des projets communs entre territoires, l’ADCT vise à faciliter une compréhension accrue des enjeux et des réalités des habitants, qui contribue à l’émergence d’une nouvelle relation ville-campagne qui résiste au repli sur soi. Nous mettons aussi en place une modalité d’animation collective, conviviale et joyeuse qui cherche à décloisonner les silos entre les collectivités et la société civile. <br /><br />Nous nous fixons également pour objet de partager les réussites concrètes et innovantes en matière de coopération territoriales et de documenter notre démarche, pour comprendre comment il est possible d’intensifier et de systématiser de telles dynamiques.<br /><br />Nous nous fixons également pour objet de partager les réussites concrètes et innovantes en matière de coopération territoriales et de documenter notre démarche, pour comprendre comment il est possible d’intensifier et de systématiser de telles dynamiques."
     }
   ],
   "user": [
@@ -417,12 +497,12 @@
   "places": [
     {
       "id": 1,
-      "title": "Le Teil",
-      "src": "images/photos/team/places/1758096242846-AdobeStock_230385064.jpeg",
+      "title": "Le Teil ! oké",
+      "src": "images/photos/places/1758699300089-garantie logement.png",
       "alt": "Ville01",
       "size": "30",
       "subtitle": "Commune ardéchoise",
-      "article": "Le Teil est une commune française située dans le département de l'Ardèche en région Auvergne-Rhône-Alpes. C'est une ville dynamique avec une riche histoire et un patrimoine culturel important. Elle offre un cadre de vie agréable avec de nombreux services et activités pour ses habitants.",
+      "article": "El Le Teil est une commune française située dans le département de l'Ardèche en région Auvergne-Rhône-Alpes. C'est une ville dynamique avec une riche histoire et un patrimoine culturel important. Elle offre un cadre de vie agréable avec de nombreux services et activités pour ses habitants.",
       "contacts": "Mairie du Teil",
       "links01": "https://www.leteil.fr/",
       "typelink01": "Site web :",
@@ -430,12 +510,12 @@
       "links02": "",
       "typelink02": "",
       "namelink02": "",
-      "cacheBust": 1758096805563
+      "cacheBust": 1758699300100
     },
     {
       "id": 2,
       "title": "Villeurbanne",
-      "src": "images/photos/team/places/1758110291025-AdobeStock_479884948.jpeg",
+      "src": "images/photos/places/1758701780141-qui sommes nous 2.jpg",
       "alt": "Photo de Villeurbanne",
       "size": "30",
       "subtitle": "Commune du Rhône",
@@ -447,7 +527,7 @@
       "links02": "",
       "typelink02": "",
       "namelink02": "",
-      "cacheBust": 1758110291046
+      "cacheBust": 1758701780148
     }
   ],
   "projects": [
@@ -458,7 +538,7 @@
       "title": "Semaine de Musique d’ensemble  !",
       "shortitle": "shortitle XXXXXXXX",
       "shortext": "Un 2 3 4",
-      "src": "images/photos/projects/culture/AdobeStock_128079957.jpeg",
+      "src": "images/photos/projects/culture/1758701427212-page de garde.jpg",
       "alt": "alt",
       "size": "30",
       "subtitle": "Du 7 au 11 juillet 2025",
@@ -470,7 +550,7 @@
       "links02": "https://youtu.be/xWWm5XjZgzo?si=3i2eCGL20DG0XEYH",
       "typelink02": "",
       "namelink02": "Vidéo des restitutions musicales",
-      "cacheBust": "1758120604456"
+      "cacheBust": 1758701427218
     },
     {
       "id": "2",
@@ -499,7 +579,7 @@
       "title": "Mieux manger pour tous",
       "shortitle": "shortitle",
       "shortext": "Un tout petit descriptif vraiment pas long du tout BBBBB",
-      "src": "images/photos/projects/food/AdobeStock_177891705.jpeg",
+      "src": "images/photos/projects/food/1758701797380-semaine musique.jpg",
       "alt": "alt",
       "size": "30",
       "subtitle": "2024",
@@ -510,16 +590,17 @@
       "namelink01": "Nos valeurs | Association Le Terreau",
       "links02": "https://www.facebook.com/share/v/1QFkPxTR6S/",
       "typelink02": "Vidéo :",
-      "namelink02": "8ème édition des ateliers cuisine"
+      "namelink02": "8ème édition des ateliers cuisine",
+      "cacheBust": 1758701797384
     },
     {
-      "id": 4,
+      "id": "4",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Vis ma vie !",
       "shortitle": "shortitle",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
-      "src": "images/photos/projects/youth/AdobeStock_244627948.jpeg",
+      "src": "images/photos/projects/youth/1758701541384-semaine musique.jpg",
       "alt": "alt",
       "size": "30",
       "subtitle": "Septembre et novembre 2025",
@@ -528,10 +609,10 @@
       "links01": "https://www.facebook.com/lesclefscsc/",
       "typelink01": " - Facebook : ",
       "namelink01": "Les CLEFS",
-      "cacheBust": 1758120917541
+      "cacheBust": 1758701541389
     },
     {
-      "id": 5,
+      "id": "5",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Vacances",
@@ -548,7 +629,7 @@
       "namelink01": "xxxxxxxx"
     },
     {
-      "id": 6,
+      "id": "6",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Echanges de jeunes",
@@ -561,7 +642,7 @@
       "article": "Depuis 2023, les jeunes du Teil et de Villeurbanne se rencontrent pendant leurs vacances, les faisant découvrir un nouvel environnement, comprendre d’autres réalités et participant à consolider une relation pérenne entre les deux communes. En juillet 2023, deux équipes d’une dizaine de jeunes de Villeurbanne sont venus au Teil et ont rejoints des jeunes du centre socio-culturel Les Clefs pour être bénévoles dans le cadre du festival des arts du cirque d’Alba-la-Romaine. En avril 2024, les jeunes du centre social des Buers (Villeurbanne), de la maison de quartier des Brosses (Villeurbanne) et du centre socio-culturel Les Clefs (Le Teil) ont passés quelques jours ensemble. En juillet 2024 des jeunes des mêmes structures ont participé à un séjour de vacances ensemble à Saint Thomé en Ardèche. En août 2024, une dizaine de jeunes du Teil ont été bénévole au festival de musique Woodstower à Villeurbanne, avec des jeunes de la MQB."
     },
     {
-      "id": 7,
+      "id": "7",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Vers l’enseignement supérieur",
@@ -595,7 +676,7 @@
       "contacts": "Contact : leteilvilleurbanne@proton.me"
     },
     {
-      "id": 9,
+      "id": "9",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Aider les étudiants à trouver leur place dans la ville",
@@ -609,7 +690,7 @@
       "contacts": "Contact : leteilvilleurbanne@proton.me"
     },
     {
-      "id": 10,
+      "id": "10",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Stages de 3ème et 2nde",
@@ -623,7 +704,7 @@
       "contacts": "leteilvilleurbanne@proton.me"
     },
     {
-      "id": 11,
+      "id": "11",
       "category": "youth",
       "panel": "jeunesse",
       "title": "Démocratisation et réussite dans l’enseignement supérieur des jeunes teillois",
@@ -639,7 +720,7 @@
       "namelink01": "AFEV"
     },
     {
-      "id": 12,
+      "id": "12",
       "category": "economy",
       "panel": "économie",
       "title": "Produire des chiliennes à partir des déchets des deux territoires en employant des personnes éloignées de l’emploi",
@@ -659,7 +740,7 @@
       "namelink02": "À Villeurbanne : hello@brossup.org"
     },
     {
-      "id": 13,
+      "id": "13",
       "category": "economy",
       "panel": "économie",
       "title": "Le grand déplacement",
@@ -679,13 +760,13 @@
       "namelink02": ""
     },
     {
-      "id": 14,
+      "id": "14",
       "category": "economy",
       "panel": "économie",
       "title": "Échange d’artisans",
       "shortitle": "shortitle",
       "shortext": "Un tout petit descriptif vraiment pas long du tout",
-      "src": "images/photos/projects/economy/AdobeStock_280115343.jpeg",
+      "src": "images/photos/projects/economy/1758701651979-eÌchanges artisans.jpg",
       "alt": "alt",
       "size": "30",
       "subtitle": "À partir de septembre 2025",
@@ -696,7 +777,8 @@
       "namelink01": "A Villeurbanne",
       "links02": "",
       "typelink02": "",
-      "namelink02": ""
+      "namelink02": "",
+      "cacheBust": 1758701651981
     }
   ],
   "pageTitles": [
@@ -757,6 +839,30 @@
     {
       "id": "join-us-paragraph",
       "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+    },
+    {
+      "id": "bureau-paragraph",
+      "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+    },
+    {
+      "id": "employees-email",
+      "content": " leteilvilleurbanne@proton.me"
+    },
+    {
+      "id": "employees-paragraph",
+      "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+    },
+    {
+      "id": "administration-paragraph",
+      "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
+    },
+    {
+      "id": "instruction-paragraph",
+      "content": "Cette instance se réunit trois fois par an pour étudier les projets de coopération proposés à l’association, pour leur attribuer un soutien financier. \nIl est composé de 4 membres du Conseil d’Administration et de 4 habitant·e·s, à parité de Villeurbanne et du Teil. "
+    },
+    {
+      "id": "scientific-paragraph",
+      "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit."
     }
   ]
 }

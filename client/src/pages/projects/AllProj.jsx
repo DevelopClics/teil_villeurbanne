@@ -77,10 +77,10 @@ export default function AllProj({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         category="projects"
         carouselTextId={4}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
 
       <Breadcrumbs breadcrumbsnav="Les projets" breadcrumbssub={SUB} />

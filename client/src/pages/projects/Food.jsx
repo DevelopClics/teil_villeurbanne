@@ -154,11 +154,11 @@ export default function Food({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         text={SUBTEXT}
         category="food"
         carouselTextId={6}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Les projets" breadcrumbssub={SUB} />
 

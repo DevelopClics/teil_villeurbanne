@@ -73,6 +73,7 @@ export default function TeamMemberCard({
       src: imageUrl,
       cacheBust: Date.now(), // Update cacheBust to bust cache
     };
+    console.log("TeamMemberCardcop: updatedFormData before onUpdate", updatedFormData);
 
     await onUpdate(category, item.id, updatedFormData);
     setIsEditing(false);

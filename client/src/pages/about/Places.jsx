@@ -19,7 +19,7 @@ export default function Places({ isNavbarHovered }) {
 
   const fetchCitiesProjects = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/places");
+      const response = await axios.get("/api/places");
       setCitiesProjects(response.data);
       console.log("Fetched cities projects:", response.data);
     } catch (error) {
@@ -45,7 +45,7 @@ export default function Places({ isNavbarHovered }) {
       }
 
       const response = await axios.put(
-        `http://localhost:3001/places/${id}`,
+        `/api/places/${id}`,
         formData,
         {
           headers: {
@@ -55,7 +55,12 @@ export default function Places({ isNavbarHovered }) {
         }
       );
       if (response.status === 200) {
-        fetchCitiesProjects(); // Re-fetch data to update the list
+        console.log("Server response:", response.data);
+        setCitiesProjects((prevProjects) =>
+        prevProjects.map((project) =>
+          project.id === id ? response.data : project
+        )
+      );
       }
     } catch (error) {
       console.error("Error updating place:", error);
@@ -66,10 +71,10 @@ export default function Places({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
         category="city"
         carouselTextId={3}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
       {/* <PageLayout title={SUB} DescriptionComponent={<FakeComp />} /> */}

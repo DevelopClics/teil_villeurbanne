@@ -20,11 +20,10 @@ export default function JoinContact({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        title={SUB}
-        text={SUBTEXT}
         category="welcome"
         carouselTextId={10}
         isEditable={isAuthenticated}
+        stationaryText={true}
       />
       <Breadcrumbscontact breadcrumbsnav={TITLE} />
       <section className="reason-section" style={{ paddingTop: "50px" }}>
