@@ -170,6 +170,7 @@ export default function Food({ isNavbarHovered }) {
 
               {id && singleProject ? (
                 <ProjectLayout
+                  isProjectPage={true}
                   key={singleProject.id}
                   item={singleProject}
                   isEditable={isAuthenticated}
@@ -181,6 +182,7 @@ export default function Food({ isNavbarHovered }) {
                 currentProjects.map((item) => (
                   <div key={item.id} ref={(el) => projectRefs.current.set(item.id, el)}>
                     <ProjectLayout
+                      isProjectPage={true}
                       item={item}
                       isEditable={isAuthenticated}
                       onUpdate={handleUpdateProject}

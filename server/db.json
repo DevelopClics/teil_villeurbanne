@@ -497,7 +497,7 @@
   "places": [
     {
       "id": 1,
-      "title": "Le Teil ! oké",
+      "title": "Le Teil",
       "src": "images/photos/places/1758699300089-garantie logement.png",
       "alt": "Ville01",
       "size": "30",
@@ -507,7 +507,7 @@
       "links01": "https://www.leteil.fr/",
       "typelink01": "Site web :",
       "namelink01": "Mairie du Teil",
-      "cacheBust": 1758699300100
+      "cacheBust": "1758699300100"
     },
     {
       "id": 2,

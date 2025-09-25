@@ -206,6 +206,34 @@ export default function Culture({ isNavbarHovered }) {
     }
   };
 
+  const handleDeleteProject = async (projectId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(
+        `http://localhost:3001/projects/${projectId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        if (id) {
+          // If a single project was deleted, navigate back to the category page
+          navigate(`/projects/${urlCategory || "culture"}`);
+        } else {
+          // If in list view, remove the project from the state
+          setCultureProjects((prevProjects) =>
+            prevProjects.filter((project) => project.id !== projectId)
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
+  };
+
   return (
     <>
       <CarouselComponent
@@ -227,6 +255,7 @@ export default function Culture({ isNavbarHovered }) {
 
               {id && singleProject ? (
                 <ProjectLayout
+                  isProjectPage={true}
                   key={singleProject.id}
                   item={singleProject}
                   isEditable={isAuthenticated}
@@ -234,6 +263,7 @@ export default function Culture({ isNavbarHovered }) {
                   backButtonText="Revenir à tous les projets"
                   onUpdate={handleUpdateProject}
                   onSaveNew={handleSaveNewProject}
+                  onDelete={handleDeleteProject}
                 />
               ) : (
                 currentProjects.map((item) => (
@@ -242,10 +272,12 @@ export default function Culture({ isNavbarHovered }) {
                     ref={(el) => projectRefs.current.set(item.id, el)}
                   >
                     <ProjectLayout
+                      isProjectPage={true}
                       item={item}
                       isEditable={isAuthenticated}
                       onUpdate={handleUpdateProject}
                       onSaveNew={handleSaveNewProject}
+                      onDelete={handleDeleteProject}
                     />
                   </div>
                 ))

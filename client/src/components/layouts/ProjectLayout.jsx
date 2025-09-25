@@ -14,6 +14,7 @@ export default function ProjectLayout({
   onDelete,
   isCreating = false,
   onCancelCreate,
+  isProjectPage = false,
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
@@ -94,52 +95,53 @@ export default function ProjectLayout({
                 />
               </Form.Group>
             </Col>
-            {/* {item.panel !== undefined && (
-              <> */}
-            <Col md={6} lg={4}>
-              <Form.Group className="mb-5">
-                <Form.Label>
-                  <strong>Titre encadré</strong> (visible dans Tous les projets)
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="panel"
-                  value={formData.panel || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
+            {isProjectPage && (
+              <>
+                <Col md={6} lg={4}>
+                  <Form.Group className="mb-5">
+                    <Form.Label>
+                      <strong>Titre encadré</strong> (visible dans Tous les
+                      projets)
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="panel"
+                      value={formData.panel || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
 
-            <Col md={6} lg={4}>
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  <strong>Titre raccourci</strong> (visible dans Tous les
-                  projets)
-                </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="shortitle"
-                  value={formData.shortitle || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
-            <Col md={6} lg={4}>
-              <Form.Group className="mb-3">
-                <Form.Label>
-                  <strong>Texte raccourci</strong> (visible dans Tous les
-                  projets)
-                </Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="shortext"
-                  value={formData.shortext || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col>
-            {/* </> */}
-            {/* )} */}
+                <Col md={6} lg={4}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>
+                      <strong>Titre raccourci</strong> (visible dans Tous les
+                      projets)
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="shortitle"
+                      value={formData.shortitle || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6} lg={4}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>
+                      <strong>Texte raccourci</strong> (visible dans Tous les
+                      projets)
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="shortext"
+                      value={formData.shortext || ""}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                </Col>
+              </>
+            )}
 
             <h4>CONTACTS ET LIENS</h4>
 
@@ -170,17 +172,6 @@ export default function ProjectLayout({
                 />
               </Form.Group>
             </Col>
-            {/* <Col md={6} lg={4}>
-              <Form.Group className="mb-3">
-                <Form.Label>Lien 1 Type</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="typelink01"
-                  value={formData.typelink01 || ""}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Col> */}
             <Col md={6} lg={6}>
               <Form.Group className="mb-3">
                 <Form.Label>
@@ -210,17 +201,6 @@ export default function ProjectLayout({
                     />
                   </Form.Group>
                 </Col>
-                {/* <Col md={6} lg={4}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Lien 2 Type</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="typelink02"
-                      value={formData.typelink02 || ""}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col> */}
                 <Col md={6} lg={6}>
                   <Form.Group className="mb-5">
                     <Form.Label>
@@ -351,9 +331,11 @@ export default function ProjectLayout({
                 >
                   {isEditing ? "Annuler" : "Modifier"}
                 </Button>
-                <Button variant="danger" onClick={handleDelete}>
-                  Supprimer
-                </Button>
+                {isProjectPage && (
+                  <Button variant="danger" onClick={handleDelete}>
+                    Supprimer
+                  </Button>
+                )}
               </div>
             )}
           </div>{" "}

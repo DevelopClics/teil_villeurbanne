@@ -42,7 +42,7 @@ const Youth = () => {
   };
 
   return (
-    <ProjectLayout project={projectDetails} />
+    <ProjectLayout item={projectDetails} isProjectPage={true} />
   );
 };
 

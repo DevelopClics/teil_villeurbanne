@@ -280,6 +280,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
 
               {isCreatingNewProject && (
                 <ProjectLayout
+                  isProjectPage={true}
                   item={{ category: currentCategory }} // Pass initial data for new project
                   isEditable={isAuthenticated}
                   isCreating={true}
@@ -290,6 +291,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
 
               {id && singleProject ? (
                             <ProjectLayout
+                              isProjectPage={true}
                               key={singleProject.id}
                               item={singleProject}
                               isEditable={isAuthenticated}
@@ -305,6 +307,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                     ref={(el) => projectRefs.current.set(item.id, el)}
                   >
                     <ProjectLayout
+                      isProjectPage={true}
                       item={item}
                       isEditable={isAuthenticated}
                       onUpdate={handleUpdateProject}
