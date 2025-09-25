@@ -25,6 +25,22 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
 
   const currentCategory = urlCategory || "culture"; // Default to 'culture' if no category in URL
 
+  const categoryDisplayNames = {
+    food: "Alimentation",
+    economy: "Économie",
+    culture: "Culture",
+    youth: "Jeunesse",
+    cities: "Villes",
+    donate: "Faire un don",
+    member: "Devenir membre",
+    volunteer: "Bénévole",
+    genese: "Genèse",
+    team: "Équipe",
+    projects: "Projets",
+  };
+
+  const displayedCategoryName = categoryDisplayNames[currentCategory] || currentCategory;
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -92,14 +108,17 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
     };
 
     fetchProjects();
-  }, [isAuthenticated, id, urlCategory, location.state, navigate, projectsPerPage]);
+  }, [
+    isAuthenticated,
+    id,
+    urlCategory,
+    location.state,
+    navigate,
+    projectsPerPage,
+  ]);
 
   useEffect(() => {
-    if (
-      location.state &&
-      location.state.projectId &&
-      projects.length > 0
-    ) {
+    if (location.state && location.state.projectId && projects.length > 0) {
       const { projectId } = location.state;
       const targetElement = projectRefs.current.get(projectId);
       if (targetElement) {
@@ -252,6 +271,43 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
     setIsCreatingNewProject(false);
   };
 
+  const handleMoveToTop = async (projectId) => {
+    setProjects((prevProjects) => {
+      const projectToMove = prevProjects.find(
+        (project) => project.id === projectId
+      );
+      if (!projectToMove) {
+        return prevProjects;
+      }
+      const filteredProjects = prevProjects.filter(
+        (project) => project.id !== projectId
+      );
+      const newOrder = [projectToMove, ...filteredProjects];
+
+      // Send update to backend
+      const updateOrder = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          await axios.patch(
+            `http://localhost:3001/projects/${projectId}/move_to_top`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log("Project moved to top successfully on backend.");
+        } catch (error) {
+          console.error("Error moving project to top on backend:", error);
+        }
+      };
+      updateOrder();
+
+      return newOrder;
+    });
+  };
+
   return (
     <>
       <CarouselComponent
@@ -261,7 +317,10 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
         isEditable={isAuthenticated}
         stationaryText={true}
       />
-      <Breadcrumbs breadcrumbsnav="Nos projets" breadcrumbssub={currentCategory} />
+      <Breadcrumbs
+        breadcrumbsnav="Les projets"
+        breadcrumbssub={displayedCategoryName}
+      />
       <section className="reason-section" style={{ paddingTop: "50px" }}>
         <Container className="app-container-padding">
           <Row>
@@ -272,7 +331,11 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
               />
               {isAuthenticated && !id && (
                 <div className="admin-controls d-flex justify-content-start mb-3">
-                  <Button variant="primary" onClick={handleCreateClick} className="btn-main-blue me-2">
+                  <Button
+                    variant="primary"
+                    onClick={handleCreateClick}
+                    className="btn-main-blue me-2"
+                  >
                     Créer un nouveau projet
                   </Button>
                 </div>
@@ -286,21 +349,24 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                   isCreating={true}
                   onSaveNew={handleSaveNewProject}
                   onCancelCreate={handleCancelCreateNewProject}
+                  onMoveToTop={handleMoveToTop} // Added onMoveToTop
                 />
               )}
 
               {id && singleProject ? (
-                            <ProjectLayout
-                              isProjectPage={true}
-                              key={singleProject.id}
-                              item={singleProject}
-                              isEditable={isAuthenticated}
-                              onBackClick={() => navigate("/all-projects")}
-                              backButtonText="Revenir à tous les projets"
-                              onUpdate={handleUpdateProject}
-                              onSaveNew={handleSaveNewProject}
-                              onDelete={handleDeleteProject}
-                            />              ) : (
+                <ProjectLayout
+                  isProjectPage={true}
+                  key={singleProject.id}
+                  item={singleProject}
+                  isEditable={isAuthenticated}
+                  onBackClick={() => navigate("/all-projects")}
+                  backButtonText="Revenir à tous les projets"
+                  onUpdate={handleUpdateProject}
+                  onSaveNew={handleSaveNewProject}
+                  onDelete={handleDeleteProject}
+                  onMoveToTop={handleMoveToTop} // Added onMoveToTop
+                />
+              ) : (
                 currentProjects.map((item) => (
                   <div
                     key={item.id}
@@ -313,6 +379,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                       onUpdate={handleUpdateProject}
                       onSaveNew={handleSaveNewProject}
                       onDelete={handleDeleteProject}
+                      onMoveToTop={handleMoveToTop} // Added onMoveToTop
                     />
                   </div>
                 ))
