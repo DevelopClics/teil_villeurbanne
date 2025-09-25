@@ -10,6 +10,10 @@ export default function ProjectLayout({
   onUpdate,
   onBackClick,
   backButtonText,
+  onSaveNew,
+  onDelete,
+  isCreating = false,
+  onCancelCreate,
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
@@ -29,6 +33,17 @@ export default function ProjectLayout({
     setFormData(item);
   };
 
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this project?")) {
+      onDelete(item.id);
+    }
+  };
+
+  const handleSaveNew = async () => {
+    console.log("Save new project clicked:", formData);
+    await onSaveNew(formData, selectedFile);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -43,13 +58,13 @@ export default function ProjectLayout({
     setIsEditing(false);
   };
 
-  if (!item) {
+  if (!item && !isCreating) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="mb-5 clearfix">
-      {isEditable && isEditing ? (
+      {isEditing || isCreating ? (
         <Form>
           <h4>TITRES</h4>
           <Row>
@@ -79,52 +94,52 @@ export default function ProjectLayout({
                 />
               </Form.Group>
             </Col>
-            {item.panel !== undefined && (
-              <>
-                <Col md={6} lg={4}>
-                  <Form.Group className="mb-5">
-                    <Form.Label>
-                      <strong>Titre encadré</strong> (visible dans Tous les projets)
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="panel"
-                      value={formData.panel || ""}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
+            {/* {item.panel !== undefined && (
+              <> */}
+            <Col md={6} lg={4}>
+              <Form.Group className="mb-5">
+                <Form.Label>
+                  <strong>Titre encadré</strong> (visible dans Tous les projets)
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="panel"
+                  value={formData.panel || ""}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
 
-                <Col md={6} lg={4}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>
-                      <strong>Titre raccourci</strong> (visible dans Tous les
-                      projets)
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="shortitle"
-                      value={formData.shortitle || ""}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-                <Col md={6} lg={4}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>
-                      <strong>Texte raccourci</strong> (visible dans Tous les
-                      projets)
-                    </Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      name="shortext"
-                      value={formData.shortext || ""}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                </Col>
-              </>
-            )}
+            <Col md={6} lg={4}>
+              <Form.Group className="mb-3">
+                <Form.Label>
+                  <strong>Titre raccourci</strong> (visible dans Tous les
+                  projets)
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="shortitle"
+                  value={formData.shortitle || ""}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6} lg={4}>
+              <Form.Group className="mb-3">
+                <Form.Label>
+                  <strong>Texte raccourci</strong> (visible dans Tous les
+                  projets)
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  name="shortext"
+                  value={formData.shortext || ""}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+            {/* </> */}
+            {/* )} */}
 
             <h4>CONTACTS ET LIENS</h4>
 
@@ -268,12 +283,15 @@ export default function ProjectLayout({
             <Col xs={12} className="d-flex justify-content-end">
               <Button
                 variant="success"
-                onClick={handleSaveClick}
+                onClick={isCreating ? handleSaveNew : handleSaveClick}
                 className="me-2"
               >
                 Sauvegarder
               </Button>
-              <Button variant="secondary" onClick={handleCancelClick}>
+              <Button
+                variant="secondary"
+                onClick={isCreating ? onCancelCreate : handleCancelClick}
+              >
                 Annuler
               </Button>
             </Col>
@@ -325,13 +343,16 @@ export default function ProjectLayout({
               </strong>
             </p>
             {isEditable && onUpdate && (
-              <div className="d-flex justify-content-end">
+              <div className="admin-controls d-flex justify-content-start">
                 <Button
                   variant="warning"
-                  onClick={handleEditClick}
+                  onClick={() => setIsEditing(!isEditing)}
                   className="me-2"
                 >
-                  Modifier
+                  {isEditing ? "Annuler" : "Modifier"}
+                </Button>
+                <Button variant="danger" onClick={handleDelete}>
+                  Supprimer
                 </Button>
               </div>
             )}

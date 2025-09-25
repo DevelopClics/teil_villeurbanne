@@ -22,10 +22,10 @@ const ProjectsDropdown = ({
         openDropdown === "les-projets" ? "is-hovered" : ""
       } ${
         location.pathname === "/all-projects" ||
-        location.pathname === "/culture" ||
-        location.pathname === "/food" ||
-        location.pathname === "/youth" ||
-        location.pathname === "/economy"
+        location.pathname.startsWith("/projects/culture") ||
+        location.pathname.startsWith("/projects/food") ||
+        location.pathname.startsWith("/projects/youth") ||
+        location.pathname.startsWith("/projects/economy")
           ? "active-dropdown-parent"
           : ""
       }`}
@@ -36,16 +36,16 @@ const ProjectsDropdown = ({
       <NavDropdown.Item as={Link} to="/cooperation" onClick={handleItemClick}>
         Coopération
       </NavDropdown.Item>
-      <NavDropdown.Item as={Link} to="/culture" onClick={handleItemClick}>
+      <NavDropdown.Item as={Link} to="/projects/culture" onClick={handleItemClick}>
         Culture
       </NavDropdown.Item>
-      <NavDropdown.Item as={Link} to="/food" onClick={handleItemClick}>
+      <NavDropdown.Item as={Link} to="/projects/food" onClick={handleItemClick}>
         Alimentation
       </NavDropdown.Item>
-      <NavDropdown.Item as={Link} to="/youth" onClick={handleItemClick}>
+      <NavDropdown.Item as={Link} to="/projects/youth" onClick={handleItemClick}>
         Jeunesse
       </NavDropdown.Item>
-      <NavDropdown.Item as={Link} to="/economy" onClick={handleItemClick}>
+      <NavDropdown.Item as={Link} to="/projects/economy" onClick={handleItemClick}>
         Économie
       </NavDropdown.Item>
       <NavDropdown.Item as={Link} to="/contact" onClick={handleItemClick}>

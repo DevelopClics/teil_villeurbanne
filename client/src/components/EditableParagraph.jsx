@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
-export default function EditableParagraph({ textId, defaultText, endpoint = "pageParagraphs" }) {
+export default function EditableParagraph({
+  textId,
+  defaultText,
+  endpoint = "pageParagraphs",
+}) {
   const { isAuthenticated } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(defaultText);
@@ -11,7 +15,9 @@ export default function EditableParagraph({ textId, defaultText, endpoint = "pag
   useEffect(() => {
     const fetchText = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/${endpoint}/${textId}`);
+        const response = await axios.get(
+          `http://localhost:3001/${endpoint}/${textId}`
+        );
         setText(response.data.content);
         setEditedText(response.data.content);
       } catch (error) {
@@ -74,7 +80,7 @@ export default function EditableParagraph({ textId, defaultText, endpoint = "pag
       ) : (
         <p>
           {isAuthenticated && (
-            <button className="btn btn-main-blue" onClick={handleEditClick}>
+            <button className="btn btn-warning me-1" onClick={handleEditClick}>
               Modifier le texte
             </button>
           )}

@@ -179,7 +179,12 @@ export default function TeamMemberCard({
                   >
                     Modifier le profil
                   </Button>
-                  {/* Delete button here if needed */}
+                  <Button
+                    variant="danger"
+                    onClick={handleDeleteClick}
+                  >
+                    Supprimer
+                  </Button>
                 </>
               )}
             </>

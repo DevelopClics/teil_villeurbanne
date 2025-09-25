@@ -14,7 +14,7 @@ export default function EditableContent({ endpoint, rows = 10 }) {
       try {
         const response = await axios.get(`http://localhost:3001${endpoint}`);
         setContent(response.data.content);
-        setEditedContent(response.data.content.replace(/<br\s*\/?>/gi, '\n'));
+        setEditedContent(response.data.content.replace(/<br\s*\/?>/gi, "\n"));
       } catch (error) {
         console.error(`Error fetching content from ${endpoint}:`, error);
       }
@@ -29,7 +29,7 @@ export default function EditableContent({ endpoint, rows = 10 }) {
   const handleSaveClick = async () => {
     try {
       const token = localStorage.getItem("token");
-      const textToSave = editedContent.replace(/\n/g, '<br />');
+      const textToSave = editedContent.replace(/\n/g, "<br />");
       await axios.put(
         `http://localhost:3001${endpoint}`,
         { content: textToSave },
@@ -39,7 +39,7 @@ export default function EditableContent({ endpoint, rows = 10 }) {
           },
         }
       );
-      setContent(editedContent.replace(/\n/g, '<br />'));
+      setContent(editedContent.replace(/\n/g, "<br />"));
       setIsEditing(false);
     } catch (error) {
       console.error(`Error updating content at ${endpoint}:`, error);
@@ -48,7 +48,7 @@ export default function EditableContent({ endpoint, rows = 10 }) {
 
   const handleCancelClick = () => {
     setIsEditing(false);
-    setEditedContent(content.replace(/<br\s*\/?>/gi, '\n'));
+    setEditedContent(content.replace(/<br\s*\/?>/gi, "\n"));
   };
 
   return (
@@ -74,11 +74,15 @@ export default function EditableContent({ endpoint, rows = 10 }) {
       ) : (
         <p>
           {isAuthenticated && (
-            <button className="btn btn-main-blue" onClick={handleEditClick}>
+            <button className="btn btn-warning me-1" onClick={handleEditClick}>
               Modifier le texte
             </button>
           )}
-          <span dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
+          <span
+            dangerouslySetInnerHTML={{
+              __html: content.replace(/\n/g, "<br />"),
+            }}
+          />
         </p>
       )}
     </>

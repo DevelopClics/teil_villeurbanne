@@ -547,7 +547,10 @@ if (!fs.existsSync(projectUploadsDir)) {
 }
 const projectStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const category = req.body.category || "uncategorized";
+    let category = req.body.category || "uncategorized";
+    if (Array.isArray(category)) {
+      category = category[0]; // Take the first category if it's an array
+    }
     const dest = path.join(projectUploadsDir, category);
     fs.mkdir(dest, { recursive: true }, (err) => {
       if (err) return cb(err);
@@ -575,7 +578,10 @@ server.put("/projects/:id", projectUpload.single("image"), (req, res) => {
   const updatedProjectData = { ...req.body };
 
   if (req.file) {
-    const category = req.body.category || "uncategorized";
+    let category = req.body.category || "uncategorized";
+    if (Array.isArray(category)) {
+      category = category[0]; // Take the first category if it's an array
+    }
     updatedProjectData.src = `images/photos/projects/${category}/${req.file.filename}`;
   }
 
@@ -670,6 +676,50 @@ server.put("/places/:id", placesUpload.single("image"), (req, res) => {
   console.log("[GEMINI-DEBUG] Place after update (responsePlace):", responsePlace);
 
   res.json(responsePlace);
+});
+
+server.post("/projects", projectUpload.single("image"), (req, res) => {
+  const db = router.db;
+  const projects = db.get("projects");
+
+  const newProjectData = { ...req.body };
+
+  if (req.file) {
+    let category = req.body.category || "uncategorized";
+    if (Array.isArray(category)) {
+      category = category[0]; // Take the first category if it's an array
+    }
+    newProjectData.src = `images/photos/projects/${category}/${req.file.filename}`;
+  }
+
+  const lastId =
+    projects.value().length > 0
+      ? Math.max(...projects.value().map((p) => parseInt(p.id)))
+      : 0;
+  newProjectData.id = (lastId + 1).toString(); // Ensure ID is a string to match existing data
+
+  if (req.file) {
+    newProjectData.cacheBust = Date.now();
+  }
+
+  projects.push(newProjectData).write();
+
+  res.status(201).json(newProjectData);
+});
+
+server.delete("/projects/:id", (req, res) => {
+  const projectId = req.params.id;
+  const db = router.db;
+  const projects = db.get("projects");
+
+  const initialLength = projects.value().length;
+  projects.remove({ id: projectId }).write();
+
+  if (projects.value().length < initialLength) {
+    res.status(200).json({ message: "Project deleted successfully" });
+  } else {
+    res.status(404).json({ message: "Project not found" });
+  }
 });
 
 server.use(router);

@@ -84,7 +84,7 @@ export default function EditableTitle({ textId, defaultTitle }) {
       ) : (
         <h2>
           {isAuthenticated && (
-            <button className="btn btn-main-blue" onClick={handleEditClick}>
+            <button className="btn btn-warning me-1" onClick={handleEditClick}>
               Modifier le titre
             </button>
           )}

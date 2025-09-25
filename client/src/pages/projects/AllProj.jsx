@@ -120,7 +120,7 @@ export default function AllProj({ isNavbarHovered }) {
                         className="square-img-container"
                         onClick={() => {
                           if (item.category) {
-                            navigate(`/${item.category.toLowerCase()}`, {
+                            navigate(`/projects/${item.category.toLowerCase()}`, {
                               state: {
                                 projectId: item.id,
                                 projectCategory: item.category,

@@ -50,7 +50,15 @@ const Navigation = ({ onDropdownHoverChange, socialIconsTargetRef }) => {
     };
   }, []);
 
-  const isLinkActive = (paths) => paths.some((path) => location.pathname.startsWith(path));
+  const isLinkActive = (paths) => {
+    return paths.some((path) => {
+      if (path.includes(":category")) {
+        const regex = new RegExp(`^${path.replace(":category", "[^/]+")}`);
+        return regex.test(location.pathname);
+      }
+      return location.pathname.startsWith(path);
+    });
+  };
 
   return (
     <Navbar
@@ -107,22 +115,22 @@ const Navigation = ({ onDropdownHoverChange, socialIconsTargetRef }) => {
               className={`nav-common-button nav-dropdown-button ${
                 openDropdown === "les-projets" ? "is-hovered" : ""
               } ${
-                isLinkActive(["/all-projects", "/culture", "/food", "/youth", "/economy", "/drop-project"]) ? "active-dropdown-parent" : ""
+                isLinkActive(["/all-projects", "/projects/culture", "/projects/food", "/projects/youth", "/projects/economy", "/drop-project"]) ? "active-dropdown-parent" : ""
               }`}
             >
               <NavDropdown.Item as={Link} to="/all-projects" onClick={handleItemClick}>
                 Tous les projets
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/culture" onClick={handleItemClick}>
+              <NavDropdown.Item as={Link} to="/projects/culture" onClick={handleItemClick}>
                 Culture
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/food" onClick={handleItemClick}>
+              <NavDropdown.Item as={Link} to="/projects/food" onClick={handleItemClick}>
                 Alimentation
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/youth" onClick={handleItemClick}>
+              <NavDropdown.Item as={Link} to="/projects/youth" onClick={handleItemClick}>
                 Jeunesse
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/economy" onClick={handleItemClick}>
+              <NavDropdown.Item as={Link} to="/projects/economy" onClick={handleItemClick}>
                 Économie
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/drop-project" onClick={handleItemClick}>

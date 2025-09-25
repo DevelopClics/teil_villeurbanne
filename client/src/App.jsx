@@ -26,19 +26,11 @@ const Team = lazy(() => import("./pages/about/Team"));
 
 // import Genesis from "./pages/about/Genesis";
 const Genesis = lazy(() => import("./pages/about/Genesis"));
-// import Places from "./pages/about/Places";
+// import Places from "./pages/pages/about/Places";
 const Places = lazy(() => import("./pages/about/Places"));
 // import AllProj from "./pages/projects/AllProj";
 const AllProj = lazy(() => import("./pages/projects/AllProj"));
-// import Culture from "./pages/projects/Culture";
-const Culture = lazy(() => import("./pages/projects/Culture"));
-// import Food from "./pages/projects/Food";
-const Food = lazy(() => import("./pages/projects/Food"));
 
-// import Youth from "./pages/projects/Youth";
-const Youth = lazy(() => import("./pages/projects/Youth"));
-// import Economy from "./pages/projects/Economy";
-const Economy = lazy(() => import("./pages/projects/Economy"));
 // import Member from "./pages/join-us/Member";
 const Member = lazy(() => import("./pages/join-us/Member"));
 // import Donate from "./pages/join-us/Donate";
@@ -68,6 +60,8 @@ const DropProject = lazy(() => import("./pages/projects/DropProject"));
 
 // import JoinContact from "./pages/join-us/JoinContact";
 const JoinContact = lazy(() => import("./pages/join-us/JoinContact"));
+
+const ProjectCategoryPage = lazy(() => import("./pages/projects/ProjectCategoryPage"));
 
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -248,69 +242,22 @@ function App() {
         />
 
         <Route
-          path="/culture/:id"
+          path="/projects/:category/:id"
           element={
             <Suspense fallback={<div>Chargement…</div>}>
-              <Culture isNavbarHovered={isNavbarHovered} />
+              <ProjectCategoryPage isNavbarHovered={isNavbarHovered} />
             </Suspense>
           }
         />
         <Route
-          path="/culture"
+          path="/projects/:category"
           element={
             <Suspense fallback={<div>Chargement…</div>}>
-              <Culture isNavbarHovered={isNavbarHovered} />
+              <ProjectCategoryPage isNavbarHovered={isNavbarHovered} />
             </Suspense>
           }
         />
-        <Route
-          path="/food/:id"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Food isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/food"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Food isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/youth/:id"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Youth isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/youth"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Youth isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/economy/:id"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Economy isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/economy"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Economy isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
+
         <Route
           path="/drop-project"
           element={
