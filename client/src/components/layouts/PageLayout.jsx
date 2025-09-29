@@ -7,13 +7,19 @@ export default function PageLayout({ title, titleId, DescriptionComponent }) {
   return (
     <>
       <section className="reason-section">
-        {titleId ? (
-          <EditableTitle textId={titleId} defaultTitle={title} />
-        ) : (
-          <h2>{title}</h2>
-        )}
+        <Container fluid className="pt-5">
+          <Row className="justify-content-md-center">
+            <Col xl={10}>
+              {titleId ? (
+                <EditableTitle textId={titleId} defaultTitle={title} />
+              ) : (
+                <h2>{title}</h2>
+              )}
 
-        {DescriptionComponent}
+              {DescriptionComponent}
+            </Col>
+          </Row>
+        </Container>
       </section>
     </>
   );

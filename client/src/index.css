@@ -77,31 +77,31 @@ a:hover {
 @media (min-width: 576px) {
   :root {
     --global-padding-x: 0.75rem;
-    --breadcrumb-padding-x: 2.25rem;
+    --breadcrumb-padding-x: 2vw;
   }
 }
 @media (min-width: 768px) {
   :root {
-    --global-padding-x: 1rem;
-    --breadcrumb-padding-x: 3rem;
+    --global-padding-x: 2rem;
+    --breadcrumb-padding-x: 1rem;
   }
 }
 @media (min-width: 992px) {
   :root {
     --global-padding-x: 2rem;
-    --breadcrumb-padding-x: 6rem;
+    --breadcrumb-padding-x: 5vw;
   }
 }
 @media (min-width: 1200px) {
   :root {
     --global-padding-x: 4rem;
-    --breadcrumb-padding-x: 12rem;
+    --breadcrumb-padding-x: 8vw;
   }
 }
 @media (min-width: 1400px) {
   :root {
     --global-padding-x: 5rem;
-    --breadcrumb-padding-x: 18rem;
+    --breadcrumb-padding-x: 8vw;
   }
 }
 

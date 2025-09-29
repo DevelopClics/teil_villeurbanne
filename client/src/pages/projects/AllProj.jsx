@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
-import { Pagination, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Pagination, Button, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "../../App.css";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import axios from "axios";
-
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
-
 import "./AllProj.css";
-import TeamCard from "../../components/Cards/TeamCard";
-
-import EditableTitle from "../../components/EditableTitle";
+import PageLayout from "../../components/layouts/PageLayout";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -121,111 +116,110 @@ export default function AllProj({ isNavbarHovered }) {
       />
 
       <Breadcrumbs breadcrumbsnav="Les projets" breadcrumbssub={SUB} />
-      <section className="reason-section" style={{ paddingTop: "50px" }}>
-        <Container className="app-container-padding">
-          <Row>
-            <Col>
-              <EditableTitle textId="all-projects-title" defaultTitle={SUB} />
-              {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4">
-                  <Pagination>
-                    {[...Array(totalPages)].map((_, index) => (
-                      <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                  </Pagination>
-                </div>
-              )}
-              <Row className="g-4">
-                {currentProjects.length > 0 ? (
-                  currentProjects.map((item) => (
-                    <Col
-                      key={`${item.category}-${item.id}`}
-                      xs={XS}
-                      sm={SM}
-                      md={MD}
-                      lg={LG}
-                      xl={XL}
-                      xxl={XXL}
+      <PageLayout
+        title={SUB}
+        titleId="all-projects-title"
+        DescriptionComponent={
+          <>
+            {totalPages > 1 && (
+              <div className="d-flex justify-content-center mt-4">
+                <Pagination>
+                  {[...Array(totalPages)].map((_, index) => (
+                    <Pagination.Item
+                      key={index + 1}
+                      active={index + 1 === currentPage}
+                      onClick={() => paginate(index + 1)}
                     >
-                      <div
-                        className="square-img-container"
-                        onClick={() => {
-                          if (item.category) {
-                            navigate(
-                              `/projects/${item.category.toLowerCase()}`,
-                              {
-                                state: {
-                                  projectId: item.id,
-                                  projectCategory: item.category,
-                                },
-                              }
-                            );
-                          }
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <div className="project-category-label">
-                          {item.panel}
-                        </div>
-
-                        <LazyLoadImage
-                          wrapperClassName="square-img"
-                          src={`${import.meta.env.BASE_URL}${item.src}`}
-                          alt={item.alt}
-                          effect="blur"
-                          width="100%"
-                          height="100%"
-                        />
-                        <div className="project-info-box">
-                          <h4 className="project-info-title">
-                            {item.shortitle}
-                          </h4>
-                          <p className="project-info-text">{item.shortext}</p>
-                        </div>
-                        {isAuthenticated && (
-                          <Button
-                            variant="info"
-                            className="mt-2"
-                            onClick={(e) => {
-                              e.stopPropagation(); // Prevent navigation when button is clicked
-                              handleMoveToTop(item.id);
-                            }}
-                          >
-                            Faire monter en premier
-                          </Button>
-                        )}
+                      {index + 1}
+                    </Pagination.Item>
+                  ))}
+                </Pagination>
+              </div>
+            )}
+            <Row className="g-4">
+              {currentProjects.length > 0 ? (
+                currentProjects.map((item) => (
+                  <Col
+                    key={`${item.category}-${item.id}`}
+                    xs={XS}
+                    sm={SM}
+                    md={MD}
+                    lg={LG}
+                    xl={XL}
+                    xxl={XXL}
+                  >
+                    <div
+                      className="square-img-container"
+                      onClick={() => {
+                        if (item.category) {
+                          navigate(
+                            `/projects/${item.category.toLowerCase()}`,
+                            {
+                              state: {
+                                projectId: item.id,
+                                projectCategory: item.category,
+                              },
+                            }
+                          );
+                        }
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <div className="project-category-label">
+                        {item.panel}
                       </div>
-                    </Col>
-                  ))
-                ) : (
-                  <div>No projects to display.</div>
-                )}
-              </Row>
-              {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4">
-                  <Pagination>
-                    {[...Array(totalPages)].map((_, index) => (
-                      <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                  </Pagination>
-                </div>
+
+                      <LazyLoadImage
+                        wrapperClassName="square-img"
+                        src={`${import.meta.env.BASE_URL}${item.src}`}
+                        alt={item.alt}
+                        effect="blur"
+                        width="100%"
+                        height="100%"
+                      />
+                      <div className="project-info-box">
+                        <h4 className="project-info-title">
+                          {item.shortitle}
+                        </h4>
+                        <p className="project-info-text">{item.shortext}</p>
+                      </div>
+                      {isAuthenticated && (
+                        <Button
+                          variant="info"
+                          className="mt-2"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent navigation when button is clicked
+                            handleMoveToTop(item.id);
+                          }}
+                        >
+                          Faire monter en premier
+                        </Button>
+                      )}
+                    </div>
+                  </Col>
+                ))
+              ) : (
+                <div>No projects to display.</div>
               )}
-            </Col>
-          </Row>
-        </Container>
-      </section>
+            </Row>
+            {totalPages > 1 && (
+              <div className="d-flex justify-content-center mt-4">
+                <Pagination>
+                  {[...Array(totalPages)].map((_, index) => (
+                    <Pagination.Item
+                      key={index + 1}
+                      active={index + 1 === currentPage}
+                      onClick={() => paginate(index + 1)}
+                    >
+                      {index + 1}
+                    </Pagination.Item>
+                  ))}
+                </Pagination>
+              </div>
+            )}
+          </>
+        }
+      />
     </>
   );
 }

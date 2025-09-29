@@ -147,8 +147,8 @@
   .navbar-collapse {
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: -1rem;
+    right: -1rem;
     background-color: var(--background-color);
     z-index: 1000;
     border-bottom: 1px solid #e0e0e0;
@@ -177,6 +177,10 @@
   }
   .dropdown-item {
     font-weight: 400 !important;
+  }
+
+  .navbar-collapse .nav-element {
+    width: 100%;
   }
 }
 
@@ -207,8 +211,8 @@
 
     color: var(--text-color);
 
-    padding: 1rem 1rem !important; /* Add space and override bootstrap */
-    font-size: 1.6rem;
+    padding: 1rem 0.8rem !important; /* Add space and override bootstrap */
+    font-size: 1.2rem;
     letter-spacing: 0rem;
     line-height: 1;
     text-decoration: none;

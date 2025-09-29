@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import "../../App.css";
 
@@ -7,7 +5,7 @@ import Breadcrumbscontact from "../../components/breadcrumbs/Breadcrumbscontact"
 import FormJoinus from "../../components/elements/FormJoinus";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import EditableParagraph from "../../components/EditableParagraph";
-import EditableTitle from "../../components/EditableTitle";
+import PageLayout from "../../components/layouts/PageLayout";
 
 export default function JoinContact({ isNavbarHovered }) {
   const TITLE = "Nous rejoindre";
@@ -27,21 +25,20 @@ export default function JoinContact({ isNavbarHovered }) {
         startFaded={true}
       />
       <Breadcrumbscontact breadcrumbsnav={TITLE} />
-      <section className="reason-section" style={{ paddingTop: "50px" }}>
-        <Container className="app-container-padding">
-          <Row>
-            <Col>
-              <EditableTitle textId="join-us-title" defaultTitle={SUB} />
-              <EditableParagraph
-                textId="join-us-paragraph"
-                initialContent="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
-                isEditable={isAuthenticated}
-              />
-              <FormJoinus />
-            </Col>
-          </Row>
-        </Container>
-      </section>
+      <PageLayout
+        title={SUB}
+        titleId="join-us-title"
+        DescriptionComponent={
+          <>
+            <EditableParagraph
+              textId="join-us-paragraph"
+              initialContent="Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+              isEditable={isAuthenticated}
+            />
+            <FormJoinus />
+          </>
+        }
+      />
     </>
   );
 }

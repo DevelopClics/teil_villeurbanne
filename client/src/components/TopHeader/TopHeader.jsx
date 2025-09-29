@@ -22,9 +22,9 @@ const TopHeader = ({
 
   return (
     <div className="top-header pt-3 p-md-5">
-      <Container>
+      <Container fluid>
         <Row className="align-items-center ">
-          <Col xl={4} className="d-none d-xl-block">
+          <Col xl={4}>
             {isAuthenticated && (
               <Stack
                 direction="horizontal"
@@ -56,7 +56,7 @@ const TopHeader = ({
             </Link>
           </Col>
 
-          <Col xs={12} md={6} xl={3} xxl={4}>
+          <Col xs={12} md={6} lg={5} xl={4} xxl={3}>
             <div ref={socialIconsContainerRef}>
               <Stack
                 ref={socialIconsRef}

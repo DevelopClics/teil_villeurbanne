@@ -68,7 +68,7 @@ const Navigation = ({ onDropdownHoverChange, socialIconsTargetRef }) => {
       expand="md"
       className="navbar px-0"
     >
-      <Container className="app-container-padding px-0">
+      <Container fluid className="app-container-padding px-0">
         <div className="mobile-nav-container">
           <div ref={socialIconsTargetRef} />
           <Navbar.Toggle

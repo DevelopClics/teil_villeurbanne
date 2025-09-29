@@ -1,15 +1,15 @@
-import { Container, Row, Col, Pagination, Button } from "react-bootstrap";
+import { Pagination, Button } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
-import EditableTitle from "../../components/EditableTitle";
 
 import "../../App.css";
 
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import ProjectLayout from "../../components/layouts/ProjectLayout";
+import PageLayout from "../../components/layouts/PageLayout";
 
 export default function ProjectCategoryPage({ isNavbarHovered }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -283,86 +283,82 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
         breadcrumbsnav="Nos projets"
         breadcrumbssub={displayCategory}
       />
-      <section className="reason-section" style={{ paddingTop: "50px" }}>
-        <Container className="app-container-padding">
-          <Row>
-            <Col>
-              <EditableTitle
-                textId={`${currentCategory}-projects-title`}
-                defaultTitle={displayCategory}
+      <PageLayout
+        title={displayCategory}
+        titleId={`${currentCategory}-projects-title`}
+        DescriptionComponent={
+          <>
+            {isAuthenticated && !id && (
+              <div className="admin-controls d-flex justify-content-start mb-3">
+                <Button
+                  variant="primary"
+                  onClick={handleCreateClick}
+                  className="btn-main-blue me-2"
+                >
+                  Créer un nouveau projet
+                </Button>
+              </div>
+            )}
+
+            {isCreatingNewProject && (
+              <ProjectLayout
+                isProjectPage={true}
+                item={{ category: currentCategory }} // Pass initial data for new project
+                isEditable={isAuthenticated}
+                isCreating={true}
+                onSaveNew={handleSaveNewProject}
+                onCancelCreate={handleCancelCreateNewProject}
               />
-              {isAuthenticated && !id && (
-                <div className="admin-controls d-flex justify-content-start mb-3">
-                  <Button
-                    variant="primary"
-                    onClick={handleCreateClick}
-                    className="btn-main-blue me-2"
-                  >
-                    Créer un nouveau projet
-                  </Button>
+            )}
+
+            {id && singleProject ? (
+              <ProjectLayout
+                isProjectPage={true}
+                key={singleProject.id}
+                item={singleProject}
+                isEditable={isAuthenticated}
+                onBackClick={() => navigate("/all-projects")}
+                backButtonText="Revenir à tous les projets"
+                onUpdate={handleUpdateProject}
+                onSaveNew={handleSaveNewProject}
+                onDelete={handleDeleteProject}
+              />
+            ) : (
+              currentProjects.map((item) => (
+                <div
+                  key={item.id}
+                  ref={(el) => projectRefs.current.set(item.id, el)}
+                >
+                  <ProjectLayout
+                    isProjectPage={true}
+                    item={item}
+                    isEditable={isAuthenticated}
+                    onUpdate={handleUpdateProject}
+                    onSaveNew={handleSaveNewProject}
+                    onDelete={handleDeleteProject}
+                  />
                 </div>
-              )}
+              ))
+            )}
 
-              {isCreatingNewProject && (
-                <ProjectLayout
-                  isProjectPage={true}
-                  item={{ category: currentCategory }} // Pass initial data for new project
-                  isEditable={isAuthenticated}
-                  isCreating={true}
-                  onSaveNew={handleSaveNewProject}
-                  onCancelCreate={handleCancelCreateNewProject}
-                />
-              )}
-
-              {id && singleProject ? (
-                <ProjectLayout
-                  isProjectPage={true}
-                  key={singleProject.id}
-                  item={singleProject}
-                  isEditable={isAuthenticated}
-                  onBackClick={() => navigate("/all-projects")}
-                  backButtonText="Revenir à tous les projets"
-                  onUpdate={handleUpdateProject}
-                  onSaveNew={handleSaveNewProject}
-                  onDelete={handleDeleteProject}
-                />
-              ) : (
-                currentProjects.map((item) => (
-                  <div
-                    key={item.id}
-                    ref={(el) => projectRefs.current.set(item.id, el)}
-                  >
-                    <ProjectLayout
-                      isProjectPage={true}
-                      item={item}
-                      isEditable={isAuthenticated}
-                      onUpdate={handleUpdateProject}
-                      onSaveNew={handleSaveNewProject}
-                      onDelete={handleDeleteProject}
-                    />
-                  </div>
-                ))
-              )}
-
-              {totalPages > 1 && (
-                <div className="d-flex justify-content-center mt-4">
-                  <Pagination>
-                    {[...Array(totalPages)].map((_, index) => (
-                      <Pagination.Item
-                        key={index + 1}
-                        active={index + 1 === currentPage}
-                        onClick={() => paginate(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                  </Pagination>
-                </div>
-              )}
-            </Col>{" "}
-          </Row>
-        </Container>
-      </section>
+            {totalPages > 1 && (
+              <div className="d-flex justify-content-center mt-4">
+                <Pagination>
+                  {[...Array(totalPages)].map((_, index) => (
+                    <Pagination.Item
+                      key={index + 1}
+                      active={index + 1 === currentPage}
+                      onClick={() => paginate(index + 1)}
+                    >
+                      {index + 1}
+                    </Pagination.Item>
+                  ))}
+                </Pagination>
+              </div>
+            )}
+          </>
+        }
+      />
     </>
   );
 }
