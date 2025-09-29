@@ -26,6 +26,7 @@
   position: relative;
   border-left: 3px solid black !important;
   border-right: 3px solid black !important;
+
   display: inline-block;
 }
 
@@ -125,6 +126,14 @@
   color: var(--primary-color) !important;
 }
 
+.active-dropdown-parent .dropdown-toggle {
+  color: var(--primary-color) !important;
+}
+
+.nav-link.active {
+  color: var(--primary-color) !important;
+}
+
 .nav-element.is-hovered.active-dropdown-parent .nav-common-button {
   color: white !important;
 }
@@ -211,7 +220,7 @@
 
     color: var(--text-color);
 
-    padding: 1rem 0.8rem !important; /* Add space and override bootstrap */
+    padding: 0.5rem 0.8rem !important; /* Add space and override bootstrap */
     font-size: 1.2rem;
     letter-spacing: 0rem;
     line-height: 1;
@@ -246,7 +255,7 @@
 
     color: var(--text-color);
 
-    padding: 1rem 1rem !important; /* Add space and override bootstrap */
+    padding: 0.5rem 1rem !important; /* Add space and override bootstrap */
     font-size: 1.4rem;
     /* letter-spacing: 0.2rem; */
     line-height: 1;
@@ -275,7 +284,7 @@
     font-weight: 700;
     color: var(--text-color);
 
-    padding: 1rem 2.8rem !important; /* Add space and override bootstrap */
+    padding: 0.5rem 2.8rem !important; /* Add space and override bootstrap */
     font-size: 1.4rem;
     letter-spacing: 0.2rem;
     line-height: 1;
@@ -306,7 +315,7 @@
     font-size: 1.4rem;
     /* letter-spacing: 0.1rem; */
     line-height: 1;
-    padding: 1rem 4.7rem !important;
+    padding: 0.5rem 4.7rem !important;
 
     text-decoration: none;
     background: none;
@@ -349,7 +358,7 @@
 }
 
 .social-icon-separator {
-  width: 0.1vw;
+  width: 1px !important;
   height: 5vh;
   background-color: #000000;
   margin-right: 0.5rem;
@@ -363,4 +372,5 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
+  color: #000000a6 !important;
 }

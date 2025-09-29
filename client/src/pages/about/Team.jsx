@@ -269,7 +269,7 @@ export default function Team({ isNavbarHovered }) {
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
 
       <section className="reason-section" style={{ paddingTop: "50px" }}>
-        <Container className="app-container-padding">
+        <Container fluid className="app-container-padding">
           <Row>
             <Col>
               <EditableTitle textId="team-page-title" defaultTitle={SUB} />
