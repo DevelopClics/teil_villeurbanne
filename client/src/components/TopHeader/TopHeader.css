@@ -2,6 +2,11 @@
   max-height: 18vh;
 }
 
+.main-logo-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .social-icon-circle {
   width: 5vw;
   height: 5vh;

@@ -43,7 +43,8 @@ export default function Contact({ isNavbarHovered }) {
         category="welcome"
         carouselTextId={11}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        stationaryText={false}
+        startFaded={true}
       />
       <Breadcrumbscontact breadcrumbsnav={TITLE} />
       <section className="reason-section">

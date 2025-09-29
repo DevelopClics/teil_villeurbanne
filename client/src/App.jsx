@@ -118,6 +118,7 @@ function App() {
       <TopHeader
         socialIconsRef={socialIconsRef}
         socialIconsContainerRef={socialIconsContainerRef}
+        onElementHover={setIsNavbarHovered}
       />
       <Navigation
         onDropdownHoverChange={setIsNavbarHovered}

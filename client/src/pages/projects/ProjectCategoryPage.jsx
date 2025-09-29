@@ -23,23 +23,22 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
   const projectRefs = useRef(new Map());
   const [isCreatingNewProject, setIsCreatingNewProject] = useState(false);
 
-  const currentCategory = urlCategory || "culture"; // Default to 'culture' if no category in URL
-
-  const categoryDisplayNames = {
-    food: "Alimentation",
-    economy: "Économie",
+  const categoryMap = {
     culture: "Culture",
+    food: "Alimentation",
     youth: "Jeunesse",
-    cities: "Villes",
-    donate: "Faire un don",
-    member: "Devenir membre",
-    volunteer: "Bénévole",
-    genese: "Genèse",
-    team: "Équipe",
-    projects: "Projets",
+    economy: "Économie",
   };
+  const currentCategory = urlCategory || "culture";
+  const displayCategory = categoryMap[currentCategory] || currentCategory;
 
-  const displayedCategoryName = categoryDisplayNames[currentCategory] || currentCategory;
+  const categoryToCarouselId = {
+    culture: 5,
+    food: 6,
+    youth: 7,
+    economy: 8,
+  };
+  const carouselId = categoryToCarouselId[currentCategory];
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -271,55 +270,18 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
     setIsCreatingNewProject(false);
   };
 
-  const handleMoveToTop = async (projectId) => {
-    setProjects((prevProjects) => {
-      const projectToMove = prevProjects.find(
-        (project) => project.id === projectId
-      );
-      if (!projectToMove) {
-        return prevProjects;
-      }
-      const filteredProjects = prevProjects.filter(
-        (project) => project.id !== projectId
-      );
-      const newOrder = [projectToMove, ...filteredProjects];
-
-      // Send update to backend
-      const updateOrder = async () => {
-        try {
-          const token = localStorage.getItem("token");
-          await axios.patch(
-            `http://localhost:3001/projects/${projectId}/move_to_top`,
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          console.log("Project moved to top successfully on backend.");
-        } catch (error) {
-          console.error("Error moving project to top on backend:", error);
-        }
-      };
-      updateOrder();
-
-      return newOrder;
-    });
-  };
-
   return (
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
         category={currentCategory}
-        carouselTextId={5}
+        carouselTextId={carouselId}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        startFaded={true}
       />
       <Breadcrumbs
-        breadcrumbsnav="Les projets"
-        breadcrumbssub={displayedCategoryName}
+        breadcrumbsnav="Nos projets"
+        breadcrumbssub={displayCategory}
       />
       <section className="reason-section" style={{ paddingTop: "50px" }}>
         <Container className="app-container-padding">
@@ -327,7 +289,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
             <Col>
               <EditableTitle
                 textId={`${currentCategory}-projects-title`}
-                defaultTitle={currentCategory}
+                defaultTitle={displayCategory}
               />
               {isAuthenticated && !id && (
                 <div className="admin-controls d-flex justify-content-start mb-3">
@@ -349,7 +311,6 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                   isCreating={true}
                   onSaveNew={handleSaveNewProject}
                   onCancelCreate={handleCancelCreateNewProject}
-                  onMoveToTop={handleMoveToTop} // Added onMoveToTop
                 />
               )}
 
@@ -364,7 +325,6 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                   onUpdate={handleUpdateProject}
                   onSaveNew={handleSaveNewProject}
                   onDelete={handleDeleteProject}
-                  onMoveToTop={handleMoveToTop} // Added onMoveToTop
                 />
               ) : (
                 currentProjects.map((item) => (
@@ -379,7 +339,6 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                       onUpdate={handleUpdateProject}
                       onSaveNew={handleSaveNewProject}
                       onDelete={handleDeleteProject}
-                      onMoveToTop={handleMoveToTop} // Added onMoveToTop
                     />
                   </div>
                 ))

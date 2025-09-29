@@ -20,7 +20,7 @@ export default function Member({ isNavbarHovered }) {
         category="member"
         carouselTextId={10}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        stationaryText={false}
       />
 
       <Breadcrumbs breadcrumbsnav="Nous rejoindre" breadcrumbssub={SUB} />

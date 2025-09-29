@@ -12,6 +12,9 @@ import fondationLogo from "../../assets/images/logos/Fondation_France_Logo_Seul_
 import "./Footer.css";
 
 const Footer = () => {
+  const handleLogoClick = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <footer className="footer">
       <Container fluid className="main-content-wrapper app-container-padding">
@@ -30,7 +33,7 @@ const Footer = () => {
                 xxl={4}
                 className="mb-5 mb-sm-5 mb-xl-5"
               >
-                <Link to="/">
+                <Link to="/" onClick={handleLogoClick}>
                   <img
                     src={logoTV}
                     alt="Logo TV"

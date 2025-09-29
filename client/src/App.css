@@ -34,8 +34,6 @@ body {
   padding-top: 2vh;
 }
 
-
-
 .reason-section h2 {
   text-align: left;
   margin-bottom: 30px;
@@ -80,7 +78,7 @@ body {
 }
 
 .pagination .page-item .page-link:hover {
-  color: #fff !important;
+  color: #fff !import ant;
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }

@@ -9,7 +9,11 @@ import linkedinIcon from "../../assets/images/icons/linkedin-icon.svg";
 import mailIcon from "../../assets/images/icons/mail-icon.svg";
 import "./TopHeader.css";
 
-const TopHeader = ({ socialIconsRef, socialIconsContainerRef }) => {
+const TopHeader = ({
+  socialIconsRef,
+  socialIconsContainerRef,
+  onElementHover,
+}) => {
   const { isAuthenticated, logout } = useAuth();
 
   const handleLogout = () => {
@@ -42,7 +46,12 @@ const TopHeader = ({ socialIconsRef, socialIconsContainerRef }) => {
             xl={4}
             className="text-center text-md-start text-xl-center mb-3 mb-md-0"
           >
-            <Link to=".">
+            <Link
+              to="."
+              className="main-logo-link"
+              onMouseEnter={() => onElementHover(true)}
+              onMouseLeave={() => onElementHover(false)}
+            >
               <Image src={logoTzc} alt="Logo TZC" className="main-logo" fluid />
             </Link>
           </Col>
@@ -67,7 +76,12 @@ const TopHeader = ({ socialIconsRef, socialIconsContainerRef }) => {
                   <img src={linkedinIcon} alt="LinkedIn" />
                 </a>
                 <div className="social-icon-separator"></div>
-                <Link className="social-icon-circle" to="/contact">
+                <Link
+                  className="social-icon-circle"
+                  to="/contact"
+                  onMouseEnter={() => onElementHover(true)}
+                  onMouseLeave={() => onElementHover(false)}
+                >
                   <img src={mailIcon} alt="Mail" />
                 </Link>
               </Stack>

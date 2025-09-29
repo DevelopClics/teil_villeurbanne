@@ -21,8 +21,9 @@ export default function Home({ isNavbarHovered }) {
         category="home"
         carouselTextId={0}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        stationaryText={false}
         textPerSlide={true}
+        startFaded={true}
       />
       {/* <ReasonComp title="NOTRE RAISON D'ÊTRE" /> */}
       <PageLayout

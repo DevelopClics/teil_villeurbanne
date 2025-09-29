@@ -70,7 +70,8 @@ export default function Places({ isNavbarHovered }) {
         category="city"
         carouselTextId={3}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        startFaded={true}
+        stationaryText={false}
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
       {/* <PageLayout title={SUB} DescriptionComponent={<FakeComp />} /> */}

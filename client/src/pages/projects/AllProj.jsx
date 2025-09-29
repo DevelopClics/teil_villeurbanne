@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Pagination } from "react-bootstrap";
+import { Pagination, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useAuth } from "../../context/AuthContext";
 import "../../App.css";
 import CarouselComponent from "../../components/Carousel/Carousel";
+import axios from "axios";
 
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 
@@ -60,6 +61,43 @@ export default function AllProj({ isNavbarHovered }) {
     fetchAllProjects();
   }, [isAuthenticated]);
 
+  const handleMoveToTop = async (projectId) => {
+    setAllProjects((prevProjects) => {
+      const projectToMove = prevProjects.find(
+        (project) => project.id === projectId
+      );
+      if (!projectToMove) {
+        return prevProjects;
+      }
+      const filteredProjects = prevProjects.filter(
+        (project) => project.id !== projectId
+      );
+      const newOrder = [projectToMove, ...filteredProjects];
+
+      // Send update to backend
+      const updateOrder = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          await axios.patch(
+            `http://localhost:3001/projects/${projectId}/move_to_top`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          console.log("Project moved to top successfully on backend.");
+        } catch (error) {
+          console.error("Error moving project to top on backend:", error);
+        }
+      };
+      updateOrder();
+
+      return newOrder;
+    });
+  };
+
   // Get current projects
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -78,9 +116,8 @@ export default function AllProj({ isNavbarHovered }) {
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
         category="projects"
-        carouselTextId={4}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        startFaded={true}
       />
 
       <Breadcrumbs breadcrumbsnav="Les projets" breadcrumbssub={SUB} />
@@ -120,17 +157,22 @@ export default function AllProj({ isNavbarHovered }) {
                         className="square-img-container"
                         onClick={() => {
                           if (item.category) {
-                            navigate(`/projects/${item.category.toLowerCase()}`, {
-                              state: {
-                                projectId: item.id,
-                                projectCategory: item.category,
-                              },
-                            });
+                            navigate(
+                              `/projects/${item.category.toLowerCase()}`,
+                              {
+                                state: {
+                                  projectId: item.id,
+                                  projectCategory: item.category,
+                                },
+                              }
+                            );
                           }
                         }}
                         style={{ cursor: "pointer" }}
                       >
-                        <div className="project-category-label">{item.panel}</div>
+                        <div className="project-category-label">
+                          {item.panel}
+                        </div>
 
                         <LazyLoadImage
                           wrapperClassName="square-img"
@@ -141,9 +183,23 @@ export default function AllProj({ isNavbarHovered }) {
                           height="100%"
                         />
                         <div className="project-info-box">
-                          <h4 className="project-info-title">{item.shortitle}</h4>
+                          <h4 className="project-info-title">
+                            {item.shortitle}
+                          </h4>
                           <p className="project-info-text">{item.shortext}</p>
                         </div>
+                        {isAuthenticated && (
+                          <Button
+                            variant="info"
+                            className="mt-2"
+                            onClick={(e) => {
+                              e.stopPropagation(); // Prevent navigation when button is clicked
+                              handleMoveToTop(item.id);
+                            }}
+                          >
+                            Faire monter en premier
+                          </Button>
+                        )}
                       </div>
                     </Col>
                   ))

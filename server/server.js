@@ -722,6 +722,25 @@ server.delete("/projects/:id", (req, res) => {
   }
 });
 
+server.patch("/projects/:id/move_to_top", (req, res) => {
+  const projectId = req.params.id;
+  const db = router.db;
+  const projects = db.get("projects");
+
+  const projectIndex = projects.value().findIndex(p => p.id === projectId);
+
+  if (projectIndex === -1) {
+    return res.status(404).json({ message: "Project not found" });
+  }
+
+  const [project] = projects.value().splice(projectIndex, 1);
+  projects.value().unshift(project);
+
+  db.write();
+
+  res.status(200).json(project);
+});
+
 server.use(router);
 
 const PORT = 3001;

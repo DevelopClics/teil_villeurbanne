@@ -81,69 +81,123 @@ const Navigation = ({ onDropdownHoverChange, socialIconsTargetRef }) => {
           className="justify-content-center"
         >
           <Nav className="navbar-links">
-            <NavDropdown
-              title="Qui sommes-nous ?"
-              id="nav-dropdown-qui-sommes-nous"
-              show={openDropdown === "qui-sommes-nous"}
+            <div
               onMouseEnter={() => handleDropdownOpen("qui-sommes-nous")}
               onMouseLeave={handleDropdownClose}
-              onClick={() => handleDropdownToggle("qui-sommes-nous")}
-              className={`nav-element nav-common-button nav-dropdown-button ${
-                openDropdown === "qui-sommes-nous" ? "is-hovered" : ""
-              } ${
-                isLinkActive(["/genesis", "/team", "/places"]) ? "active-dropdown-parent" : ""
-              }`}
             >
-              <NavDropdown.Item as={Link} to="/genesis" onClick={handleItemClick}>
-                La génèse
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/team" onClick={handleItemClick}>
-                L'équipe
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/places" onClick={handleItemClick}>
-                Les villes
-              </NavDropdown.Item>
-            </NavDropdown>
+              <NavDropdown
+                title="Qui sommes-nous ?"
+                id="nav-dropdown-qui-sommes-nous"
+                show={openDropdown === "qui-sommes-nous"}
+                onClick={() => handleDropdownToggle("qui-sommes-nous")}
+                className={`nav-element nav-common-button nav-dropdown-button ${
+                  openDropdown === "qui-sommes-nous" ? "is-hovered" : ""
+                } ${
+                  isLinkActive(["/genesis", "/team", "/places"])
+                    ? "active-dropdown-parent"
+                    : ""
+                }`}
+              >
+                <NavDropdown.Item
+                  as={Link}
+                  to="/genesis"
+                  onClick={handleItemClick}
+                >
+                  La génèse
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/team"
+                  onClick={handleItemClick}
+                >
+                  L'équipe
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/places"
+                  onClick={handleItemClick}
+                >
+                  Les villes
+                </NavDropdown.Item>
+              </NavDropdown>
+            </div>
 
-            <NavDropdown
-              title="Les projets"
-              id="nav-dropdown-les-projets"
-              show={openDropdown === "les-projets"}
+            <div
               onMouseEnter={() => handleDropdownOpen("les-projets")}
               onMouseLeave={handleDropdownClose}
-              onClick={() => handleDropdownToggle("les-projets")}
-              className={`nav-common-button nav-dropdown-button ${
-                openDropdown === "les-projets" ? "is-hovered" : ""
-              } ${
-                isLinkActive(["/all-projects", "/projects/culture", "/projects/food", "/projects/youth", "/projects/economy", "/drop-project"]) ? "active-dropdown-parent" : ""
-              }`}
             >
-              <NavDropdown.Item as={Link} to="/all-projects" onClick={handleItemClick}>
-                Tous les projets
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/projects/culture" onClick={handleItemClick}>
-                Culture
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/projects/food" onClick={handleItemClick}>
-                Alimentation
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/projects/youth" onClick={handleItemClick}>
-                Jeunesse
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/projects/economy" onClick={handleItemClick}>
-                Économie
-              </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/drop-project" onClick={handleItemClick}>
-                Déposer un projet
-              </NavDropdown.Item>
-            </NavDropdown>
+              <NavDropdown
+                title="Les projets"
+                id="nav-dropdown-les-projets"
+                show={openDropdown === "les-projets"}
+                onClick={() => handleDropdownToggle("les-projets")}
+                className={`nav-common-button nav-dropdown-button ${
+                  openDropdown === "les-projets" ? "is-hovered" : ""
+                } ${
+                  isLinkActive([
+                    "/all-projects",
+                    "/projects/culture",
+                    "/projects/food",
+                    "/projects/youth",
+                    "/projects/economy",
+                    "/drop-project",
+                  ])
+                    ? "active-dropdown-parent"
+                    : ""
+                }`}
+              >
+                <NavDropdown.Item
+                  as={Link}
+                  to="/all-projects"
+                  onClick={handleItemClick}
+                >
+                  Tous les projets
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/projects/culture"
+                  onClick={handleItemClick}
+                >
+                  Culture
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/projects/food"
+                  onClick={handleItemClick}
+                >
+                  Alimentation
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/projects/youth"
+                  onClick={handleItemClick}
+                >
+                  Jeunesse
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/projects/economy"
+                  onClick={handleItemClick}
+                >
+                  Économie
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={Link}
+                  to="/drop-project"
+                  onClick={handleItemClick}
+                >
+                  Déposer un projet
+                </NavDropdown.Item>
+              </NavDropdown>
+            </div>
 
             <Nav.Link
               as={Link}
               to="/joinus-contact"
-              className="nav-element nav-common-button nous-rejoindre-link"
+              className="nav-element nav-common-button nous-rejoindre-link "
               onClick={handleItemClick}
-              style={{ verticalAlign: "middle" }}
+              onMouseEnter={() => onDropdownHoverChange(true)}
+              onMouseLeave={() => onDropdownHoverChange(false)}
             >
               Nous rejoindre
             </Nav.Link>
@@ -155,4 +209,3 @@ const Navigation = ({ onDropdownHoverChange, socialIconsTargetRef }) => {
 };
 
 export default Navigation;
-

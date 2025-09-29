@@ -263,7 +263,8 @@ export default function Team({ isNavbarHovered }) {
         category="team"
         carouselTextId={2}
         isEditable={isLoggedIn}
-        stationaryText={true}
+        stationaryText={false}
+        startFaded={true}
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
 

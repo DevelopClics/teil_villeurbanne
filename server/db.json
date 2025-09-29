@@ -3,13 +3,13 @@
     "office": [
       {
         "id": 1,
-        "src": "images/photos/team/office/1758703794604-garantie logement.png",
+        "src": "images/photos/team/office/1758799306057-222.jpg",
         "alt": "photo de Philippe Genet",
         "lastname": "Genet",
         "surname": "Philippe",
         "occupation": "Président",
         "contact": "bernadette.dubosc@adct-asso.org",
-        "cacheBust": 1758703813496
+        "cacheBust": 1758799306061
       },
       {
         "id": 2,
@@ -313,17 +313,23 @@
       {
         "id": 1,
         "src": "images/photos/team/carousel/1758701032673-qui sommes nous 2.jpg",
-        "alt": "Home1"
+        "alt": "Home1",
+        "title": "La génèse",
+        "text": "Génèsia ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
       },
       {
         "alt": "ryrh",
         "src": "images/photos/team/carousel/1758628190068-eÌchanges artisans.jpg",
-        "id": 9
+        "id": 9,
+        "title": "La génèse",
+        "text": "Génèsia ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
       },
       {
         "alt": "dff",
         "src": "images/photos/team/carousel/1758628389382-qui sommes nous 3.jpg",
-        "id": 11
+        "id": 11,
+        "title": "La génèse",
+        "text": "Génèsia ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
       }
     ],
     "team": [
@@ -331,31 +337,40 @@
         "id": 1,
         "src": "images/photos/team/carousel/1758636721251-eÌquipe.jpg",
         "alt": "Photo carousel l'équipe",
-        "title": "o"
+        "title": "L'équipe ",
+        "text": "Place pour indiquer le texte de l'équipe"
       }
     ],
     "city": [
       {
         "id": 1,
         "src": "images/photos/team/carousel/1758023556019-AdobeStock_311575980.jpeg",
-        "alt": "Home1"
+        "alt": "Home1",
+        "title": "Les villes",
+        "text": "This is the text for  Cities"
       },
       {
         "alt": "hyjhj",
         "src": "images/photos/team/carousel/1758628467439-carrouseul culture.jpg",
-        "id": 12
+        "id": 12,
+        "title": "Les villes",
+        "text": "This is the text for  Cities"
       }
     ],
     "projects": [
       {
         "src": "images/photos/team/carousel/1758023591690-AdobeStock_318346130.jpeg",
-        "id": 2
+        "id": 2,
+        "title": "Tous les projets",
+        "text": "This is the text for  All projects."
       }
     ],
     "culture": [
       {
         "src": "images/photos/team/carousel/1758701051816-qui sommes nous 3.jpg",
-        "id": 3
+        "id": 3,
+        "title": "Culture",
+        "text": "This is the text for  Culture !"
       }
     ],
     "welcome": [
@@ -368,13 +383,17 @@
       {
         "alt": "image",
         "src": "images/photos/team/carousel/1758112158781-AdobeStock_479884948.jpeg",
-        "id": 6
+        "id": 6,
+        "title": "Alimentation",
+        "text": "This is the text for  Food !"
       }
     ],
     "economy": [
       {
         "src": "images/photos/team/carousel/1758701093114-qui sommes nous 3.jpg",
-        "id": 16
+        "id": 16,
+        "title": "Economie",
+        "text": "This is the text for  Economy."
       }
     ]
   },
@@ -386,7 +405,7 @@
     },
     {
       "id": 1,
-      "title": "La génèse !",
+      "title": "La génèse",
       "content": "Génèsia ! Loremo ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tationullamcorper suscipit lobortis nisl ut aliquip. (Slide 2)"
     },
     {
@@ -498,7 +517,7 @@
     {
       "id": 1,
       "title": "Le Teil",
-      "src": "images/photos/places/1758699300089-garantie logement.png",
+      "src": "images/photos/places/1758799339018-1758095592544-AdobeStock_230385064.jpeg",
       "alt": "Ville01",
       "size": "30",
       "subtitle": "Commune ardéchoise",
@@ -507,7 +526,7 @@
       "links01": "https://www.leteil.fr/",
       "typelink01": "Site web :",
       "namelink01": "Mairie du Teil",
-      "cacheBust": "1758699300100"
+      "cacheBust": 1758799339034
     },
     {
       "id": 2,
@@ -525,6 +544,43 @@
     }
   ],
   "projects": [
+    {
+      "id": "2",
+      "category": "culture",
+      "panel": "culture",
+      "title": "Créations croisées",
+      "shortitle": "shortitle",
+      "shortext": "Un tout petit descriptif vraiment pas long du tout wwwww",
+      "src": "images/photos/projects/culture/AdobeStock_347123057.jpeg",
+      "alt": "alt",
+      "size": "30",
+      "subtitle": "A partir de janvier 2026",
+      "article": "Les artistes professionnels de Villeurbanne et du Teil se rencontreront pour créer, en duo ou en trio, deux spectacles vivants mêlant plusieurs disciplines (théâtre, danse, musique, art plastique…). Ces créations seront diffusées dans des espaces non dédiés au spectacle vivant, pour faciliter la rencontre avec des publics éloignés des offres culturelles. C’est aussi un dispositif solidaire qui sélectionne des artistes en difficultés, notamment dans notre contexte budgétaire actuel qui touche gravement la culture. ",
+      "contacts": "Contacts : ",
+      "links01": "https://www.ouvrirlhorizon-aura.fr/",
+      "typelink01": "",
+      "namelink01": "Accueil - Ouvrir l'Horizon AURA",
+      "links02": "https://www.le-tilt.com/",
+      "typelink02": "",
+      "namelink02": " Bienvenue au TiLT - Tiers-Lieu Culturel - Le Teil - Ardèche"
+    },
+    {
+      "category": "culture",
+      "title": "La culture c'est comme la confiture",
+      "article": "\"La culture, c'est comme la confiture, moins on en a, plus on l'étale.\" disait Françoise Sagan pour s'adresser auw cuistres, pédants et Jean Pace.",
+      "subtitle": "tout de suite",
+      "panel": "culture",
+      "shortitle": "citation",
+      "shortext": "La culture, c'est comme…",
+      "contacts": "Mairie du Teil",
+      "links01": "https://www.facebook.com/lesclefscsc/",
+      "namelink01": "Les CLEFS",
+      "alt": "alt",
+      "size": "30",
+      "src": "images/photos/projects/culture/1758799550213-AdobeStock_444634605.jpeg",
+      "id": "15",
+      "cacheBust": 1758799550238
+    },
     {
       "id": "1",
       "category": "culture",
@@ -545,26 +601,6 @@
       "typelink02": "",
       "namelink02": "Vidéo des restitutions musicales",
       "cacheBust": "1758701427218"
-    },
-    {
-      "id": "2",
-      "category": "culture",
-      "panel": "culture",
-      "title": "Créations croisées",
-      "shortitle": "shortitle",
-      "shortext": "Un tout petit descriptif vraiment pas long du tout wwwww",
-      "src": "images/photos/projects/culture/AdobeStock_347123057.jpeg",
-      "alt": "alt",
-      "size": "30",
-      "subtitle": "A partir de janvier 2026",
-      "article": "Les artistes professionnels de Villeurbanne et du Teil se rencontreront pour créer, en duo ou en trio, deux spectacles vivants mêlant plusieurs disciplines (théâtre, danse, musique, art plastique…). Ces créations seront diffusées dans des espaces non dédiés au spectacle vivant, pour faciliter la rencontre avec des publics éloignés des offres culturelles. C’est aussi un dispositif solidaire qui sélectionne des artistes en difficultés, notamment dans notre contexte budgétaire actuel qui touche gravement la culture. ",
-      "contacts": "Contacts : ",
-      "links01": "https://www.ouvrirlhorizon-aura.fr/",
-      "typelink01": "",
-      "namelink01": "Accueil - Ouvrir l'Horizon AURA",
-      "links02": "https://www.le-tilt.com/",
-      "typelink02": "",
-      "namelink02": " Bienvenue au TiLT - Tiers-Lieu Culturel - Le Teil - Ardèche"
     },
     {
       "id": "3",
@@ -794,11 +830,11 @@
     },
     {
       "id": "places-title",
-      "content": "Les villes !"
+      "content": "Les villes"
     },
     {
       "id": "all-projects-title",
-      "content": "Tous les projets !"
+      "content": "Tous les projets"
     },
     {
       "id": "culture-projects-title",
@@ -810,7 +846,7 @@
     },
     {
       "id": "food-projects-title",
-      "content": "Les projets alimentation !"
+      "content": "Les projets alimentation"
     },
     {
       "id": "youth-projects-title",

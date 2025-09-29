@@ -23,7 +23,8 @@ export default function JoinContact({ isNavbarHovered }) {
         category="welcome"
         carouselTextId={10}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        stationaryText={false}
+        startFaded={true}
       />
       <Breadcrumbscontact breadcrumbsnav={TITLE} />
       <section className="reason-section" style={{ paddingTop: "50px" }}>

@@ -20,7 +20,7 @@ export default function Volunteer({ isNavbarHovered }) {
         category="volunteer"
         carouselTextId={10}
         isEditable={isAuthenticated}
-        stationaryText={true}
+        stationaryText={false}
       />
 
       <Breadcrumbs breadcrumbsnav="Nous rejoindre" breadcrumbssub={SUB} />

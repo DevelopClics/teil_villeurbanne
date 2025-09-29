@@ -65,6 +65,15 @@ a:hover {
   padding-right: var(--global-padding-x);
 }
 
+.reason-container-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
 @media (min-width: 576px) {
   :root {
     --global-padding-x: 0.75rem;
@@ -91,11 +100,10 @@ a:hover {
 }
 @media (min-width: 1400px) {
   :root {
-    --global-padding-x: 6rem;
+    --global-padding-x: 5rem;
     --breadcrumb-padding-x: 18rem;
   }
 }
-
 
 /* Custom button styles */
 .btn-salmon {

@@ -12,6 +12,7 @@ export default function ProjectLayout({
   backButtonText,
   onSaveNew,
   onDelete,
+  onMoveToTop,
   isCreating = false,
   onCancelCreate,
   isProjectPage = false,
@@ -323,14 +324,21 @@ export default function ProjectLayout({
               </strong>
             </p>
             {isEditable && onUpdate && (
-              <div className="admin-controls d-flex justify-content-start">
-                <Button
-                  variant="warning"
-                  onClick={() => setIsEditing(!isEditing)}
-                  className="me-2"
-                >
-                  {isEditing ? "Annuler" : "Modifier"}
-                </Button>
+              <div className="admin-controls d-flex justify-content-between">
+                <div>
+                  <Button
+                    variant="warning"
+                    onClick={() => setIsEditing(!isEditing)}
+                    className="me-2"
+                  >
+                    {isEditing ? "Annuler" : "Modifier"}
+                  </Button>
+                  {isProjectPage && (
+                    <Button variant="info" className="me-2" onClick={() => onMoveToTop(item.id)}>
+                      Faire monter en premier
+                    </Button>
+                  )}
+                </div>
                 {isProjectPage && (
                   <Button variant="danger" onClick={handleDelete}>
                     Supprimer
