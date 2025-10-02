@@ -8,6 +8,7 @@ import "./FormContact.css";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import ShowOptionsIndividualsDetails from "./ShowOptionsIndividualsDetails";
 
 const FormJoinus = () => {
   const {
@@ -40,13 +41,11 @@ const FormJoinus = () => {
     form.current.reset();
   };
 
-  const [showSecondOptions, setShowSecondOptions] = useState(false);
-
-  const handleFirstOptionsChange = () => {
-    setShowSecondOptions(true);
-  };
-
   const form = useRef();
+  const [showOptionsCompany, setShowOptionsCompany] = useState(false);
+  const [showOptionsIndividuals, setShowOptionsIndividuals] = useState(false);
+  const [showOptionsIndividualsDetails, setShowOptionsIndividualsDetails] =
+    useState(false);
 
   return (
     <Form
@@ -68,9 +67,6 @@ const FormJoinus = () => {
           </span>
           <Form.Control
             type="text"
-            // id="bord-top-left"
-
-            // className="col-2"
             placeholder="Prénom"
             name="from_firstname"
             {...register("from_firstname", {
@@ -92,9 +88,6 @@ const FormJoinus = () => {
           </span>
           <Form.Control
             type="text"
-            // className={`col-md-3 mt-1 ${
-            //   theme ? `form_control-dark text-light ` : `form_control-light `
-            // }`}
             placeholder="Nom"
             name="from_surname"
             {...register("from_surname", {
@@ -149,10 +142,6 @@ const FormJoinus = () => {
           </div>
           <Form.Control
             type="text"
-            // id="bord-top-right"
-            // className={`objet ${
-            //   theme ? `form_control-dark text-light ` : `form_control-light `
-            // }`}
             placeholder="Objet"
             name="object"
             {...register("object", {
@@ -170,24 +159,15 @@ const FormJoinus = () => {
           <div className="row col-6 col-md-12 ">
             <div className="col-md-2 col-lg-2 col-xl-2">Je suis</div>
             <div className="col-md-4 col-lg-4 col-xl-3">
-              {/* <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios2"
-                value="option2"
-              />
-              <label class="form-check-label" for="exampleRadios2"></label>
-            </div> */}
               <Form.Check
                 inline
                 type="radio"
                 aria-label="radio 1"
                 label="Association, entreprise"
                 name="exampleRadios"
-                id="exampleRadios2"
-                onChange={handleFirstOptionsChange}
+                id="radioAssociation"
+                value="association"
+                onChange={() => setShowOptionsCompany(true)}
               />
             </div>
             <div className="col-md-2 col-xxl-2">
@@ -197,8 +177,9 @@ const FormJoinus = () => {
                 aria-label="radio 1"
                 label="Habitant"
                 name="exampleRadios"
-                id="exampleRadios2"
-                onChange={handleFirstOptionsChange}
+                id="radioHabitant"
+                value="habitant"
+                onChange={() => setShowOptionsIndividuals(true)}
               />
             </div>
             <div className="col-md-3 col-xxl-2">
@@ -207,48 +188,60 @@ const FormJoinus = () => {
                 aria-label="radio 1"
                 label="Elève, étudiant"
                 name="exampleRadios"
-                id="exampleRadios2"
-                onChange={handleFirstOptionsChange}
+                id="radioEleve"
+                value="eleve"
+                onChange={() => setShowOptionsIndividuals(true)}
               />
             </div>
           </div>
-          {showSecondOptions && (
-            <div className="row col-6 col-md-12">
-              <div className="col-md-2 col-xxl-2">Je cherche</div>
-              <div className="col-md-3 col-xxl-3">
-                <Form.Check
-                  type="radio"
-                  aria-label="radio 1"
-                  label="Un logement"
-                  name="exampleRadios2"
-                  id="exampleRadios3"
-                />
-              </div>
-              <div className="col-md-2 col-xxl-2">
-                <Form.Check
-                  type="radio"
-                  aria-label="radio 1"
-                  label="Un stage"
-                  name="exampleRadios2"
-                  id="exampleRadios4"
-                />
-              </div>
-              <div className="col-md-5 col-xxl-3">
-                <Form.Check
-                  type="radio"
-                  aria-label="radio 1"
-                  label="A être bénèvole sur un projet"
-                  name="exampleRadios2"
-                  id="exampleRadios5"
-                />
-              </div>
+          <div
+            className={`row col-6 col-md-12 options-container-two ${
+              showOptionsIndividuals ? "options-container-show-two" : ""
+            }`}
+          >
+            <div className="col-md-2 col-xxl-2">Je cherche</div>
+            <div className="col-md-3 col-xxl-3">
+              <Form.Check
+                type="radio"
+                aria-label="radio 1"
+                label="Un logement"
+                name="exampleRadios"
+                id="radioLogement"
+                onChange={() => setShowOptionsIndividualsDetails(true)}
+              />
             </div>
-          )}
+            <div className="col-md-2 col-xxl-2">
+              <Form.Check
+                type="radio"
+                aria-label="radio 1"
+                label="Un stage"
+                name="exampleRadios"
+                id="radioStage"
+                onChange={() => setShowOptionsIndividualsDetails(true)}
+              />
+            </div>
+            <div className="col-md-5 col-xxl-3">
+              <Form.Check
+                type="radio"
+                aria-label="radio 1"
+                label="A être bénèvole sur un projet"
+                name="exampleRadios"
+                id="radioBenevole"
+                onChange={() => setShowOptionsIndividualsDetails(true)}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* MESSAGE */}
-      <div className="mt-4 offset-xxl-1">
+      <div
+        className={`mt-4 offset-xxl-1 options-container-one ${
+          showOptionsCompany || showOptionsIndividualsDetails
+            ? "options-container-show-one"
+            : ""
+        }`}
+      >
         <FloatingLabel controlId="floatingTextarea">
           <span className="error text-danger">
             {errors.message?.type === "required" &&
@@ -263,9 +256,6 @@ const FormJoinus = () => {
           as="textarea"
           placeholder="Autres envies/besoins"
           rows={1}
-          // className={`mt-1 ${
-          //   theme ? `form_control-dark text-light ` : `form_control-light `
-          // }`}
           name="message"
           {...register("message", {
             required: true,
@@ -279,11 +269,16 @@ const FormJoinus = () => {
 
       {/* BUTTON */}
       <div className="mt-4 col-12 text-end">
+        {" "}
         <Button
           variant="primary"
           size="lg"
           type="submit"
           className="envoyer-btn px-5 rounded-pill"
+          disabled={
+            !showOptionsCompany &&
+            !showOptionsIndividualsDetails
+          }
         >
           Envoyer{" "}
         </Button>
