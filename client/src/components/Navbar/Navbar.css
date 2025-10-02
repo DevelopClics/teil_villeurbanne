@@ -228,7 +228,7 @@
     background: none;
     border: none;
     transition: background-color 0.3s ease-in-out 0.3s,
-      color 0.3s ease-in-out 0.8s;
+      color 0.3s ease-in-out 0.3s;
     margin: 0;
     vertical-align: middle;
     cursor: pointer;
@@ -372,5 +372,8 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  color: #000000a6 !important;
+}
+
+.nous-rejoindre-link:hover {
+  color: white !important;
 }

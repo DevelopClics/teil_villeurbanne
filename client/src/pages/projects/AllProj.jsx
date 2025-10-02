@@ -152,37 +152,27 @@ export default function AllProj({ isNavbarHovered }) {
                       className="square-img-container"
                       onClick={() => {
                         if (item.category) {
-                          navigate(
-                            `/projects/${item.category.toLowerCase()}`,
-                            {
-                              state: {
-                                projectId: item.id,
-                                projectCategory: item.category,
-                              },
-                            }
-                          );
+                          navigate(`/projects/${item.category.toLowerCase()}`, {
+                            state: {
+                              projectId: item.id,
+                              projectCategory: item.category,
+                            },
+                          });
                         }
                       }}
                       style={{ cursor: "pointer" }}
                     >
-                      <div className="project-category-label">
-                        {item.panel}
-                      </div>
+                      <div className="project-category-label">{item.panel}</div>
 
                       <LazyLoadImage
                         wrapperClassName="square-img"
+                        className="img-content-fit"
                         src={`${import.meta.env.BASE_URL}${item.src}`}
                         alt={item.alt}
                         effect="blur"
                         width="100%"
                         height="100%"
                       />
-                      <div className="project-info-box">
-                        <h4 className="project-info-title">
-                          {item.shortitle}
-                        </h4>
-                        <p className="project-info-text">{item.shortext}</p>
-                      </div>
                       {isAuthenticated && (
                         <Button
                           variant="info"
@@ -195,6 +185,10 @@ export default function AllProj({ isNavbarHovered }) {
                           Faire monter en premier
                         </Button>
                       )}
+                      <div className="project-info-box">
+                        <h4 className="project-info-title">{item.shortitle}</h4>
+                        <p className="project-info-text">{item.shortext}</p>
+                      </div>
                     </div>
                   </Col>
                 ))

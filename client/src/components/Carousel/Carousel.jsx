@@ -180,7 +180,7 @@ const CarouselComponent = ({
         imageUrl = response.data.url;
       } catch (error) {
         console.error("Error uploading image:", error);
-        return; 
+        return;
       }
     }
 
@@ -244,10 +244,17 @@ const CarouselComponent = ({
   return (
     <>
       <section
-        className={`hero-section ${isNavbarHovered || isFaded ? "navbar-hovered" : ""}`}
+        className={`hero-section ${
+          isNavbarHovered || isFaded ? "navbar-hovered" : ""
+        }`}
         ref={heroSectionRef}
       >
-        <Carousel activeIndex={index} onSelect={handleSelect} controls={true} indicators={true}>
+        <Carousel
+          activeIndex={index}
+          onSelect={handleSelect}
+          controls={true}
+          indicators={true}
+        >
           {localSlides.length > 0 ? (
             localSlides.map((slide) => (
               <Carousel.Item key={slide.id} className="carousel-item-container">
@@ -280,7 +287,9 @@ const CarouselComponent = ({
                   </div>
                 )}
                 <LazyLoadImage
-                  src={`${import.meta.env.BASE_URL}${slide.src}?v=${Date.now()}`}
+                  src={`${import.meta.env.BASE_URL}${
+                    slide.src
+                  }?v=${Date.now()}`}
                   alt={slide.alt}
                   className="d-block w-100 hero-image"
                   effect="blur"

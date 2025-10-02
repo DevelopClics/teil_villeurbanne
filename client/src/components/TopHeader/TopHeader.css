@@ -22,7 +22,7 @@
 }
 
 .social-icons-container > *:not(:last-child) {
-  margin-right: 0.5rem;
+  margin-right: 0.01vw;
 }
 
 .social-icon-circle.facebook-icon {
@@ -34,9 +34,9 @@
 }
 
 .social-icon-separator {
-  width: 2px; /* Increased width for debugging */
-  height: 5vh;
-  background-color: black; /* Changed color for debugging */
+  width: 3px !important;
+  height: 3.5vh;
+  background-color: black;
   margin-right: 0.5rem;
   display: block;
   visibility: visible;
@@ -47,24 +47,17 @@
   z-index: 110;
 }
 
-/* sm */
-@media (min-width: 576px) {
+.social-icons-container > *:not(:last-child) {
+  margin-right: 2vw;
 }
-
-/* md */
-@media (min-width: 768px) {
+.contact-icon {
+  margin-right: 2.3vw !important;
 }
-
-/* lg */
-@media (min-width: 992px) {
+.linkedin-icon {
+  margin-right: 2vw !important;
 }
-
-/* xl */
-@media (min-width: 1200px) {
-}
-
-/* xxl */
-@media (min-width: 1400px) {
+.facebook-icon {
+  margin-right: 2vw !important;
 }
 
 .no-outline,
@@ -72,4 +65,66 @@
 .no-outline:active {
   outline: none !important;
   box-shadow: none !important;
+}
+
+/* sm */
+@media (min-width: 576px) {
+  .social-icons-container > *:not(:last-child) {
+    margin-right: 2vw;
+  }
+  .contact-icon {
+    margin-right: 2.3vw !important;
+  }
+  .linkedin-icon {
+    margin-right: 2vw !important;
+  }
+  .facebook-icon {
+    margin-right: 2vw !important;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .social-icon-separator {
+    height: 4.3vh;
+  }
+}
+
+/* lg */
+@media (min-width: 992px) {
+  .social-icons-container > *:not(:last-child) {
+    margin-right: 0.4vw;
+  }
+
+  /* xl */
+  @media (min-width: 1200px) {
+    .social-icons-container > *:not(:last-child) {
+      margin-right: 0.6vw;
+    }
+    .contact-icon {
+      margin-right: 0.6vw !important;
+    }
+    .linkedin-icon {
+      margin-right: 0.5vw !important;
+    }
+    .facebook-icon {
+      margin-right: 0vw !important;
+    }
+  }
+
+  /* xxl */
+  @media (min-width: 1400px) {
+    .social-icons-container > *:not(:last-child) {
+      margin-right: 0vw;
+    }
+    .contact-icon {
+      margin-right: 1vw !important;
+    }
+    .linkedin-icon {
+      margin-right: 0vw !important;
+    }
+    .facebook-icon {
+      margin-right: -1.5vw !important;
+    }
+  }
 }

@@ -77,6 +77,12 @@ server.post("/upload/:category", teamUpload.single("image"), (req, res) => {
   res.json({ url: fileUrl });
 });
 
+// Routes for 404 page
+server.get("/api/error404", (req, res) => {
+  const error404 = router.db.get("not-found-title").value();
+  res.json(error404);
+});
+
 // Authentication middleware
 server.use((req, res, next) => {
   console.log("Request Path:", req.path);
@@ -134,26 +140,6 @@ server.use((req, res, next) => {
 server.get("/citiesProjects", (req, res) => {
   const citiesProjects = router.db.get("citiesProjects").value();
   res.json(citiesProjects);
-});
-
-server.get("/cultureProjects", (req, res) => {
-  const cultureProjects = router.db.get("cultureProjects").value();
-  res.json(cultureProjects);
-});
-
-server.get("/foodProjects", (req, res) => {
-  const foodProjects = router.db.get("foodProjects").value();
-  res.json(foodProjects);
-});
-
-server.get("/youthProjects", (req, res) => {
-  const youthProjects = router.db.get("youthProjects").value();
-  res.json(youthProjects);
-});
-
-server.get("/economyProjects", (req, res) => {
-  const economyProjects = router.db.get("economyProjects").value();
-  res.json(economyProjects);
 });
 
 server.put("/cultureProjects/:id", (req, res) => {
@@ -332,6 +318,21 @@ server.put("/pageParagraphs/:id", (req, res) => {
     allPageParagraphs.push(newParagraph);
     router.db.write();
     res.status(201).json(newParagraph);
+  }
+});
+
+server.put("/api/error404/:id", (req, res) => {
+  const id = req.params.id;
+  const updatedContent = req.body;
+  const error404 = router.db
+    .get("not-found-title")
+    .find({ id })
+    .assign(updatedContent)
+    .write();
+  if (error404) {
+    res.json(error404);
+  } else {
+    res.status(404).json({ message: "404 content not found" });
   }
 });
 

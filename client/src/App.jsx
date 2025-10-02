@@ -10,14 +10,7 @@ import { Container, Row, Col } from "react-bootstrap";
 const Home = lazy(() => import("./pages/Home"));
 
 // const Contact = lazy(() => import("./pages/Contact"));
-const Contact = lazy(
-  () =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(import("./pages/Contact"));
-      }, 1000);
-    })
-);
+const Contact = lazy(() => import("./pages/Contact"));
 // import Home from "./pages/Home";
 // import Contact from "./pages/Contact";
 
@@ -26,17 +19,16 @@ const Team = lazy(() => import("./pages/about/Team"));
 
 // import Genesis from "./pages/about/Genesis";
 const Genesis = lazy(() => import("./pages/about/Genesis"));
-// import Places from "./pages/pages/about/Places";
 const Places = lazy(() => import("./pages/about/Places"));
 // import AllProj from "./pages/projects/AllProj";
 const AllProj = lazy(() => import("./pages/projects/AllProj"));
 
 // import Member from "./pages/join-us/Member";
-const Member = lazy(() => import("./pages/join-us/Member"));
+// const Member = lazy(() => import("./pages/join-us/Member"));
 // import Donate from "./pages/join-us/Donate";
-const Donate = lazy(() => import("./pages/join-us/Donate"));
+// const Donate = lazy(() => import("./pages/join-us/Donate"));
 // import Volunteer from "./pages/join-us/Volunteer";
-const Volunteer = lazy(() => import("./pages/join-us/Volunteer"));
+// const Volunteer = lazy(() => import("./pages/join-us/Volunteer"));
 // import Cooperation from "./pages/projects/Cooperation";
 // PRIVATE ROUTES
 const ProductList = lazy(() => import("./pages/admin/products/ProductList"));
@@ -48,7 +40,9 @@ const CreateProduct = lazy(() =>
 
 // import EditProduct from "./pages/admin/products/EditProduct";
 const EditProduct = lazy(() => import("./pages/admin/products/EditProduct"));
-const PlaceListAdmin = lazy(() => import("./pages/admin/places/PlaceListAdmin"));
+const PlaceListAdmin = lazy(() =>
+  import("./pages/admin/places/PlaceListAdmin")
+);
 const EditPlace = lazy(() => import("./pages/admin/places/EditPlace"));
 const CreatePlace = lazy(() => import("./pages/admin/places/CreatePlace"));
 // import Login from "./pages/admin/Login";
@@ -61,7 +55,9 @@ const DropProject = lazy(() => import("./pages/projects/DropProject"));
 // import JoinContact from "./pages/join-us/JoinContact";
 const JoinContact = lazy(() => import("./pages/join-us/JoinContact"));
 
-const ProjectCategoryPage = lazy(() => import("./pages/projects/ProjectCategoryPage"));
+import ProjectCategoryPage from "./pages/projects/ProjectCategoryPage";
+import ScrollToTop from "./components/ScrollToTop";
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -112,6 +108,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <div className="top-blue-bar">
         {screenWidth}px - {getBreakpoint(screenWidth)}
       </div>
@@ -269,6 +266,14 @@ function App() {
         />
 
         {/* <Route path="*" element={<NotFound />} /> */}
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<div>Chargement…</div>}>
+              <NotFound />
+            </Suspense>
+          }
+        />
       </Routes>
 
       <Footer />

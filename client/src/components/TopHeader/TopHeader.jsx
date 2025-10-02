@@ -28,7 +28,7 @@ const TopHeader = ({
             {isAuthenticated && (
               <Stack
                 direction="horizontal"
-                className="justify-content-center justify-content-md-start social-icons-container"
+                className="justify-content-center  social-icons-container"
               >
                 <Button
                   variant=""
@@ -77,7 +77,7 @@ const TopHeader = ({
                 </a>
                 <div className="social-icon-separator"></div>
                 <Link
-                  className="social-icon-circle"
+                  className="social-icon-circle contact-icon"
                   to="/contact"
                   onMouseEnter={() => onElementHover(true)}
                   onMouseLeave={() => onElementHover(false)}

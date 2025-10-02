@@ -9,7 +9,7 @@ export default function PageLayout({ title, titleId, DescriptionComponent }) {
       <section className="reason-section">
         <Container fluid className="pt-5">
           <Row className="justify-content-md-center">
-            <Col xl={10}>
+            <Col xl={10} className="px-4 px-md-5 px-xl-0">
               {titleId ? (
                 <EditableTitle textId={titleId} defaultTitle={title} />
               ) : (

@@ -250,7 +250,7 @@ const FormJoinus = () => {
         </FloatingLabel>
         <Form.Control
           as="textarea"
-          placeholder="Message"
+          placeholder="Autres envies/besoins"
           rows={1}
           // className={`mt-1 ${
           //   theme ? `form_control-dark text-light ` : `form_control-light `

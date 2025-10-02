@@ -142,6 +142,8 @@ export default function Team({ isNavbarHovered }) {
   const { isAuthenticated: isLoggedIn } = useAuth();
   const [isEditable, setIsEditable] = useState(isLoggedIn);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // 1. Add loading state
+  const [error, setError] = useState(null); // 2. Add error state
 
   const fetchData = async () => {
     try {
@@ -153,8 +155,12 @@ export default function Team({ isNavbarHovered }) {
       }
       const teamMembersData = await teamMembersResponse.json();
       setTeamMembers(teamMembersData);
+      setError(null); // Clear any previous errors
     } catch (error) {
       console.error("Error fetching data:", error);
+      setError("Failed to load team members. Please try again later."); // Set error message
+    } finally {
+      setIsLoading(false); // 3. Stop loading, whether success or fail
     }
   };
 
@@ -268,10 +274,10 @@ export default function Team({ isNavbarHovered }) {
       />
       <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
 
-      <section className="reason-section" style={{ paddingTop: "50px" }}>
-        <Container fluid className="app-container-padding">
-          <Row>
-            <Col>
+      <section className="reason-section">
+        <Container fluid className="pt-5">
+          <Row className="justify-content-md-center">
+            <Col xl={10}>
               <EditableTitle textId="team-page-title" defaultTitle={SUB} />
 
               {isLoggedIn && (
@@ -289,6 +295,10 @@ export default function Team({ isNavbarHovered }) {
                   onCancel={() => setShowAddForm(false)}
                 />
               )}
+
+              {/* 4. Display loading or error messages */}
+              {isLoading && <p>Loading team members...</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
 
               {/* OFFICE */}
               <div style={{ marginBottom: "8vh" }}>

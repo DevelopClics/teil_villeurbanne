@@ -1,0 +1,24 @@
+.common-button {
+  font-family: var(--heading-font);
+  font-weight: 700;
+
+  color: var(--text-color);
+
+  padding: 0.5rem 0.8rem !important; /* Add space and override bootstrap */
+  font-size: 1.2rem;
+  letter-spacing: 0rem;
+  line-height: 1;
+  text-decoration: none;
+  background-color: white;
+  border: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+}
+
+.common-button:hover {
+  background-color: var(--primary-color) !important;
+  color: white;
+}

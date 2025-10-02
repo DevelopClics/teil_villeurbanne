@@ -19,8 +19,8 @@ const Footer = () => {
     <footer className="footer">
       <Container fluid className="main-content-wrapper app-container-padding">
         {/* Logos and infos rows and cols */}
-        <Row className="gx-0">
-          <Col xs={12} sm={12} md={10} lg={8} xl={8} xxl={9}>
+        <Row className="gx-0 justify-content-center">
+          <Col xs={12} sm={12} md={10} lg={8} xl={7} xxl={8}>
             <Row>
               {/* Logos col */}
 

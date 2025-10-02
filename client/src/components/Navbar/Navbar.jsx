@@ -194,7 +194,9 @@ const Navigation = ({ onDropdownHoverChange, socialIconsTargetRef }) => {
             <Nav.Link
               as={Link}
               to="/joinus-contact"
-              className="nav-element nav-common-button nous-rejoindre-link "
+              className={`nav-element nav-common-button nous-rejoindre-link ${
+                isLinkActive(["/joinus-contact"]) ? "active" : ""
+              }`}
               onClick={handleItemClick}
               onMouseEnter={() => onDropdownHoverChange(true)}
               onMouseLeave={() => onDropdownHoverChange(false)}

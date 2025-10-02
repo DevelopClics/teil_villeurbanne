@@ -353,7 +353,7 @@
         "alt": "hyjhj",
         "src": "images/photos/team/carousel/1758628467439-carrouseul culture.jpg",
         "id": 12,
-        "title": "Les villes",
+        "title": "Les villes !",
         "text": "This is the text for  Cities"
       }
     ],
@@ -361,8 +361,8 @@
       {
         "src": "images/photos/team/carousel/1758023591690-AdobeStock_318346130.jpeg",
         "id": 2,
-        "title": "Tous les projets",
-        "text": "This is the text for  All projects."
+        "title": "Déposer un projet",
+        "text": "This is the text for  Drop a project"
       }
     ],
     "culture": [
@@ -376,7 +376,9 @@
     "welcome": [
       {
         "src": "images/photos/team/carousel/1758024370491-AdobeStock_505865128.jpeg",
-        "id": 4
+        "id": 4,
+        "title": "Nous rejoindre",
+        "text": "Text for join us"
       }
     ],
     "food": [
@@ -394,6 +396,24 @@
         "id": 16,
         "title": "Economie",
         "text": "This is the text for  Economy."
+      }
+    ],
+    "error404": [
+      {
+        "alt": "fff",
+        "title": "ERREUR 404",
+        "text": "Trompé de page ?",
+        "src": "images/photos/team/carousel/1759232925031-AdobeStock_311575980.jpeg",
+        "id": 17
+      }
+    ],
+    "youth": [
+      {
+        "alt": "jeunesse",
+        "title": "Jeunesse",
+        "text": "Text for youth",
+        "src": "images/photos/team/carousel/1759243610262-AdobeStock_244627948.jpeg",
+        "id": 18
       }
     ]
   },
@@ -830,7 +850,7 @@
     },
     {
       "id": "places-title",
-      "content": "Les villes"
+      "content": "Les villes !"
     },
     {
       "id": "all-projects-title",
@@ -863,6 +883,10 @@
     {
       "id": "join-us-title",
       "content": "Nous rejoindre"
+    },
+    {
+      "id": "not-found-title",
+      "content": "Page non trouvée !!!"
     }
   ],
   "pageParagraphs": [
