@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 // import emailjs from "@emailjs/browser";
 
 import { FloatingLabel } from "react-bootstrap";
@@ -38,6 +38,12 @@ const FormJoinus = () => {
         }
       );
     form.current.reset();
+  };
+
+  const [showSecondOptions, setShowSecondOptions] = useState(false);
+
+  const handleFirstOptionsChange = () => {
+    setShowSecondOptions(true);
   };
 
   const form = useRef();
@@ -181,6 +187,7 @@ const FormJoinus = () => {
                 label="Association, entreprise"
                 name="exampleRadios"
                 id="exampleRadios2"
+                onChange={handleFirstOptionsChange}
               />
             </div>
             <div className="col-md-2 col-xxl-2">
@@ -191,6 +198,7 @@ const FormJoinus = () => {
                 label="Habitant"
                 name="exampleRadios"
                 id="exampleRadios2"
+                onChange={handleFirstOptionsChange}
               />
             </div>
             <div className="col-md-3 col-xxl-2">
@@ -200,39 +208,42 @@ const FormJoinus = () => {
                 label="Elève, étudiant"
                 name="exampleRadios"
                 id="exampleRadios2"
+                onChange={handleFirstOptionsChange}
               />
             </div>
           </div>
-          <div className="row col-6 col-md-12">
-            <div className="col-md-2 col-xxl-2">Je cherche</div>
-            <div className="col-md-3 col-xxl-3">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Un logement"
-                name="exampleRadios"
-                id="exampleRadios2"
-              />
+          {showSecondOptions && (
+            <div className="row col-6 col-md-12">
+              <div className="col-md-2 col-xxl-2">Je cherche</div>
+              <div className="col-md-3 col-xxl-3">
+                <Form.Check
+                  type="radio"
+                  aria-label="radio 1"
+                  label="Un logement"
+                  name="exampleRadios2"
+                  id="exampleRadios3"
+                />
+              </div>
+              <div className="col-md-2 col-xxl-2">
+                <Form.Check
+                  type="radio"
+                  aria-label="radio 1"
+                  label="Un stage"
+                  name="exampleRadios2"
+                  id="exampleRadios4"
+                />
+              </div>
+              <div className="col-md-5 col-xxl-3">
+                <Form.Check
+                  type="radio"
+                  aria-label="radio 1"
+                  label="A être bénèvole sur un projet"
+                  name="exampleRadios2"
+                  id="exampleRadios5"
+                />
+              </div>
             </div>
-            <div className="col-md-2 col-xxl-2">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Un stage"
-                name="exampleRadios"
-                id="exampleRadios2"
-              />
-            </div>
-            <div className="col-md-5 col-xxl-3">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="A être bénèvole sur un projet"
-                name="exampleRadios"
-                id="exampleRadios2"
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
