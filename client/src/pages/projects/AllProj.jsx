@@ -177,6 +177,7 @@ export default function AllProj({ isNavbarHovered }) {
                         <Button
                           variant="info"
                           className="mt-2"
+                          style={{ display: 'none' }}
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent navigation when button is clicked
                             handleMoveToTop(item.id);
