@@ -16,6 +16,7 @@ const FormJoinus = () => {
     watch,
     formState: { errors, isValid },
     handleSubmit,
+    trigger, // Add trigger here
   } = useForm();
 
   const sendEmail = () => {
@@ -60,11 +61,20 @@ const FormJoinus = () => {
       setShowOptionsCompany(true);
     } else if (selectedStatus === "habitant" || selectedStatus === "eleve") {
       setShowOptionsIndividuals(true);
-      if (selectedRequest) { // Only set details if a request is selected
+      if (selectedRequest) {
+        // Only set details if a request is selected
         setShowOptionsIndividualsDetails(true);
       }
     }
-  }, [selectedStatus, selectedRequest, setShowOptionsCompany, setShowOptionsIndividuals, setShowOptionsIndividualsDetails]);
+    trigger(); // Force re-validation
+  }, [
+    selectedStatus,
+    selectedRequest,
+    setShowOptionsCompany,
+    setShowOptionsIndividuals,
+    setShowOptionsIndividualsDetails,
+    trigger,
+  ]);
 
   return (
     <Form
@@ -132,9 +142,6 @@ const FormJoinus = () => {
             </span>
             <Form.Control
               type="email"
-              //   className={`mt-1 ${
-              //     theme ? `form_control-dark text-light ` : `form_control-light `
-              //   }`}
               placeholder="E-mail"
               name="from_email"
               {...register("from_email", {
@@ -289,7 +296,7 @@ const FormJoinus = () => {
           rows={1}
           name="message"
           {...register("message", {
-            required: true,
+            required: false, // Changed to false
             minLength: 100,
             maxLength: 699,
           })}
@@ -299,6 +306,14 @@ const FormJoinus = () => {
       {/* END MESSAGE */}
 
       {/* BUTTON */}
+      {console.log(
+        "Button state check: isValid:",
+        isValid,
+        "showOptionsCompany:",
+        showOptionsCompany,
+        "showOptionsIndividualsDetails:",
+        showOptionsIndividualsDetails
+      )}
       <div className="mt-4 col-12 text-end">
         {" "}
         <Button
