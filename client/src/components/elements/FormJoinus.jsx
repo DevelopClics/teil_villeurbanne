@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 // import emailjs from "@emailjs/browser";
 
 import { FloatingLabel } from "react-bootstrap";
@@ -14,7 +14,7 @@ const FormJoinus = () => {
   const {
     register,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
   } = useForm();
 
@@ -46,6 +46,25 @@ const FormJoinus = () => {
   const [showOptionsIndividuals, setShowOptionsIndividuals] = useState(false);
   const [showOptionsIndividualsDetails, setShowOptionsIndividualsDetails] =
     useState(false);
+
+  const selectedStatus = watch("status");
+  const selectedRequest = watch("request");
+
+  useEffect(() => {
+    // Reset all options first
+    setShowOptionsCompany(false);
+    setShowOptionsIndividuals(false);
+    setShowOptionsIndividualsDetails(false);
+
+    if (selectedStatus === "association") {
+      setShowOptionsCompany(true);
+    } else if (selectedStatus === "habitant" || selectedStatus === "eleve") {
+      setShowOptionsIndividuals(true);
+      if (selectedRequest) { // Only set details if a request is selected
+        setShowOptionsIndividualsDetails(true);
+      }
+    }
+  }, [selectedStatus, selectedRequest, setShowOptionsCompany, setShowOptionsIndividuals, setShowOptionsIndividualsDetails]);
 
   return (
     <Form
@@ -167,7 +186,6 @@ const FormJoinus = () => {
                 name="exampleRadios"
                 id="radioAssociation"
                 value="association"
-                onChange={() => setShowOptionsCompany(true)}
                 {...register("status", {
                   required: false,
                 })}
@@ -182,7 +200,6 @@ const FormJoinus = () => {
                 name="exampleRadios"
                 id="radioHabitant"
                 value="habitant"
-                onChange={() => setShowOptionsIndividuals(true)}
                 {...register("status", {
                   required: false,
                 })}
@@ -196,7 +213,6 @@ const FormJoinus = () => {
                 name="exampleRadios"
                 id="radioEleve"
                 value="eleve"
-                onChange={() => setShowOptionsIndividuals(true)}
                 {...register("status", {
                   required: false,
                 })}
@@ -216,7 +232,6 @@ const FormJoinus = () => {
                 label="Un logement"
                 name="exampleRadios"
                 id="radioLogement"
-                onChange={() => setShowOptionsIndividualsDetails(true)}
                 {...register("request", {
                   required: false,
                 })}
@@ -229,7 +244,6 @@ const FormJoinus = () => {
                 label="Un stage"
                 name="exampleRadios"
                 id="radioStage"
-                onChange={() => setShowOptionsIndividualsDetails(true)}
                 {...register("request", {
                   required: false,
                 })}
@@ -242,7 +256,6 @@ const FormJoinus = () => {
                 label="A être bénèvole sur un projet"
                 name="exampleRadios"
                 id="radioBenevole"
-                onChange={() => setShowOptionsIndividualsDetails(true)}
                 {...register("request", {
                   required: false,
                 })}
@@ -293,7 +306,9 @@ const FormJoinus = () => {
           size="lg"
           type="submit"
           className="envoyer-btn px-5 rounded-pill"
-          disabled={!showOptionsCompany && !showOptionsIndividualsDetails}
+          disabled={
+            !isValid || (!showOptionsCompany && !showOptionsIndividualsDetails)
+          }
         >
           Envoyer{" "}
         </Button>
