@@ -35,3 +35,63 @@ textarea.form-control {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }
+
+.options-container-one {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+.options-container-show-one {
+  max-height: 500px; /* Adjust based on content height */
+  opacity: 1;
+}
+
+.options-container-two {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+.options-container-show-two {
+  max-height: 500px; /* Adjust based on content height */
+  opacity: 1;
+}
+
+/* Revised styles for react-bootstrap Form.Check - back to radio button appearance */
+
+/* Keep the existing checked state for the input itself */
+.form-check-input:checked {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.25rem rgba(0, 84, 104, 0.25) !important;
+}
+
+/* Remove button-like styling from label, keep default radio button appearance */
+.form-check-label {
+  cursor: pointer;
+  margin-left: 5px; /* Keep some spacing */
+  /* Remove padding, border, background, color, transition, border-radius */
+}
+
+/* Ensure the actual radio input is visible and functional */
+.form-check-input[type="radio"] {
+  position: static; /* Revert to default positioning */
+  opacity: 1; /* Make visible */
+  pointer-events: auto; /* Make interactive */
+}
+
+/* Adjust the layout of the radio groups */
+.row.col-6.col-md-12 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Spacing between radio buttons */
+  align-items: center;
+}
+
+.row.col-6.col-md-12 > div {
+  display: flex;
+  align-items: center;
+}

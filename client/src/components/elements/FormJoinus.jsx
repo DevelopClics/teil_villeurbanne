@@ -42,10 +42,22 @@ const FormJoinus = () => {
   };
 
   const form = useRef();
-  const [showOptionsCompany, setShowOptionsCompany] = useState(false);
-  const [showOptionsIndividuals, setShowOptionsIndividuals] = useState(false);
+  const [selectedMainType, setSelectedMainType] = useState(''); // New state for main radio buttons
+  const [selectedSubType, setSelectedSubType] = useState(''); // New state for sub radio buttons
+
   const [showOptionsIndividualsDetails, setShowOptionsIndividualsDetails] =
     useState(false);
+
+  const handleMainRadioChange = (e) => {
+    setSelectedMainType(e.target.value);
+    setSelectedSubType(''); // Always reset sub-type when main type changes
+    setShowOptionsIndividualsDetails(false); // Always reset sub-details visibility
+  };
+
+  const handleSubRadioChange = (e) => {
+    setSelectedSubType(e.target.value);
+    setShowOptionsIndividualsDetails(true); // Show details when a sub-option is selected
+  };
 
   return (
     <Form
@@ -164,10 +176,11 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Association, entreprise"
-                name="exampleRadios"
+                name="mainRadioGroup" // New name for main radio group
                 id="radioAssociation"
                 value="association"
-                onChange={() => setShowOptionsCompany(true)}
+                checked={selectedMainType === 'association'}
+                onChange={handleMainRadioChange}
               />
             </div>
             <div className="col-md-2 col-xxl-2">
@@ -176,10 +189,11 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Habitant"
-                name="exampleRadios"
+                name="mainRadioGroup" // New name for main radio group
                 id="radioHabitant"
                 value="habitant"
-                onChange={() => setShowOptionsIndividuals(true)}
+                checked={selectedMainType === 'habitant'}
+                onChange={handleMainRadioChange}
               />
             </div>
             <div className="col-md-3 col-xxl-2">
@@ -187,57 +201,67 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Elève, étudiant"
-                name="exampleRadios"
+                name="mainRadioGroup" // New name for main radio group
                 id="radioEleve"
                 value="eleve"
-                onChange={() => setShowOptionsIndividuals(true)}
+                checked={selectedMainType === 'eleve'}
+                onChange={handleMainRadioChange}
               />
             </div>
           </div>
-          <div
-            className={`row col-6 col-md-12 options-container-two ${
-              showOptionsIndividuals ? "options-container-show-two" : ""
-            }`}
-          >
-            <div className="col-md-2 col-xxl-2">Je cherche</div>
-            <div className="col-md-3 col-xxl-3">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Un logement"
-                name="exampleRadios"
-                id="radioLogement"
-                onChange={() => setShowOptionsIndividualsDetails(true)}
-              />
+          {/* Conditional rendering for sub-options */}
+          {(selectedMainType === 'habitant' || selectedMainType === 'eleve') && (
+            <div
+              className={`row col-6 col-md-12 options-container-two ${
+                (selectedMainType === 'habitant' || selectedMainType === 'eleve') ? "options-container-show-two" : ""
+              }`}
+            >
+              <div className="col-md-2 col-xxl-2">Je cherche</div>
+              <div className="col-md-3 col-xxl-3">
+                <Form.Check
+                  type="radio"
+                  aria-label="radio 1"
+                  label="Un logement"
+                  name="subRadioGroup" // New name for sub radio group
+                  id="radioLogement"
+                  value="un logement"
+                  checked={selectedSubType === 'un logement'}
+                  onChange={handleSubRadioChange}
+                />
+              </div>
+              <div className="col-md-2 col-xxl-2">
+                <Form.Check
+                  type="radio"
+                  aria-label="radio 1"
+                  label="Un stage"
+                  name="subRadioGroup" // New name for sub radio group
+                  id="radioStage"
+                  value="un stage"
+                  checked={selectedSubType === 'un stage'}
+                  onChange={handleSubRadioChange}
+                />
+              </div>
+              <div className="col-md-5 col-xxl-3">
+                <Form.Check
+                  type="radio"
+                  aria-label="radio 1"
+                  label="A être bénèvole sur un projet"
+                  name="subRadioGroup" // New name for sub radio group
+                  id="radioBenevole"
+                  value="A être bénèvole sur un projet"
+                  checked={selectedSubType === 'A être bénèvole sur un projet'}
+                  onChange={handleSubRadioChange}
+                />
+              </div>
             </div>
-            <div className="col-md-2 col-xxl-2">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Un stage"
-                name="exampleRadios"
-                id="radioStage"
-                onChange={() => setShowOptionsIndividualsDetails(true)}
-              />
-            </div>
-            <div className="col-md-5 col-xxl-3">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="A être bénèvole sur un projet"
-                name="exampleRadios"
-                id="radioBenevole"
-                onChange={() => setShowOptionsIndividualsDetails(true)}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
       {/* MESSAGE */}
       <div
         className={`mt-4 offset-xxl-1 options-container-one ${
-          showOptionsCompany || showOptionsIndividualsDetails
+          selectedMainType === 'association' || selectedSubType !== ''
             ? "options-container-show-one"
             : ""
         }`}
@@ -276,8 +300,9 @@ const FormJoinus = () => {
           type="submit"
           className="envoyer-btn px-5 rounded-pill"
           disabled={
-            !showOptionsCompany &&
-            !showOptionsIndividualsDetails
+            selectedMainType === '' ||
+            (selectedMainType === 'association' && watch('message') === '') ||
+            ((selectedMainType === 'habitant' || selectedMainType === 'eleve') && (selectedSubType === '' || watch('message') === ''))
           }
         >
           Envoyer{" "}
