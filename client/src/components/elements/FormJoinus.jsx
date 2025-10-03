@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 import { FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -14,10 +14,14 @@ const FormJoinus = () => {
   const {
     register,
     watch,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitted },
     handleSubmit,
     trigger, // Add trigger here
-  } = useForm();
+  } = useForm({ mode: "onChange" });
+
+  console.log("FormJoinus Debug - Errors:", errors);
+  console.log("FormJoinus Debug - isValid:", isValid);
+  console.log("FormJoinus Debug - isSubmitted:", isSubmitted);
 
   const sendEmail = () => {
     // e.preventDefault();
@@ -48,10 +52,17 @@ const FormJoinus = () => {
   const [showOptionsIndividualsDetails, setShowOptionsIndividualsDetails] =
     useState(false);
 
+  const isMounted = useRef(false);
+
   const selectedStatus = watch("status");
   const selectedRequest = watch("request");
 
   useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+
     // Reset all options first
     setShowOptionsCompany(false);
     setShowOptionsIndividuals(false);
@@ -66,14 +77,12 @@ const FormJoinus = () => {
         setShowOptionsIndividualsDetails(true);
       }
     }
-    trigger(); // Force re-validation
   }, [
     selectedStatus,
     selectedRequest,
     setShowOptionsCompany,
     setShowOptionsIndividuals,
     setShowOptionsIndividualsDetails,
-    trigger,
   ]);
 
   return (
@@ -99,7 +108,7 @@ const FormJoinus = () => {
             placeholder="Prénom"
             name="from_firstname"
             {...register("from_firstname", {
-              required: false,
+              required: true,
               minLength: 3,
               maxLength: 19,
             })}
@@ -120,7 +129,7 @@ const FormJoinus = () => {
             placeholder="Nom"
             name="from_surname"
             {...register("from_surname", {
-              required: false,
+              required: true,
               minLength: 3,
               maxLength: 19,
             })}
@@ -306,14 +315,6 @@ const FormJoinus = () => {
       {/* END MESSAGE */}
 
       {/* BUTTON */}
-      {console.log(
-        "Button state check: isValid:",
-        isValid,
-        "showOptionsCompany:",
-        showOptionsCompany,
-        "showOptionsIndividualsDetails:",
-        showOptionsIndividualsDetails
-      )}
       <div className="mt-4 col-12 text-end">
         {" "}
         <Button

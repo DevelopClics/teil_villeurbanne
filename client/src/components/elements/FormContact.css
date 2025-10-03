@@ -1,3 +1,8 @@
+.error {
+  min-height: 1.5em; /* Reserve space for one line of error message */
+  display: block; /* Ensure min-height is applied */
+}
+
 .form-control,
 textarea.form-control,
 .form-check-input {
