@@ -18,7 +18,7 @@ export default function JoinContact({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        category="welcome"
+        category="join"
         carouselTextId={10}
         isEditable={isAuthenticated}
         stationaryText={false}

@@ -9,7 +9,7 @@
         "surname": "Philippe",
         "occupation": "Président",
         "contact": "bernadette.dubosc@adct-asso.org",
-        "cacheBust": 1758799306061
+        "cacheBust": 1759405117662
       },
       {
         "id": 2,
@@ -361,8 +361,8 @@
       {
         "src": "images/photos/team/carousel/1758023591690-AdobeStock_318346130.jpeg",
         "id": 2,
-        "title": "Déposer un projet",
-        "text": "This is the text for  Drop a project"
+        "title": "Tous les projets",
+        "text": "This is the text for  All Projects"
       }
     ],
     "culture": [
@@ -377,7 +377,15 @@
       {
         "src": "images/photos/team/carousel/1758024370491-AdobeStock_505865128.jpeg",
         "id": 4,
-        "title": "Nous rejoindre",
+        "title": "Nous contacter",
+        "text": "Text for contact us"
+      }
+    ],
+    "join": [
+      {
+        "src": "images/photos/team/carousel/1758024370491-AdobeStock_505865128.jpeg",
+        "id": 4,
+        "title": "Nous joindre",
         "text": "Text for join us"
       }
     ],
@@ -396,6 +404,14 @@
         "id": 16,
         "title": "Economie",
         "text": "This is the text for  Economy."
+      }
+    ],
+    "drop-project": [
+      {
+        "src": "images/photos/team/carousel/1758701093114-qui sommes nous 3.jpg",
+        "id": 16,
+        "title": "Déposer un projet",
+        "text": "This is the text for  Drop Project."
       }
     ],
     "error404": [

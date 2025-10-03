@@ -246,7 +246,7 @@ const CarouselComponent = ({
       <section
         className={`hero-section ${
           isNavbarHovered || isFaded ? "navbar-hovered" : ""
-        }`}
+        } carousel-${category}`}
         ref={heroSectionRef}
       >
         <Carousel
@@ -291,7 +291,8 @@ const CarouselComponent = ({
                     slide.src
                   }?v=${Date.now()}`}
                   alt={slide.alt}
-                  className="d-block w-100 hero-image"
+                  className="            
+                  w-100 hero-image"
                   effect="blur"
                   width="100%"
                   height="100%"

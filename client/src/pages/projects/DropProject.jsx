@@ -13,7 +13,7 @@ export default function DropProject({ isNavbarHovered }) {
     <>
       <CarouselComponent
         isNavbarHovered={isNavbarHovered}
-        category="projects"
+        category="drop-project"
         carouselTextId={9}
         isEditable={isAuthenticated}
         stationaryText={false}
