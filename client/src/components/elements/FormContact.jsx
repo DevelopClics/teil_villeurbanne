@@ -1,5 +1,5 @@
 import { useRef } from "react";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 
 import { FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -12,20 +12,21 @@ import Form from "react-bootstrap/Form";
 const FormContact = () => {
   const {
     register,
-    watch,
-    formState: { errors },
+
+    formState: { errors, isValid },
     handleSubmit,
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const sendEmail = () => {
     // e.preventDefault();
     emailjs
       .sendForm(
         "service_04voz6b",
-        "template_eyz1vfd",
+        "template_vw8gevu",
         form.current,
         "awYJXfOvl5Y_Sx9cQ"
       )
+
       .then(
         (result) => {
           console.log(result.text);
@@ -57,9 +58,9 @@ const FormContact = () => {
               {errors.from_email?.type === "pattern" &&
                 "L'email n'a pas un format correct"}
               {errors.from_email?.type === "minLength" &&
-                "Ecrire plus de 14 caractères"}
+                "Ecrire plus de 15 caractères"}
               {errors.from_email?.type === "maxLength" &&
-                "Ecrire 30 caractères au maximum"}
+                "Ecrire 40 caractères au maximum"}
             </span>
             <Form.Control
               type="email"
@@ -69,7 +70,7 @@ const FormContact = () => {
                 required: true,
                 pattern: /^[a-zA-z0-9_.+-]+@[a-zA-z0-9-]+\.[a-zA-Z0-9-.]+$/i,
                 minLength: 15,
-                maxLength: 30,
+                maxLength: 40,
               })}
             />
           </Form.Group>
@@ -84,7 +85,7 @@ const FormContact = () => {
               {errors.object?.type === "minLength" &&
                 "Ecrire 10 caractères au minimum"}
               {errors.object?.type === "maxLength" &&
-                "Ecrire moins de 50 caractères"}
+                "Ecrire 50 caractères au maximum"}
             </span>
           </div>
           <Form.Control
@@ -94,7 +95,7 @@ const FormContact = () => {
             {...register("object", {
               required: true,
               minLength: 10,
-              maxLength: 49,
+              maxLength: 50,
             })}
           />
         </div>
@@ -110,7 +111,7 @@ const FormContact = () => {
             {errors.message?.type === "minLength" &&
               "Ecrire plus de 100 caractères"}
             {errors.message?.type === "maxLength" &&
-              "Ecrire moins de 700 caractères"}
+              "Ecrire 700 caractères au maximum"}
           </span>
         </FloatingLabel>
         <Form.Control
@@ -121,7 +122,7 @@ const FormContact = () => {
           {...register("message", {
             required: true,
             minLength: 100,
-            maxLength: 699,
+            maxLength: 700,
           })}
           style={{ height: "30vh" }}
         />
@@ -134,6 +135,7 @@ const FormContact = () => {
           variant="primary"
           size="lg"
           type="submit"
+          disabled={!isValid}
           className="envoyer-btn px-5 rounded-pill"
         >
           Envoyer{" "}

@@ -1,11 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
-
 import { FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-
 import "./FormContact.css";
-
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import ShowOptionsIndividualsDetails from "./ShowOptionsIndividualsDetails";
@@ -16,7 +13,7 @@ const FormJoinus = () => {
     watch,
     formState: { errors, isValid, isSubmitted },
     handleSubmit,
-    trigger, // Add trigger here
+    trigger,
   } = useForm({ mode: "onChange" });
 
   console.log("FormJoinus Debug - Errors:", errors);
@@ -31,7 +28,6 @@ const FormJoinus = () => {
         "template_vw8gevu",
         form.current,
         "awYJXfOvl5Y_Sx9cQ"
-        // "dQwPA98Z1xVRmUVuX"
       )
       .then(
         (result) => {
@@ -68,7 +64,7 @@ const FormJoinus = () => {
     setShowOptionsIndividuals(false);
     setShowOptionsIndividualsDetails(false);
 
-    if (selectedStatus === "association") {
+    if (selectedStatus === "association, entreprise") {
       setShowOptionsCompany(true);
     } else if (selectedStatus === "habitant" || selectedStatus === "eleve") {
       setShowOptionsIndividuals(true);
@@ -84,6 +80,11 @@ const FormJoinus = () => {
     setShowOptionsIndividuals,
     setShowOptionsIndividualsDetails,
   ]);
+
+  useEffect(() => {
+    // Trigger validation for message field when its requirement changes
+    trigger("message");
+  }, [showOptionsCompany, showOptionsIndividualsDetails, trigger]);
 
   return (
     <Form
@@ -199,9 +200,9 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Association, entreprise"
-                name="exampleRadios"
+                name="status"
                 id="radioAssociation"
-                value="association"
+                value="association, entreprise"
                 {...register("status", {
                   required: false,
                 })}
@@ -213,7 +214,7 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Habitant"
-                name="exampleRadios"
+                name="status"
                 id="radioHabitant"
                 value="habitant"
                 {...register("status", {
@@ -226,7 +227,7 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Elève, étudiant"
-                name="exampleRadios"
+                name="status"
                 id="radioEleve"
                 value="eleve"
                 {...register("status", {
@@ -246,8 +247,9 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Un logement"
-                name="exampleRadios"
+                name="request"
                 id="radioLogement"
+                value="logement"
                 {...register("request", {
                   required: false,
                 })}
@@ -258,8 +260,9 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="Un stage"
-                name="exampleRadios"
+                name="request"
                 id="radioStage"
+                value="Un stage"
                 {...register("request", {
                   required: false,
                 })}
@@ -270,8 +273,9 @@ const FormJoinus = () => {
                 type="radio"
                 aria-label="radio 1"
                 label="A être bénèvole sur un projet"
-                name="exampleRadios"
+                name="request"
                 id="radioBenevole"
+                value="A être bénèvole sur un projet"
                 {...register("request", {
                   required: false,
                 })}
@@ -291,7 +295,8 @@ const FormJoinus = () => {
       >
         <FloatingLabel controlId="floatingTextarea">
           <span className="error text-danger">
-            {errors.message?.type === "required" &&
+            {isSubmitted &&
+              errors.message?.type === "required" &&
               "Merci de nous écrire un message"}
             {errors.message?.type === "minLength" &&
               "Ecrire plus de 100 caractères"}
@@ -305,7 +310,7 @@ const FormJoinus = () => {
           rows={1}
           name="message"
           {...register("message", {
-            required: false, // Changed to false
+            required: showOptionsCompany || showOptionsIndividualsDetails,
             minLength: 100,
             maxLength: 699,
           })}
@@ -322,9 +327,7 @@ const FormJoinus = () => {
           size="lg"
           type="submit"
           className="envoyer-btn px-5 rounded-pill"
-          disabled={
-            !isValid || (!showOptionsCompany && !showOptionsIndividualsDetails)
-          }
+          disabled={!isValid}
         >
           Envoyer{" "}
         </Button>
