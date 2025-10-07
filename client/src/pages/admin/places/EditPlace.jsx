@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditPlace = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const navigate = useNavigate();
   const [place, setPlace] = useState({
@@ -19,7 +20,7 @@ const EditPlace = () => {
   useEffect(() => {
     const fetchPlace = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/places/${id}`);
+        const response = await axios.get(`${API_URL}/places/${id}`);
         const fetchedPlace = response.data;
         setPlace({
           id: fetchedPlace.id,
@@ -68,12 +69,13 @@ const EditPlace = () => {
 
     if (file) {
       formData.append("image", file); // Assuming 'image' is the field name for file uploads
-    } else if (place.image) { // Changed from place.photo to place.image
+    } else if (place.image) {
+      // Changed from place.photo to place.image
       formData.append("image", place.image); // If no new file, send existing image path under 'image' key
     }
 
     try {
-      await axios.put(`http://localhost:3001/places/${id}`, formData, {
+      await axios.put(`${API_URL}/places/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -146,11 +148,7 @@ const EditPlace = () => {
         <div className="form-group">
           <label>Current Photo:</label>
           {place.image && ( // Changed from place.photo to place.image
-            <img
-              src={`http://localhost:3001${place.image}`}
-              alt={place.alt}
-              width="100"
-            />
+            <img src={`${API_URL}${place.image}`} alt={place.alt} width="100" />
           )}
           <input type="file" onChange={handleFileChange} />
         </div>

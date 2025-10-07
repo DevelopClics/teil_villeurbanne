@@ -26,7 +26,9 @@ export default function AllProj({ isNavbarHovered }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage, setProjectsPerPage] = useState(12); // Number of projects per page
   const navigate = useNavigate();
-
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
+  // `${API_URL}/projects`
   useEffect(() => {
     const fetchAllProjects = async () => {
       try {
@@ -37,7 +39,7 @@ export default function AllProj({ isNavbarHovered }) {
             headers["Authorization"] = `Bearer ${token}`;
           }
         }
-        const response = await fetch("http://localhost:3001/projects", {
+        const response = await fetch(`${API_URL}/projects`, {
           headers,
         });
         if (!response.ok) {
@@ -74,7 +76,7 @@ export default function AllProj({ isNavbarHovered }) {
         try {
           const token = localStorage.getItem("token");
           await axios.patch(
-            `http://localhost:3001/projects/${projectId}/move_to_top`,
+            `${API_URL}/projects/${projectId}/move_to_top`,
             {},
             {
               headers: {
@@ -173,19 +175,19 @@ export default function AllProj({ isNavbarHovered }) {
                         width="100%"
                         height="100%"
                       />
-                      {isAuthenticated && (
+                      {/* {isAuthenticated && (
                         <Button
                           variant="info"
                           className="mt-2"
-                          style={{ display: 'none' }}
+                          style={{ display: "none" }}
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent navigation when button is clicked
                             handleMoveToTop(item.id);
                           }}
                         >
-                          Faire monter en premier
+                          Faire monter en top position
                         </Button>
-                      )}
+                      )} */}
                       <div className="project-info-box">
                         <h4 className="project-info-title">{item.shortitle}</h4>
                         <p className="project-info-text">{item.shortext}</p>

@@ -130,6 +130,7 @@ const AddTeamMemberForm = ({ onSubmit, onCancel }) => {
 };
 
 export default function Team({ isNavbarHovered }) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const SUB = "L'équipe";
 
   const [teamMembers, setTeamMembers] = useState({
@@ -147,9 +148,8 @@ export default function Team({ isNavbarHovered }) {
 
   const fetchData = async () => {
     try {
-      const teamMembersResponse = await fetch(
-        "http://localhost:3001/teammembers"
-      );
+      const teamMembersResponse = await fetch(`${API_URL}/teammembers`);
+
       if (!teamMembersResponse.ok) {
         throw new Error(`HTTP error! status: ${teamMembersResponse.status}`);
       }
@@ -179,16 +179,13 @@ export default function Team({ isNavbarHovered }) {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:3001/teammembers/${category}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        }
-      );
+      const response = await fetch(`${API_URL}/teammembers/${category}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -205,17 +202,14 @@ export default function Team({ isNavbarHovered }) {
     console.log("Team.jsx: updatedMember before fetch", updatedMember);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:3001/teammembers/${category}/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(updatedMember),
-        }
-      );
+      const response = await fetch(`${API_URL}/teammembers/${category}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedMember),
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -228,15 +222,12 @@ export default function Team({ isNavbarHovered }) {
   const handleDeleteTeamMember = async (category, id) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(
-        `http://localhost:3001/teammembers/${category}/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}/teammembers/${category}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -302,7 +293,7 @@ export default function Team({ isNavbarHovered }) {
 
               {/* OFFICE */}
               <div style={{ marginBottom: "8vh" }}>
-                <h4>Bureau</h4>
+                <h4>Le bureau</h4>
                 <hr />
                 <EditableParagraph
                   textId="bureau-paragraph"
@@ -320,7 +311,7 @@ export default function Team({ isNavbarHovered }) {
               {/* END OFFICE */}
               {/* EMPLOYEES */}
               <div style={{ marginBottom: "8vh" }}>
-                <h4>Employés</h4>
+                <h4>L'équipe salariée</h4>
                 <hr />
                 <EditableParagraph
                   textId="employees-paragraph"
@@ -338,7 +329,7 @@ export default function Team({ isNavbarHovered }) {
               {/* END EMPLOYEES */}
               {/* ADMINISTRATION ADVISOR */}
               <div style={{ marginBottom: "8vh" }}>
-                <h4>conseil d'administration</h4>
+                <h4>Le conseil d'administration</h4>
                 <hr />
                 <EditableParagraph
                   textId="administration-paragraph"
@@ -354,7 +345,7 @@ export default function Team({ isNavbarHovered }) {
               {/* END ADMINISTRATION ADVISOR*/}
               {/* INSTRUCTION COMITY */}
               <div style={{ marginBottom: "8vh" }}>
-                <h4>comité d'instruction</h4>
+                <h4>Le comité d'instruction</h4>
                 <hr />
                 <EditableParagraph
                   textId="instruction-paragraph"
@@ -367,7 +358,7 @@ export default function Team({ isNavbarHovered }) {
               {/* END INSTRUCTION COMITY */}
               {/* SCIENTIFIC ADVISOR */}
               <div style={{ marginBottom: "8vh" }}>
-                <h4>conseil scientifique</h4>
+                <h4>Le conseil scientifique</h4>
                 <hr />
                 <EditableParagraph
                   textId="scientific-paragraph"

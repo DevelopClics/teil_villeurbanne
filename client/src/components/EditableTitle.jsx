@@ -8,6 +8,9 @@ export default function EditableTitle({ textId, defaultTitle }) {
   const [title, setTitle] = useState(defaultTitle);
   const [editedTitle, setEditedTitle] = useState(defaultTitle);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
+
   useEffect(() => {
     const fetchTitle = async () => {
       try {
@@ -18,10 +21,9 @@ export default function EditableTitle({ textId, defaultTitle }) {
             headers["Authorization"] = `Bearer ${token}`;
           }
         }
-        const response = await axios.get(
-          `http://localhost:3001/pageTitles/${textId}`,
-          { headers }
-        );
+        const response = await axios.get(`${API_URL}/pageTitles/${textId}`, {
+          headers,
+        });
         setTitle(response.data.content);
         setEditedTitle(response.data.content);
       } catch (error) {
@@ -41,7 +43,7 @@ export default function EditableTitle({ textId, defaultTitle }) {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:3001/pageTitles/${textId}`,
+        `${API_URL}/pageTitles/${textId}`,
         { content: editedTitle },
         {
           headers: {

@@ -12,6 +12,9 @@ import ProjectLayout from "../../components/layouts/ProjectLayout";
 import PageLayout from "../../components/layouts/PageLayout";
 
 export default function ProjectCategoryPage({ isNavbarHovered }) {
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
+
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 10;
   const { id, category: urlCategory } = useParams();
@@ -53,9 +56,10 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
 
         if (id) {
           // Fetch single project
-          const response = await fetch(`http://localhost:3001/projects/${id}`, {
+          const response = await fetch(`${API_URL}/projects/${id}`, {
             headers,
           });
+
           if (!response.ok) {
             const errorText = await response.text();
             throw new Error(
@@ -66,7 +70,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
           setSingleProject(data);
         } else {
           // Fetch all projects for the current category
-          const response = await fetch("http://localhost:3001/projects", {
+          const response = await fetch(`${API_URL}/projects`, {
             headers,
           });
           if (!response.ok) {
@@ -156,8 +160,9 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
       }
 
       const response = await axios.put(
-        `http://localhost:3001/projects/${projectId}`,
+        `${API_URL}/projects/${projectId}`,
         formData,
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -213,8 +218,9 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
       }
 
       const response = await axios.post(
-        "http://localhost:3001/projects",
+        `${API_URL}/projects`,
         formData,
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -239,14 +245,11 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
   const handleDeleteProject = async (projectId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.delete(
-        `http://localhost:3001/projects/${projectId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.delete(`${API_URL}/projects/${projectId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.status === 200) {
         setProjects((prevProjects) =>
@@ -259,6 +262,88 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
       }
     } catch (error) {
       console.error("Error deleting project:", error);
+    }
+  };
+
+  const handleMoveToTop = async (projectId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        `${API_URL}/projects/${projectId}/move_to_top`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const fetchResponse = await fetch(`${API_URL}/projects`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await fetchResponse.json();
+        const filteredProjects = data.filter((project) =>
+          Array.isArray(project.category)
+            ? project.category.includes(currentCategory)
+            : project.category === currentCategory
+        );
+        setProjects(filteredProjects);
+      }
+    } catch (error) {
+      console.error("Error moving project to top:", error);
+    }
+  };
+
+  const handleMoveUp = async (projectId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        `${API_URL}/projects/${projectId}/move_up`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const filteredProjects = response.data.filter((project) =>
+          Array.isArray(project.category)
+            ? project.category.includes(currentCategory)
+            : project.category === currentCategory
+        );
+        setProjects(filteredProjects);
+      }
+    } catch (error) {
+      console.error("Error moving project up:", error);
+    }
+  };
+
+  const handleMoveDown = async (projectId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        `${API_URL}/projects/${projectId}/move_down`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        const filteredProjects = response.data.filter((project) =>
+          Array.isArray(project.category)
+            ? project.category.includes(currentCategory)
+            : project.category === currentCategory
+        );
+        setProjects(filteredProjects);
+      }
+    } catch (error) {
+      console.error("Error moving project down:", error);
     }
   };
 
@@ -336,6 +421,9 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                     onUpdate={handleUpdateProject}
                     onSaveNew={handleSaveNewProject}
                     onDelete={handleDeleteProject}
+                    onMoveToTop={handleMoveToTop}
+                    onMoveUp={handleMoveUp}
+                    onMoveDown={handleMoveDown}
                   />
                 </div>
               ))

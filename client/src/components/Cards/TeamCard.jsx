@@ -15,6 +15,8 @@ export default function TeamCard({
   onDelete,
   category,
 }) {
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
   const { isAuthenticated } = useAuth();
   const [editingId, setEditingId] = useState(null);
   const [formData, setFormData] = useState({});
@@ -50,7 +52,7 @@ export default function TeamCard({
 
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3001/upload/${category}`, {
+        const response = await fetch(`${API_URL}/upload/${category}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -91,7 +93,11 @@ export default function TeamCard({
             <div className="square-img-container">
               <LazyLoadImage
                 wrapperClassName="square-img"
-                src={ `${item.src.startsWith("http") ? item.src : import.meta.env.BASE_URL + item.src}?v=${Date.now()}` }
+                src={`${
+                  item.src.startsWith("http")
+                    ? item.src
+                    : import.meta.env.BASE_URL + item.src
+                }?v=${Date.now()}`}
                 alt={item.alt}
                 effect="blur"
                 width="100%"

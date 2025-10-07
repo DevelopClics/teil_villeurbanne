@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { PiTrashSimpleBold } from "react-icons/pi";
+import { TbArrowBigUpLinesFilled } from "react-icons/tb";
+import { TbArrowBigDown } from "react-icons/tb";
+import { TbArrowBigUp } from "react-icons/tb";
+import { MdOutlineUpdate } from "react-icons/md";
+import { ImCancelCircle } from "react-icons/im";
+
 import "../../App.css";
 
 export default function ProjectLayout({
@@ -13,10 +20,13 @@ export default function ProjectLayout({
   onSaveNew,
   onDelete,
   onMoveToTop,
+  onMoveUp,
+  onMoveDown,
   isCreating = false,
   onCancelCreate,
   isProjectPage = false,
 }) {
+  const tailleIcone = 30;
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -36,7 +46,7 @@ export default function ProjectLayout({
   };
 
   const handleDelete = () => {
-    if (window.confirm("Are you sure you want to delete this project?")) {
+    if (window.confirm("Voulez-vous vraiment supprimer cette image ?")) {
       onDelete(item.id);
     }
   };
@@ -331,17 +341,47 @@ export default function ProjectLayout({
                     onClick={() => setIsEditing(!isEditing)}
                     className="me-2"
                   >
-                    {isEditing ? "Annuler" : "Modifier"}
+                    {isEditing ? (
+                      <>
+                        <ImCancelCircle size={tailleIcone} /> Annuler{" "}
+                      </>
+                    ) : (
+                      <>
+                        <MdOutlineUpdate size={tailleIcone} /> Modifier
+                      </>
+                    )}
                   </Button>
                   {isProjectPage && (
-                    <Button variant="info" className="me-2" onClick={() => onMoveToTop(item.id)}>
-                      Faire monter en premier
-                    </Button>
+                    <>
+                      <Button
+                        variant="info"
+                        className="bi me-2"
+                        onClick={() => onMoveToTop(item.id)}
+                      >
+                        <TbArrowBigUpLinesFilled size={tailleIcone} />{" "}
+                        <strong>TOP</strong>
+                      </Button>
+                      <Button
+                        variant="info"
+                        className="me-2"
+                        onClick={() => onMoveUp(item.id)}
+                      >
+                        <TbArrowBigUp size={tailleIcone} /> <strong>+1</strong>
+                      </Button>
+                      <Button
+                        variant="info"
+                        className="me-2"
+                        onClick={() => onMoveDown(item.id)}
+                      >
+                        <TbArrowBigDown size={tailleIcone} />{" "}
+                        <strong>-1</strong>
+                      </Button>
+                    </>
                   )}
                 </div>
                 {isProjectPage && (
                   <Button variant="danger" onClick={handleDelete}>
-                    Supprimer
+                    <PiTrashSimpleBold size={tailleIcone} /> Supprimer
                   </Button>
                 )}
               </div>

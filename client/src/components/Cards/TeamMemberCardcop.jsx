@@ -11,6 +11,9 @@ export default function TeamMemberCard({
   onDelete,
   category,
 }) {
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
+
   const { isAuthenticated } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
@@ -48,7 +51,7 @@ export default function TeamMemberCard({
 
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3001/upload/${category}`, {
+        const response = await fetch(`${API_URL}/upload/${category}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -73,7 +76,10 @@ export default function TeamMemberCard({
       src: imageUrl,
       cacheBust: Date.now(), // Update cacheBust to bust cache
     };
-    console.log("TeamMemberCardcop: updatedFormData before onUpdate", updatedFormData);
+    console.log(
+      "TeamMemberCardcop: updatedFormData before onUpdate",
+      updatedFormData
+    );
 
     await onUpdate(category, item.id, updatedFormData);
     setIsEditing(false);
@@ -179,10 +185,7 @@ export default function TeamMemberCard({
                   >
                     Modifier le profil
                   </Button>
-                  <Button
-                    variant="danger"
-                    onClick={handleDeleteClick}
-                  >
+                  <Button variant="danger" onClick={handleDeleteClick}>
                     Supprimer
                   </Button>
                 </>

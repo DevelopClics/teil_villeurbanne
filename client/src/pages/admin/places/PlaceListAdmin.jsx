@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext"; // Assuming AuthContext is needed for admin pages
 
 const PlaceListAdmin = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [places, setPlaces] = useState([]);
   const navigate = useNavigate();
   const { logout } = useAuth(); // Assuming authentication is required
@@ -14,7 +16,7 @@ const PlaceListAdmin = () => {
 
   const fetchPlaces = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/places");
+      const response = await axios.get(`${API_URL}/places`);
       setPlaces(response.data);
     } catch (error) {
       console.error("Error fetching places:", error);
@@ -24,7 +26,7 @@ const PlaceListAdmin = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this place?")) {
       try {
-        await axios.delete(`http://localhost:3001/places/${id}`);
+        await axios.delete(`${API_URL}/places/${id}`);
         fetchPlaces(); // Refresh the list after deletion
       } catch (error) {
         console.error("Error deleting place:", error);
@@ -75,7 +77,7 @@ const PlaceListAdmin = () => {
                   <td>
                     {place.photo && (
                       <img
-                        src={`http://localhost:3001${place.photo}`}
+                        src={`${API_URL}${place.photo}`}
                         alt={place.alt}
                         width="50"
                       />

@@ -64,13 +64,17 @@ const TopHeader = ({
                 className="justify-content-center justify-content-md-end social-icons-container"
               >
                 <a
-                  href="#facebook"
+                  href="https://www.facebook.com/profile.php?id=61556286526874"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="social-icon-circle facebook-icon"
                 >
                   <img src={facebookIcon} alt="Facebook" />
                 </a>
                 <a
-                  href="#linkedin"
+                  href="https://www.linkedin.com/company/coop%C3%A9rationsterritoriales/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="social-icon-circle linkedin-icon"
                 >
                   <img src={linkedinIcon} alt="LinkedIn" />

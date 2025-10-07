@@ -9,10 +9,12 @@ export default function EditableContent({ endpoint, rows = 10 }) {
   const [content, setContent] = useState("");
   const [editedContent, setEditedContent] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001${endpoint}`);
+        const response = await axios.get(`${API_URL}${endpoint}`);
         setContent(response.data.content);
         setEditedContent(response.data.content.replace(/<br\s*\/?>/gi, "\n"));
       } catch (error) {
@@ -31,7 +33,7 @@ export default function EditableContent({ endpoint, rows = 10 }) {
       const token = localStorage.getItem("token");
       const textToSave = editedContent.replace(/\n/g, "<br />");
       await axios.put(
-        `http://localhost:3001${endpoint}`,
+        `${API_URL}${endpoint}`,
         { content: textToSave },
         {
           headers: {

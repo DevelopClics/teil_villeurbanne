@@ -742,6 +742,46 @@ server.patch("/projects/:id/move_to_top", (req, res) => {
   res.status(200).json(project);
 });
 
+server.patch("/projects/:id/move_up", (req, res) => {
+  const projectId = req.params.id;
+  const db = router.db;
+  const projects = db.get("projects");
+
+  const projectIndex = projects.value().findIndex(p => p.id === projectId);
+
+  if (projectIndex === -1) {
+    return res.status(404).json({ message: "Project not found" });
+  }
+
+  if (projectIndex > 0) {
+    const [project] = projects.value().splice(projectIndex, 1);
+    projects.value().splice(projectIndex - 1, 0, project);
+    db.write();
+  }
+
+  res.status(200).json(projects.value());
+});
+
+server.patch("/projects/:id/move_down", (req, res) => {
+  const projectId = req.params.id;
+  const db = router.db;
+  const projects = db.get("projects");
+  const projectList = projects.value();
+  const projectIndex = projectList.findIndex(p => p.id === projectId);
+
+  if (projectIndex === -1) {
+    return res.status(404).json({ message: "Project not found" });
+  }
+
+  if (projectIndex < projectList.length - 1) {
+    const [project] = projectList.splice(projectIndex, 1);
+    projectList.splice(projectIndex + 1, 0, project);
+    db.write();
+  }
+
+  res.status(200).json(projectList);
+});
+
 server.use(router);
 
 const PORT = 3001;

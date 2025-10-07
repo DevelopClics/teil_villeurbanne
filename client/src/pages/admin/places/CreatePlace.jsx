@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const CreatePlace = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const navigate = useNavigate();
   const [place, setPlace] = useState({
     title: "",
@@ -49,7 +51,7 @@ const CreatePlace = () => {
     }
 
     try {
-      await axios.post("http://localhost:3001/places", formData, {
+      await axios.post(`${API_URL}/places`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

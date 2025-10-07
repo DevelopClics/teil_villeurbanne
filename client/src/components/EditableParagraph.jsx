@@ -12,12 +12,12 @@ export default function EditableParagraph({
   const [text, setText] = useState(defaultText);
   const [editedText, setEditedText] = useState(defaultText);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
   useEffect(() => {
     const fetchText = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3001/${endpoint}/${textId}`
-        );
+        const response = await axios.get(`${API_URL}/${endpoint}/${textId}`);
         setText(response.data.content);
         setEditedText(response.data.content);
       } catch (error) {
@@ -37,7 +37,7 @@ export default function EditableParagraph({
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:3001/${endpoint}/${textId}`,
+        `${API_URL}/${endpoint}/${textId}`,
         { content: editedText },
         {
           headers: {

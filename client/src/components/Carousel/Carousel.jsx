@@ -12,6 +12,8 @@ const CarouselComponent = ({
   category, // New prop for carousel category
   startFaded,
 }) => {
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
   const [localSlides, setLocalSlides] = useState([]); // Initialize as empty array
   const [isFaded, setIsFaded] = useState(startFaded);
   const [index, setIndex] = useState(0);
@@ -43,14 +45,12 @@ const CarouselComponent = ({
   useEffect(() => {
     const fetchCarouselImages = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/carouselImages",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await axios.get(`${API_URL}/carouselImages`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         // Filter slides based on the category prop
         setLocalSlides(response.data[category] || []);
       } catch (error) {
@@ -71,10 +71,10 @@ const CarouselComponent = ({
   }, [editingSlideId, isCreatingNewSlide]);
 
   const handleDelete = async (slideId) => {
-    if (window.confirm("Are you sure you want to delete this slide?")) {
+    if (window.confirm("Voulez-vous vraiment supprimer cette image ?")) {
       try {
         const allCarouselImagesResponse = await axios.get(
-          "http://localhost:3001/carouselImages",
+          `${API_URL}/carouselImages`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -103,15 +103,11 @@ const CarouselComponent = ({
           return;
         }
 
-        await axios.put(
-          "http://localhost:3001/carouselImages",
-          updatedAllCarouselImages,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await axios.put(`${API_URL}/carouselImages`, updatedAllCarouselImages, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setLocalSlides((prevSlides) =>
           prevSlides.filter((slide) => slide.id !== slideId)
@@ -168,7 +164,7 @@ const CarouselComponent = ({
 
       try {
         const response = await axios.post(
-          "http://localhost:3001/upload/carousel",
+          `${API_URL}/upload/carousel`,
           uploadFormData,
           {
             headers: {
@@ -188,7 +184,7 @@ const CarouselComponent = ({
 
     try {
       const allCarouselImagesResponse = await axios.get(
-        "http://localhost:3001/carouselImages",
+        `${API_URL}/carouselImages`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -216,13 +212,9 @@ const CarouselComponent = ({
 
       updatedAllCarouselImages[category] = targetCategoryArray;
 
-      await axios.put(
-        "http://localhost:3001/carouselImages",
-        updatedAllCarouselImages,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await axios.put(`${API_URL}/carouselImages`, updatedAllCarouselImages, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       setLocalSlides(targetCategoryArray);
 

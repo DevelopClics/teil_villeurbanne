@@ -9,6 +9,8 @@ import EditableParagraph from "../components/EditableParagraph";
 import PageLayout from "../components/layouts/PageLayout";
 
 export default function Contact({ isNavbarHovered }) {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const TITLE = "Nous contacter";
   const SUB = "Nous contacter";
   const { isAuthenticated } = useAuth();
@@ -19,14 +21,18 @@ export default function Contact({ isNavbarHovered }) {
   useEffect(() => {
     const fetchCarouselSlides = async () => {
       try {
-        const response = await fetch("http://localhost:3001/carouselImages");
+        const response = await fetch(`${API_URL}/carouselImages`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json(); // data is an object like { home: [...], food: [...], welcome: [...] }
         // Flatten all slides from all categories into a single array
         const allSlides = Object.values(data).flat();
-        setCarouselSlides(allSlides.filter(slide => slide.alt === 'welcome01' || slide.alt === 'welcome02'));
+        setCarouselSlides(
+          allSlides.filter(
+            (slide) => slide.alt === "welcome01" || slide.alt === "welcome02"
+          )
+        );
       } catch (error) {
         console.error("Error fetching carousel slides:", error);
       }
@@ -51,7 +57,10 @@ export default function Contact({ isNavbarHovered }) {
         titleId="contact-us-title"
         DescriptionComponent={
           <>
-            <EditableParagraph textId="contact-us-paragraph" defaultText="CONTACTLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat." />
+            <EditableParagraph
+              textId="contact-us-paragraph"
+              defaultText="CONTACTLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."
+            />
             <FormContact />
           </>
         }

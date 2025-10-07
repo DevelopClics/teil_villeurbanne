@@ -1,58 +1,32 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-// import PrivateRoutes from "./utils/PrivateRoutes";
 import Navigation from "./components/Navbar/Navbar";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import TopHeader from "./components/TopHeader/TopHeader";
-import { Container, Row, Col } from "react-bootstrap";
 
 const Home = lazy(() => import("./pages/Home"));
-
-// const Contact = lazy(() => import("./pages/Contact"));
 const Contact = lazy(() => import("./pages/Contact"));
-// import Home from "./pages/Home";
-// import Contact from "./pages/Contact";
-
-// import Team from "./pages/about/Team";
 const Team = lazy(() => import("./pages/about/Team"));
-
-// import Genesis from "./pages/about/Genesis";
 const Genesis = lazy(() => import("./pages/about/Genesis"));
 const Places = lazy(() => import("./pages/about/Places"));
-// import AllProj from "./pages/projects/AllProj";
 const AllProj = lazy(() => import("./pages/projects/AllProj"));
 
-// import Member from "./pages/join-us/Member";
-// const Member = lazy(() => import("./pages/join-us/Member"));
-// import Donate from "./pages/join-us/Donate";
-// const Donate = lazy(() => import("./pages/join-us/Donate"));
-// import Volunteer from "./pages/join-us/Volunteer";
-// const Volunteer = lazy(() => import("./pages/join-us/Volunteer"));
-// import Cooperation from "./pages/projects/Cooperation";
 // PRIVATE ROUTES
 const ProductList = lazy(() => import("./pages/admin/products/ProductList"));
-// import ProductList from "./pages/admin/products/ProductList";
-// import CreateProduct from "./pages/admin/products/CreateProduct";
 const CreateProduct = lazy(() =>
   import("./pages/admin/products/CreateProduct")
 );
-
-// import EditProduct from "./pages/admin/products/EditProduct";
 const EditProduct = lazy(() => import("./pages/admin/products/EditProduct"));
 const PlaceListAdmin = lazy(() =>
   import("./pages/admin/places/PlaceListAdmin")
 );
 const EditPlace = lazy(() => import("./pages/admin/places/EditPlace"));
 const CreatePlace = lazy(() => import("./pages/admin/places/CreatePlace"));
-// import Login from "./pages/admin/Login";
 const Login = lazy(() => import("./pages/admin/Login"));
 
 import PrivateRoutes from "./utils/PrivateRoutes";
-// import DropProject from "./pages/projects/DropProject";
 const DropProject = lazy(() => import("./pages/projects/DropProject"));
-
-// import JoinContact from "./pages/join-us/JoinContact";
 const JoinContact = lazy(() => import("./pages/join-us/JoinContact"));
 
 import ProjectCategoryPage from "./pages/projects/ProjectCategoryPage";
@@ -110,7 +84,7 @@ function App() {
     <>
       <ScrollToTop />
       <div className="top-blue-bar">
-        {screenWidth}px - {getBreakpoint(screenWidth)}
+        {/* {screenWidth}px - {getBreakpoint(screenWidth)} */}
       </div>
       <TopHeader
         socialIconsRef={socialIconsRef}
@@ -275,12 +249,9 @@ function App() {
           }
         />
       </Routes>
-
       <Footer />
 
-      <div className="bottom-blue-bar">
-        {/* {screenWidth}px - {getBreakpoint(screenWidth)} */}
-      </div>
+      <div className="bottom-blue-bar"></div>
     </>
   );
 }
