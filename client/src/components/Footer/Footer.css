@@ -1,11 +1,17 @@
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
+}
+
 .footer {
   background-color: #f39a8b;
   color: var(--text-color);
   margin-top: 3rem;
-  padding: 6rem var(--global-padding-x) 4rem var(--global-padding-x);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+.footer-content {
+  padding: 3rem 0 2rem 0;
 }
 
 .footer h5 {

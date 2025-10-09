@@ -26,7 +26,7 @@ const CreatePlace = lazy(() => import("./pages/admin/places/CreatePlace"));
 const Login = lazy(() => import("./pages/admin/Login"));
 
 import PrivateRoutes from "./utils/PrivateRoutes";
-const DropProject = lazy(() => import("./pages/projects/DropProject"));
+import DropProject from "./pages/projects/DropProject";
 const JoinContact = lazy(() => import("./pages/join-us/JoinContact"));
 
 import ProjectCategoryPage from "./pages/projects/ProjectCategoryPage";
@@ -39,6 +39,19 @@ function App() {
   const socialIconsRef = useRef(null);
   const socialIconsTargetRef = useRef(null);
   const socialIconsContainerRef = useRef(null);
+  const [show, setShow] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalBody, setModalBody] = useState("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = (title, body) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      setModalTitle(title);
+      setModalBody(body);
+      setShow(true);
+    }, 500); // Delay to allow for scroll animation
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -86,170 +99,178 @@ function App() {
       <div className="top-blue-bar">
         {/* {screenWidth}px - {getBreakpoint(screenWidth)} */}
       </div>
-      <TopHeader
-        socialIconsRef={socialIconsRef}
-        socialIconsContainerRef={socialIconsContainerRef}
-        onElementHover={setIsNavbarHovered}
+      <div className={show ? "blur-background" : ""}>
+        <TopHeader
+          socialIconsRef={socialIconsRef}
+          socialIconsContainerRef={socialIconsContainerRef}
+          onElementHover={setIsNavbarHovered}
+        />
+        <Navigation
+          onDropdownHoverChange={setIsNavbarHovered}
+          socialIconsTargetRef={socialIconsTargetRef}
+        />
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route
+              path="/admin/products"
+              element={
+                <Suspense fallback={<div>Chargement…</div>}>
+                  <ProductList />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admin/products/create"
+              element={
+                <Suspense fallback={<div>Chargement…</div>}>
+                  <CreateProduct />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admin/products/edit/:id"
+              element={
+                <Suspense fallback={<div>Chargement…</div>}>
+                  <EditProduct />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admin/places"
+              element={
+                <Suspense fallback={<div>Chargement…</div>}>
+                  <PlaceListAdmin />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admin/places/edit/:id"
+              element={
+                <Suspense fallback={<div>Chargement…</div>}>
+                  <EditPlace />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/admin/places/create"
+              element={
+                <Suspense fallback={<div>Chargement…</div>}>
+                  <CreatePlace />
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route
+            path="/admin/login"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <Login />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <Home isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/joinus-contact"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <JoinContact isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <Contact isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          {/* QUI SOMMES NOUS   */}
+          <Route
+            path="/genesis"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <Genesis isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/team"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <Team isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/places"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <Places isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          {/* TOUS LES PROJETS   */}
+          <Route
+            path="/all-projects"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <AllProj isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/projects/:category/:id"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <ProjectCategoryPage isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/projects/:category"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <ProjectCategoryPage isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="/drop-project"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <DropProject isNavbarHovered={isNavbarHovered} />
+              </Suspense>
+            }
+          />
+
+          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<div>Chargement…</div>}>
+                <NotFound />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </div>
+      <Footer
+        show={show}
+        handleClose={handleClose}
+        handleShow={handleShow}
+        modalTitle={modalTitle}
+        modalBody={modalBody}
       />
-      <Navigation
-        onDropdownHoverChange={setIsNavbarHovered}
-        socialIconsTargetRef={socialIconsTargetRef}
-      />
-      <Routes>
-        <Route element={<PrivateRoutes />}>
-          <Route
-            path="/admin/products"
-            element={
-              <Suspense fallback={<div>Chargement…</div>}>
-                <ProductList />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin/products/create"
-            element={
-              <Suspense fallback={<div>Chargement…</div>}>
-                <CreateProduct />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin/products/edit/:id"
-            element={
-              <Suspense fallback={<div>Chargement…</div>}>
-                <EditProduct />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin/places"
-            element={
-              <Suspense fallback={<div>Chargement…</div>}>
-                <PlaceListAdmin />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin/places/edit/:id"
-            element={
-              <Suspense fallback={<div>Chargement…</div>}>
-                <EditPlace />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin/places/create"
-            element={
-              <Suspense fallback={<div>Chargement…</div>}>
-                <CreatePlace />
-              </Suspense>
-            }
-          />
-        </Route>
-        <Route
-          path="/admin/login"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Login />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Home isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/joinus-contact"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <JoinContact isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Contact isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        {/* QUI SOMMES NOUS   */}
-        <Route
-          path="/genesis"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Genesis isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/team"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Team isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/places"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <Places isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        {/* TOUS LES PROJETS   */}
-        <Route
-          path="/all-projects"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <AllProj isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path="/projects/:category/:id"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <ProjectCategoryPage isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/projects/:category"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <ProjectCategoryPage isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path="/drop-project"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <DropProject isNavbarHovered={isNavbarHovered} />
-            </Suspense>
-          }
-        />
-
-        {/* <Route path="*" element={<NotFound />} /> */}
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<div>Chargement…</div>}>
-              <NotFound />
-            </Suspense>
-          }
-        />
-      </Routes>
-      <Footer />
 
       <div className="bottom-blue-bar"></div>
     </>

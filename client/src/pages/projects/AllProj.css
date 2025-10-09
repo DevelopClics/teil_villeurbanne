@@ -89,3 +89,17 @@ p.project-info-text {
   padding-top: 0 !important;
   padding-left: 0 !important;
 }
+
+.pagination .page-item.active .page-link {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.pagination .page-link {
+  color: var(--primary-color);
+}
+
+.pagination .page-link:hover {
+  background-color: #e9ecef;
+}

@@ -12,6 +12,12 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function AllProj({ isNavbarHovered }) {
+  const categoryMap = {
+    culture: "Culture",
+    food: "Alimentation",
+    youth: "Jeunesse",
+    economy: "Économie",
+  };
   const XS = 12;
   const SM = 12;
   const MD = 6;
@@ -164,7 +170,9 @@ export default function AllProj({ isNavbarHovered }) {
                       }}
                       style={{ cursor: "pointer" }}
                     >
-                      <div className="project-category-label">{item.panel}</div>
+                      <div className="project-category-label">
+                        {categoryMap[item.panel] || item.panel}
+                      </div>
 
                       <LazyLoadImage
                         wrapperClassName="square-img"
