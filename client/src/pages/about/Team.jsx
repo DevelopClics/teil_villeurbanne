@@ -274,7 +274,7 @@ export default function Team({ isNavbarHovered }) {
               {isLoggedIn && (
                 <Button
                   onClick={() => setShowAddForm(!showAddForm)}
-                  className="mb-3 btn-main-blue"
+                  className="mb-3 btn-teal"
                 >
                   {showAddForm ? "Annuler" : "Ajouter un membre à l'équipe"}
                 </Button>

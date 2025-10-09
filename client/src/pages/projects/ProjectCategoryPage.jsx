@@ -378,7 +378,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                 <Button
                   variant="primary"
                   onClick={handleCreateClick}
-                  className="btn-main-blue me-2"
+                  className="btn-teal me-2"
                 >
                   Créer un nouveau projet
                 </Button>
