@@ -3,7 +3,7 @@ import "../../App.css";
 import CarouselComponent from "../../components/Carousel/Carousel";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
 import PageLayout from "../../components/layouts/PageLayout";
-import FakeComp from "../../components/FakeComp";
+import DropProjectDescription from "../../components/DropProjectDescription";
 
 export default function DropProject({ isNavbarHovered }) {
   const SUB = "Déposer un projet";
@@ -23,7 +23,7 @@ export default function DropProject({ isNavbarHovered }) {
       <PageLayout
         title={SUB}
         titleId="drop-project-title"
-        DescriptionComponent={<FakeComp />}
+        DescriptionComponent={<DropProjectDescription />}
       />
     </>
   );
