@@ -173,14 +173,18 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
 
       if (response.status === 200) {
         const updatedProject = response.data;
-        if (id) {
-          setSingleProject(updatedProject);
+        if (updatedProject.category !== urlCategory) {
+          navigate(`/projects/${updatedProject.category}`);
         } else {
-          setProjects((prevProjects) =>
-            prevProjects.map((project) =>
-              project.id === projectId ? updatedProject : project
-            )
-          );
+          if (id) {
+            setSingleProject(updatedProject);
+          } else {
+            setProjects((prevProjects) =>
+              prevProjects.map((project) =>
+                project.id === projectId ? updatedProject : project
+              )
+            );
+          }
         }
       }
     } catch (error) {
@@ -193,23 +197,14 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
       const token = localStorage.getItem("token");
       const formData = new FormData();
 
-      // Append all new data fields, ensuring category is a string
+      // Append all new data fields
       for (const key in newData) {
-        if (key === "category" && Array.isArray(newData[key])) {
-          formData.append(key, newData[key][0]); // Take the first element if it's an array
-        } else {
-          formData.append(key, newData[key]);
-        }
+        formData.append(key, newData[key]);
       }
 
       // Append the file if it exists
       if (file) {
         formData.append("image", file);
-      }
-
-      // Ensure currentCategory is added if not already present or if it was an array
-      if (!formData.has("category")) {
-        formData.append("category", currentCategory);
       }
 
       // Add a default size if not provided
@@ -233,8 +228,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
         // Assuming 201 Created for successful POST
         const newProject = response.data;
         setProjects((prevProjects) => [...prevProjects, newProject]);
-        // Optionally navigate to the new project or clear the form
-        // navigate(`/projects/${currentCategory}/${newProject.id}`);
+        navigate(`/projects/${newProject.category}`);
         setIsCreatingNewProject(false);
       }
     } catch (error) {
@@ -266,84 +260,80 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
   };
 
   const handleMoveToTop = async (projectId) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.patch(
-        `${API_URL}/projects/${projectId}/move_to_top`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+    if (projectIndex > 0) {
+      const newProjects = [...projects];
+      const [movedProject] = newProjects.splice(projectIndex, 1);
+      newProjects.unshift(movedProject);
+      setProjects(newProjects); // Optimistic update
 
-      if (response.status === 200) {
-        const fetchResponse = await fetch(`${API_URL}/projects`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await fetchResponse.json();
-        const filteredProjects = data.filter((project) =>
-          Array.isArray(project.category)
-            ? project.category.includes(currentCategory)
-            : project.category === currentCategory
+      try {
+        const token = localStorage.getItem("token");
+        await axios.patch(
+          `${API_URL}/projects/${projectId}/move_to_top`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
-        setProjects(filteredProjects);
+      } catch (error) {
+        console.error("Error moving project to top:", error);
+        setProjects(projects); // Revert on error
       }
-    } catch (error) {
-      console.error("Error moving project to top:", error);
     }
   };
 
   const handleMoveUp = async (projectId) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.patch(
-        `${API_URL}/projects/${projectId}/move_up`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+    if (projectIndex > 0) {
+      const newProjects = [...projects];
+      const [movedProject] = newProjects.splice(projectIndex, 1);
+      newProjects.splice(projectIndex - 1, 0, movedProject);
+      setProjects(newProjects); // Optimistic update
 
-      if (response.status === 200) {
-        const filteredProjects = response.data.filter((project) =>
-          Array.isArray(project.category)
-            ? project.category.includes(currentCategory)
-            : project.category === currentCategory
+      try {
+        const token = localStorage.getItem("token");
+        await axios.patch(
+          `${API_URL}/projects/${projectId}/move_up`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
-        setProjects(filteredProjects);
+      } catch (error) {
+        console.error("Error moving project up:", error);
+        setProjects(projects); // Revert on error
       }
-    } catch (error) {
-      console.error("Error moving project up:", error);
     }
   };
 
   const handleMoveDown = async (projectId) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.patch(
-        `${API_URL}/projects/${projectId}/move_down`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+    if (projectIndex < projects.length - 1) {
+      const newProjects = [...projects];
+      const [movedProject] = newProjects.splice(projectIndex, 1);
+      newProjects.splice(projectIndex + 1, 0, movedProject);
+      setProjects(newProjects); // Optimistic update
 
-      if (response.status === 200) {
-        const filteredProjects = response.data.filter((project) =>
-          Array.isArray(project.category)
-            ? project.category.includes(currentCategory)
-            : project.category === currentCategory
+      try {
+        const token = localStorage.getItem("token");
+        await axios.patch(
+          `${API_URL}/projects/${projectId}/move_down`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
-        setProjects(filteredProjects);
+      } catch (error) {
+        console.error("Error moving project down:", error);
+        setProjects(projects); // Revert on error
       }
-    } catch (error) {
-      console.error("Error moving project down:", error);
     }
   };
 
@@ -393,6 +383,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                 isCreating={true}
                 onSaveNew={handleSaveNewProject}
                 onCancelCreate={handleCancelCreateNewProject}
+                category={currentCategory}
               />
             )}
 

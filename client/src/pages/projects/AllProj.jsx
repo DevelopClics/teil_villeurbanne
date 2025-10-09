@@ -171,7 +171,7 @@ export default function AllProj({ isNavbarHovered }) {
                       style={{ cursor: "pointer" }}
                     >
                       <div className="project-category-label">
-                        {categoryMap[item.panel] || item.panel}
+                        {categoryMap[item.category] || item.category}
                       </div>
 
                       <LazyLoadImage
@@ -204,7 +204,7 @@ export default function AllProj({ isNavbarHovered }) {
                   </Col>
                 ))
               ) : (
-                <div>No projects to display.</div>
+                <div>Pas de projet à afficher.</div>
               )}
             </Row>
             {totalPages > 1 && (

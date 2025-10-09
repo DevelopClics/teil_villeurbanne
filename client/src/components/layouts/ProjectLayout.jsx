@@ -25,6 +25,7 @@ export default function ProjectLayout({
   isCreating = false,
   onCancelCreate,
   isProjectPage = false,
+  category,
 }) {
   const tailleIcone = 30;
   const [isEditing, setIsEditing] = useState(false);
@@ -46,7 +47,7 @@ export default function ProjectLayout({
   };
 
   const handleDelete = () => {
-    if (window.confirm("Voulez-vous vraiment supprimer cette image ?")) {
+    if (window.confirm("Voulez-vous vraiment supprimer ?")) {
       onDelete(item.id);
     }
   };
@@ -114,12 +115,17 @@ export default function ProjectLayout({
                       <strong>Titre encadré</strong> (visible dans Tous les
                       projets)
                     </Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="panel"
-                      value={formData.panel || ""}
+                    <Form.Select
+                      name="category"
+                      value={formData.category || category}
                       onChange={handleChange}
-                    />
+                    >
+                      <option value="">-- Catégorie --</option>
+                      <option value="culture">Culture</option>
+                      <option value="food">Alimentation</option>
+                      <option value="youth">Jeunesse</option>
+                      <option value="economy">Économie</option>
+                    </Form.Select>
                   </Form.Group>
                 </Col>
 
