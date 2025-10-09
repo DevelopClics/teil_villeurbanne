@@ -408,10 +408,11 @@
     ],
     "drop-project": [
       {
-        "src": "images/photos/team/carousel/1758701093114-qui sommes nous 3.jpg",
+        "src": "images/photos/team/carousel/1759992154296-IMG_1153.jpg",
         "id": 16,
         "title": "Déposer un projet",
-        "text": "This is the text for  Drop Project."
+        "text": "This is the text for  Drop Project.",
+        "alt": "alt"
       }
     ],
     "error404": [

@@ -235,6 +235,32 @@ server.put("/genesisText/:id", (req, res) => {
   }
 });
 
+// Routes for drop project text
+server.get("/dropProjectText/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const dropProjectText = router.db.get("dropProjectText").find({ id }).value();
+  if (dropProjectText) {
+    res.json(dropProjectText);
+  } else {
+    res.status(404).json({ message: "Drop project text not found" });
+  }
+});
+
+server.put("/dropProjectText/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const updatedContent = req.body.content;
+  const dropProjectText = router.db
+    .get("dropProjectText")
+    .find({ id })
+    .assign({ content: updatedContent })
+    .write();
+  if (dropProjectText) {
+    res.json(dropProjectText);
+  } else {
+    res.status(404).json({ message: "Drop project text not found" });
+  }
+});
+
 // Routes for page titles
 server.get("/pageTitles/:id", (req, res) => {
   const id = req.params.id; // ID can be a string now
