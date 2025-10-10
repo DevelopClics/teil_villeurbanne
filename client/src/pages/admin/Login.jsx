@@ -42,6 +42,7 @@ function Login() {
             value={id}
             onChange={(e) => setId(e.target.value)}
             required
+            autoComplete="off"
           />
         </div>
         <div className="mb-3">

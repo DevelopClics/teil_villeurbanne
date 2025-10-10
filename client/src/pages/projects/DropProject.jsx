@@ -19,7 +19,7 @@ export default function DropProject({ isNavbarHovered }) {
         stationaryText={false}
         startFaded={true}
       />
-      <Breadcrumbs breadcrumbsnav="Qui sommes-nous ?" breadcrumbssub={SUB} />
+      <Breadcrumbs breadcrumbsnav="Nos projets" breadcrumbssub={SUB} />
       <PageLayout
         title={SUB}
         titleId="drop-project-title"

@@ -11,14 +11,20 @@ const FormJoinus = () => {
   const {
     register,
     watch,
+    setValue,
     formState: { errors, isValid, isSubmitted },
     handleSubmit,
     trigger,
-  } = useForm({ mode: "onChange" });
+  } = useForm({ 
+    mode: "onChange",
+    defaultValues: {
+      status: "",
+      requestSelect: "",
+      habitantRequestSelect: "",
+    },
+   });
 
-  console.log("FormJoinus Debug - Errors:", errors);
-  console.log("FormJoinus Debug - isValid:", isValid);
-  console.log("FormJoinus Debug - isSubmitted:", isSubmitted);
+
 
   const sendEmail = () => {
     // e.preventDefault();
@@ -44,47 +50,53 @@ const FormJoinus = () => {
 
   const form = useRef();
   const [showOptionsCompany, setShowOptionsCompany] = useState(false);
-  const [showOptionsIndividuals, setShowOptionsIndividuals] = useState(false);
-  const [showOptionsIndividualsDetails, setShowOptionsIndividualsDetails] =
+  const [showOtherTextarea, setShowOtherTextarea] = useState(false);
+  const [showRequestSelect, setShowRequestSelect] = useState(false);
+  const [showHabitantRequestSelect, setShowHabitantRequestSelect] =
     useState(false);
 
-  const isMounted = useRef(false);
-
-  const selectedStatus = watch("status");
-  const selectedRequest = watch("request");
-
   useEffect(() => {
-    if (!isMounted.current) {
-      isMounted.current = true;
-      return;
-    }
+    const subscription = watch((value, { name }) => {
+      if (name === "status") {
+        const status = value.status;
+        if (status === "eleve") {
+          setShowRequestSelect(true);
+          setValue("requestSelect", "");
+        } else {
+          setShowRequestSelect(false);
+        }
 
-    // Reset all options first
-    setShowOptionsCompany(false);
-    setShowOptionsIndividuals(false);
-    setShowOptionsIndividualsDetails(false);
+        if (status === "habitant") {
+          setShowHabitantRequestSelect(true);
+          setValue("habitantRequestSelect", "");
+        } else {
+          setShowHabitantRequestSelect(false);
+        }
 
-    if (selectedStatus === "association, entreprise") {
-      setShowOptionsCompany(true);
-    } else if (selectedStatus === "habitant" || selectedStatus === "eleve") {
-      setShowOptionsIndividuals(true);
-      if (selectedRequest) {
-        // Only set details if a request is selected
-        setShowOptionsIndividualsDetails(true);
+        if (status === "association, entreprise") {
+          setShowOptionsCompany(true);
+        } else {
+          setShowOptionsCompany(false);
+        }
       }
-    }
-  }, [
-    selectedStatus,
-    selectedRequest,
-    setShowOptionsCompany,
-    setShowOptionsIndividuals,
-    setShowOptionsIndividualsDetails,
-  ]);
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setValue]);
 
   useEffect(() => {
-    // Trigger validation for message field when its requirement changes
+    const subscription = watch((value, { name }) => {
+      if (name === "requestSelect" || name === "habitantRequestSelect") {
+        const request = value.requestSelect;
+        const habitantRequest = value.habitantRequestSelect;
+        setShowOtherTextarea(request === "Autre" || habitantRequest === "Autre");
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  useEffect(() => {
     trigger("message");
-  }, [showOptionsCompany, showOptionsIndividualsDetails, trigger]);
+  }, [showOtherTextarea, trigger]);
 
   return (
     <Form
@@ -93,7 +105,7 @@ const FormJoinus = () => {
       className="px-0 px-ld-0"
     >
       <div className="row g-4">
-        {/* FISRTNAME */}
+        {/* FIRSTNAME */}
         <div className="col-12 col-md-4">
           <span className="error text-danger">
             {errors.from_firstname?.type === "minLength" &&
@@ -115,7 +127,7 @@ const FormJoinus = () => {
             })}
           />
         </div>
-        {/* END FISRTNAME */}
+        {/* END FIRSTNAME */}
         {/* LASTNAME */}
         <div className="col-12 col-md-4">
           <span className="error text-danger">
@@ -192,131 +204,96 @@ const FormJoinus = () => {
 
       <div className="mt-4">
         <div className="row">
-          <div className="row col-6 col-md-12 ">
-            <div className="col-md-2 col-lg-2 col-xl-2">Je suis</div>
-            <div className="col-md-4 col-lg-4 col-xl-3">
-              <Form.Check
-                inline
-                type="radio"
-                aria-label="radio 1"
-                label="Association, entreprise"
+          <div className="col-3">
+            <div className="col-md-6 col-xxl-12">
+              <Form.Select
+                aria-label="Default select example"
                 name="status"
-                id="radioAssociation"
-                value="association, entreprise"
-                {...register("status", {
-                  required: false,
-                })}
-              />
-            </div>
-            <div className="col-md-2 col-xxl-2">
-              <Form.Check
-                inline
-                type="radio"
-                aria-label="radio 1"
-                label="Habitant"
-                name="status"
-                id="radioHabitant"
-                value="habitant"
-                {...register("status", {
-                  required: false,
-                })}
-              />
-            </div>
-            <div className="col-md-3 col-xxl-2">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Elève, étudiant"
-                name="status"
-                id="radioEleve"
-                value="eleve"
-                {...register("status", {
-                  required: false,
-                })}
-              />
+                {...register("status", { required: false })}
+              >
+                <option value="">-- Je suis --</option>
+                <option value="association, entreprise">
+                  Association, entreprise
+                </option>
+                <option value="habitant">Habitant</option>
+                <option value="eleve">Elève, étudiant</option>
+              </Form.Select>
             </div>
           </div>
-          <div
-            className={`row col-6 col-md-12 options-container-two ${
-              showOptionsIndividuals ? "options-container-show-two" : ""
-            }`}
-          >
-            <div className="col-md-2 col-xxl-2">Je cherche</div>
-            <div className="col-md-3 col-xxl-3">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Un logement"
-                name="request"
-                id="radioLogement"
-                value="logement"
-                {...register("request", {
-                  required: false,
-                })}
-              />
+          {showRequestSelect && (
+            // LISTE ET BOUTON RADIO
+            <div className="row col-8">
+              <div className="col-4">
+                {/* JE CHERCHE LISTE */}
+                <Form.Select
+                  aria-label="Default select example"
+                  name="requestSelect"
+                  {...register("requestSelect", { required: false })}
+                >
+                  <option value="">-- Je cherche --</option>
+                  <option value="logement">Un logement</option>
+                  <option value="Un stage">Un stage</option>
+                  <option value="A être bénèvole sur un projet">
+                    A être bénèvole sur un projet
+                  </option>
+                  <option value="Autre">Autre</option>
+                </Form.Select>
+                {/* END JE CHERCHE LISTE */}
+              </div>
             </div>
-            <div className="col-md-2 col-xxl-2">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="Un stage"
-                name="request"
-                id="radioStage"
-                value="Un stage"
-                {...register("request", {
-                  required: false,
-                })}
-              />
+          )}
+
+          {showHabitantRequestSelect && (
+            <div className="row col-8">
+              <div className="col-4">
+                <Form.Select
+                  aria-label="Habitant request select"
+                  name="habitantRequestSelect"
+                  {...register("habitantRequestSelect", { required: false })}
+                >
+                  <option value="">-- Je souhaite --</option>
+                  <option value="option1">
+                    Faire partie du réseau d'hébergement ponctuel pour les
+                    acteurs de la cooperation qui viennent au Teil / à
+                    Villeurbane
+                  </option>
+                  <option value="option2">Etre bénèvole sur un projet</option>
+                  <option value="Autre">Autre</option>
+                </Form.Select>
+              </div>
             </div>
-            <div className="col-md-5 col-xxl-3">
-              <Form.Check
-                type="radio"
-                aria-label="radio 1"
-                label="A être bénèvole sur un projet"
-                name="request"
-                id="radioBenevole"
-                value="A être bénèvole sur un projet"
-                {...register("request", {
-                  required: false,
-                })}
-              />
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
       {/* MESSAGE */}
-      <div
-        className={`mt-4 offset-xxl-1 options-container-one ${
-          showOptionsCompany || showOptionsIndividualsDetails
-            ? "options-container-show-one"
-            : ""
-        }`}
-      >
-        <FloatingLabel controlId="floatingTextarea">
-          <span className="error text-danger">
-            {isSubmitted &&
-              errors.message?.type === "required" &&
-              "Merci de nous écrire un message"}
-            {errors.message?.type === "minLength" &&
-              "Ecrire plus de 100 caractères"}
-            {errors.message?.type === "maxLength" &&
-              "Ecrire moins de 700 caractères"}
-          </span>
-        </FloatingLabel>
-        <Form.Control
-          as="textarea"
-          placeholder="Autres envies/besoins"
-          rows={1}
-          name="message"
-          {...register("message", {
-            required: showOptionsCompany || showOptionsIndividualsDetails,
-            minLength: 100,
-            maxLength: 699,
-          })}
-          style={{ height: "30vh" }}
-        />
-      </div>
+      {showOtherTextarea && (
+        <div className="mt-4 offset-xxl-1">
+          <FloatingLabel controlId="floatingTextarea">
+            <span className="error text-danger">
+              {isSubmitted &&
+                errors.message?.type === "required" &&
+                "Merci de nous écrire un message"}
+              {errors.message?.type === "minLength" &&
+                "Ecrire plus de 100 caractères"}
+              {errors.message?.type === "maxLength" &&
+                "Ecrire moins de 700 caractères"}
+            </span>
+          </FloatingLabel>
+          <Form.Control
+            as="textarea"
+            placeholder="Autres envies/besoins"
+            rows={1}
+            name="message"
+            {...register("message", {
+              required: showOtherTextarea,
+              minLength: 100,
+              maxLength: 699,
+            })}
+            style={{ height: "30vh" }}
+          />
+        </div>
+      )}
       {/* END MESSAGE */}
 
       {/* BUTTON */}
