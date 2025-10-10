@@ -15,16 +15,15 @@ const FormJoinus = () => {
     formState: { errors, isValid, isSubmitted },
     handleSubmit,
     trigger,
-  } = useForm({ 
+  } = useForm({
     mode: "onChange",
     defaultValues: {
       status: "",
       requestSelect: "",
       habitantRequestSelect: "",
+      associationRequestSelect: "",
     },
-   });
-
-
+  });
 
   const sendEmail = () => {
     // e.preventDefault();
@@ -58,6 +57,7 @@ const FormJoinus = () => {
   const status = watch("status");
   const requestSelectValue = watch("requestSelect");
   const habitantRequestSelectValue = watch("habitantRequestSelect");
+  const associationRequestSelectValue = watch("associationRequestSelect");
 
   useEffect(() => {
     const isEleve = status === "eleve";
@@ -74,14 +74,24 @@ const FormJoinus = () => {
     if (!isHabitant) {
       setValue("habitantRequestSelect", "");
     }
+    if (!isCompany) {
+      setValue("associationRequestSelect", "");
+    }
   }, [status, setValue]);
 
   useEffect(() => {
     const show =
       (status === "eleve" && requestSelectValue === "Autre") ||
-      (status === "habitant" && habitantRequestSelectValue === "Autre");
+      (status === "habitant" && habitantRequestSelectValue === "Autre") ||
+      (status === "association, entreprise" &&
+        associationRequestSelectValue === "Autre");
     setShowOtherTextarea(show);
-  }, [status, requestSelectValue, habitantRequestSelectValue]);
+  }, [
+    status,
+    requestSelectValue,
+    habitantRequestSelectValue,
+    associationRequestSelectValue,
+  ]);
 
   useEffect(() => {
     trigger("message");
@@ -247,6 +257,27 @@ const FormJoinus = () => {
                     Villeurbane
                   </option>
                   <option value="option2">Etre bénèvole sur un projet</option>
+                  <option value="Autre">Autre</option>
+                </Form.Select>
+              </div>
+            </div>
+          )}
+
+          {showOptionsCompany && (
+            <div className="row col-8">
+              <div className="col-4">
+                <Form.Select
+                  aria-label="Association request select"
+                  name="associationRequestSelect"
+                  {...register("associationRequestSelect", { required: false })}
+                >
+                  <option value="">-- Je souhaite --</option>
+                  <option value="projet">
+                    Proposer un projet entre Le Teil et Villeurbanne
+                  </option>
+                  <option value="mentorat">
+                    Avoir plus d'information sur l'accompagnement de l'ADCT
+                  </option>
                   <option value="Autre">Autre</option>
                 </Form.Select>
               </div>
