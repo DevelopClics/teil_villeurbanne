@@ -55,44 +55,33 @@ const FormJoinus = () => {
   const [showHabitantRequestSelect, setShowHabitantRequestSelect] =
     useState(false);
 
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "status") {
-        const status = value.status;
-        if (status === "eleve") {
-          setShowRequestSelect(true);
-          setValue("requestSelect", "");
-        } else {
-          setShowRequestSelect(false);
-        }
-
-        if (status === "habitant") {
-          setShowHabitantRequestSelect(true);
-          setValue("habitantRequestSelect", "");
-        } else {
-          setShowHabitantRequestSelect(false);
-        }
-
-        if (status === "association, entreprise") {
-          setShowOptionsCompany(true);
-        } else {
-          setShowOptionsCompany(false);
-        }
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, setValue]);
+  const status = watch("status");
+  const requestSelectValue = watch("requestSelect");
+  const habitantRequestSelectValue = watch("habitantRequestSelect");
 
   useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === "requestSelect" || name === "habitantRequestSelect") {
-        const request = value.requestSelect;
-        const habitantRequest = value.habitantRequestSelect;
-        setShowOtherTextarea(request === "Autre" || habitantRequest === "Autre");
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [watch]);
+    const isEleve = status === "eleve";
+    const isHabitant = status === "habitant";
+    const isCompany = status === "association, entreprise";
+
+    setShowRequestSelect(isEleve);
+    setShowHabitantRequestSelect(isHabitant);
+    setShowOptionsCompany(isCompany);
+
+    if (!isEleve) {
+      setValue("requestSelect", "");
+    }
+    if (!isHabitant) {
+      setValue("habitantRequestSelect", "");
+    }
+  }, [status, setValue]);
+
+  useEffect(() => {
+    const show =
+      (status === "eleve" && requestSelectValue === "Autre") ||
+      (status === "habitant" && habitantRequestSelectValue === "Autre");
+    setShowOtherTextarea(show);
+  }, [status, requestSelectValue, habitantRequestSelectValue]);
 
   useEffect(() => {
     trigger("message");
