@@ -119,6 +119,7 @@ const FormJoinus = () => {
             type="text"
             placeholder="Prénom"
             name="from_firstname"
+            isInvalid={!!errors.from_firstname}
             {...register("from_firstname", {
               required: true,
               minLength: 3,
@@ -139,8 +140,9 @@ const FormJoinus = () => {
           <Form.Control
             type="text"
             placeholder="Nom"
-            name="from_surname"
-            {...register("from_surname", {
+            name="from_lastname"
+            isInvalid={!!errors.from_lastname}
+            {...register("from_lastname", {
               required: true,
               minLength: 3,
               maxLength: 19,
@@ -161,17 +163,16 @@ const FormJoinus = () => {
               {errors.from_email?.type === "maxLength" &&
                 "Ecrire 30 caractères au maximum"}
             </span>
-            <Form.Control
-              type="email"
-              placeholder="E-mail"
-              name="from_email"
-              {...register("from_email", {
-                required: true,
-                pattern: /^[a-zA-z0-9_.+-]+@[a-zA-z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-                minLength: 15,
-                maxLength: 30,
-              })}
-            />
+          <Form.Control
+            type="email"
+            placeholder="Email"
+            name="from_email"
+            isInvalid={!!errors.from_email}
+            {...register("from_email", {
+              required: true,
+              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            })}
+          />
           </Form.Group>
         </div>
         {/* END EMAIL */}
@@ -191,6 +192,7 @@ const FormJoinus = () => {
             type="text"
             placeholder="Objet"
             name="object"
+            isInvalid={!!errors.object}
             {...register("object", {
               required: true,
               minLength: 10,
@@ -199,6 +201,31 @@ const FormJoinus = () => {
           />
         </div>
         {/* END OBJECT */}
+        {/* CITY */}
+        <div className="col-12 col-md-4">
+          <div className="col-12  col-md-12 col-lg-12 ps-lg-1">
+            <span className="error text-danger">
+              {errors.city?.type === "required" &&
+                "Indiquez votre ville ou village"}
+              {errors.city?.type === "minLength" &&
+                "Ecrire 2 caractères au minimum"}
+              {errors.city?.type === "maxLength" &&
+                "Ecrire moins de 30 caractères"}
+            </span>
+          </div>
+          <Form.Control
+            type="text"
+            placeholder="Ville"
+            name="city"
+            isInvalid={!!errors.city}
+            {...register("city", {
+              required: true,
+              minLength: 2,
+              maxLength: 29,
+            })}
+          />
+        </div>
+        {/* END CITY */}
       </div>
 
       <div className="mt-4">
@@ -305,6 +332,7 @@ const FormJoinus = () => {
             placeholder="Autres envies/besoins"
             rows={1}
             name="message"
+            isInvalid={!!errors.message}
             {...register("message", {
               required: showOtherTextarea,
               minLength: 100,
