@@ -55,7 +55,8 @@ export default function AllProj({ isNavbarHovered }) {
           );
         }
         const data = await response.json();
-        setAllProjects(data);
+        const sortedData = data.sort((a, b) => new Date(a.subtitle) - new Date(b.subtitle));
+        setAllProjects(sortedData);
       } catch (error) {
         console.error("Error fetching all projects:", error);
       }

@@ -87,8 +87,9 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
               ? project.category.includes(currentCategory)
               : project.category === currentCategory
           );
-          console.log("Filtered projects:", filteredProjects);
-          setProjects(filteredProjects);
+          const sortedProjects = filteredProjects.sort((a, b) => new Date(a.subtitle) - new Date(b.subtitle));
+          console.log("Filtered projects:", sortedProjects);
+          setProjects(sortedProjects);
 
           // Check if we navigated from AllProj with a specific project
           if (location.state && location.state.projectId) {
@@ -118,6 +119,9 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
     location.state,
     navigate,
     projectsPerPage,
+    API_URL,
+    currentCategory,
+    location.pathname,
   ]);
 
   useEffect(() => {
@@ -130,7 +134,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
         navigate(location.pathname, { replace: true, state: {} });
       }
     }
-  }, [projects, currentPage, location.state, navigate]);
+  }, [projects, currentPage, location.state, navigate, location.pathname]);
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
@@ -384,6 +388,8 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                 onSaveNew={handleSaveNewProject}
                 onCancelCreate={handleCancelCreateNewProject}
                 category={currentCategory}
+                subtitleLabel="Dates"
+                useDatePicker={true}
               />
             )}
 
@@ -398,6 +404,8 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                 onUpdate={handleUpdateProject}
                 onSaveNew={handleSaveNewProject}
                 onDelete={handleDeleteProject}
+                subtitleLabel="Sous-Dates"
+                useDatePicker={true}
               />
             ) : (
               currentProjects.map((item) => (
@@ -415,6 +423,8 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
                     onMoveToTop={handleMoveToTop}
                     onMoveUp={handleMoveUp}
                     onMoveDown={handleMoveDown}
+                    subtitleLabel="Dates"
+                    useDatePicker={true}
                   />
                 </div>
               ))
