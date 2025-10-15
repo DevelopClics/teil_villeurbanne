@@ -14,7 +14,12 @@ export default function EditableContent({ endpoint, rows = 10 }) {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const response = await axios.get(`${API_URL}${endpoint}`);
+        const token = localStorage.getItem("token");
+        const response = await axios.get(`${API_URL}${endpoint}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setContent(response.data.content);
         setEditedContent(response.data.content.replace(/<br\s*\/?>/gi, "\n"));
       } catch (error) {

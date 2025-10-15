@@ -10,6 +10,7 @@ import "./AllProj.css";
 import PageLayout from "../../components/layouts/PageLayout";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { TbArrowBigUpLinesFilled, TbArrowBigUp, TbArrowBigDown } from "react-icons/tb";
 
 export default function AllProj({ isNavbarHovered }) {
   const categoryMap = {
@@ -100,6 +101,58 @@ export default function AllProj({ isNavbarHovered }) {
 
       return newOrder;
     });
+  };
+
+  const handleMoveUp = async (projectId) => {
+    const projectIndex = allProjects.findIndex((p) => p.id === projectId);
+    if (projectIndex > 0) {
+      const newProjects = [...allProjects];
+      const [movedProject] = newProjects.splice(projectIndex, 1);
+      newProjects.splice(projectIndex - 1, 0, movedProject);
+      setAllProjects(newProjects); // Optimistic update
+
+      try {
+        const token = localStorage.getItem("token");
+        await axios.patch(
+          `${API_URL}/projects/${projectId}/move_up`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.error("Error moving project up:", error);
+        setAllProjects(allProjects); // Revert on error
+      }
+    }
+  };
+
+  const handleMoveDown = async (projectId) => {
+    const projectIndex = allProjects.findIndex((p) => p.id === projectId);
+    if (projectIndex < allProjects.length - 1) {
+      const newProjects = [...allProjects];
+      const [movedProject] = newProjects.splice(projectIndex, 1);
+      newProjects.splice(projectIndex + 1, 0, movedProject);
+      setAllProjects(newProjects); // Optimistic update
+
+      try {
+        const token = localStorage.getItem("token");
+        await axios.patch(
+          `${API_URL}/projects/${projectId}/move_down`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.error("Error moving project down:", error);
+        setAllProjects(allProjects); // Revert on error
+      }
+    }
   };
 
   // Get current projects
@@ -201,6 +254,40 @@ export default function AllProj({ isNavbarHovered }) {
                         <h4 className="project-info-title">{item.shortitle}</h4>
                         <p className="project-info-text">{item.shortext}</p>
                       </div>
+                      {isAuthenticated && (
+                        <div className="admin-controls-all-proj d-flex justify-content-center">
+                          <Button
+                            variant="info"
+                            className="bi me-2"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMoveToTop(item.id)}
+                            }
+                          >
+                            <TbArrowBigUpLinesFilled size={30} />
+                          </Button>
+                          <Button
+                            variant="info"
+                            className="me-2"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMoveUp(item.id)}
+                            }
+                          >
+                            <TbArrowBigUp size={30} />
+                          </Button>
+                          <Button
+                            variant="info"
+                            className="me-2"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleMoveDown(item.id)}
+                            }
+                          >
+                            <TbArrowBigDown size={30} />
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   </Col>
                 ))

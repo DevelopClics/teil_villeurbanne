@@ -104,7 +104,22 @@ server.use((req, res, next) => {
     "/carouselImages",
     "/teammembers",
     "/projects",
+    "/dropProjectText/:id",
   ];
+
+  const publicPutPaths = [
+    "/dropProjectText/:id",
+  ];
+
+  if (req.method === "PUT") {
+    const isPublicPutPath = publicPutPaths.some((p) => {
+      const regex = new RegExp(`^${p.replace(/\/:[^/]+/g, "/[^/]+")}$`);
+      return regex.test(req.path);
+    });
+    if (isPublicPutPath) {
+      return next();
+    }
+  }
 
   if (req.method === "GET") {
     const isPublicGetPath = publicGetPaths.some((p) => {

@@ -8,6 +8,11 @@ import { TbArrowBigDown } from "react-icons/tb";
 import { TbArrowBigUp } from "react-icons/tb";
 import { MdOutlineUpdate } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
+import DatePicker, { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { parseISO, isValid, format } from "date-fns";
+import { fr } from "date-fns/locale";
+registerLocale("fr", fr);
 
 import "../../App.css";
 
@@ -26,19 +31,78 @@ export default function ProjectLayout({
   onCancelCreate,
   isProjectPage = false,
   category,
+  subtitleLabel = "Sous-titre",
+  useDatePicker = false,
 }) {
   const tailleIcone = 30;
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(item);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   useEffect(() => {
     setFormData(item);
-  }, [item]);
+    if (item && useDatePicker) {
+      if (item.subtitle) {
+        try {
+          const parsedDate = parseISO(item.subtitle);
+          if (isValid(parsedDate)) {
+            setStartDate(parsedDate);
+          } else {
+            setStartDate(null);
+          }
+        } catch (error) {
+          console.error("Error parsing start date:", error);
+          setStartDate(null);
+        }
+      }
+      if (item.endDate) {
+        try {
+          const parsedEndDate = parseISO(item.endDate);
+          if (isValid(parsedEndDate)) {
+            setEndDate(parsedEndDate);
+          } else {
+            setEndDate(null);
+          }
+        } catch (error) {
+          console.error("Error parsing end date:", error);
+          setEndDate(null);
+        }
+      }
+    }
+  }, [item, useDatePicker]);
 
   const handleEditClick = () => {
     setIsEditing(true);
-    setSelectedFile(null);
+    if (item && useDatePicker) {
+      if (item.subtitle) {
+        try {
+          const parsedDate = parseISO(item.subtitle);
+          if (isValid(parsedDate)) {
+            setStartDate(parsedDate);
+          } else {
+            setStartDate(null);
+          }
+        } catch (error) {
+          console.error("Error parsing date:", error);
+          setStartDate(null);
+        }
+      }
+      if (item.endDate) {
+        try {
+          const parsedEndDate = parseISO(item.endDate);
+          if (isValid(parsedEndDate)) {
+            setEndDate(parsedEndDate);
+          } else {
+            setEndDate(null);
+          }
+        } catch (error) {
+          console.error("Error parsing end date:", error);
+          setEndDate(null);
+        }
+      }
+    }
   };
 
   const handleCancelClick = () => {
@@ -66,6 +130,21 @@ export default function ProjectLayout({
     setSelectedFile(e.target.files[0]);
   };
 
+  const handleDateChange = (date) => {
+    setStartDate(date);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      subtitle: date.toISOString(),
+    }));
+  };
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      endDate: date.toISOString(),
+    }));
+  };
+
   const handleSaveClick = async () => {
     await onUpdate(item.id, formData, selectedFile);
     setIsEditing(false);
@@ -74,6 +153,34 @@ export default function ProjectLayout({
   if (!item && !isCreating) {
     return <div>Loading...</div>;
   }
+
+  const formatSubtitle = (subtitle, endDate) => {
+    if (useDatePicker && subtitle) {
+      try {
+        const parsedStartDate = parseISO(subtitle);
+        const parsedEndDate = endDate ? parseISO(endDate) : null;
+
+        if (isValid(parsedStartDate)) {
+          const formattedStartDate = format(parsedStartDate, "d MMMM yyyy", {
+            locale: fr,
+          });
+          if (isValid(parsedEndDate)) {
+            const formattedEndDate = format(parsedEndDate, "d MMMM yyyy", {
+              locale: fr,
+            });
+            return `Du ${formattedStartDate} au ${formattedEndDate}`;
+          }
+          return formattedStartDate;
+        }
+      } catch (error) {
+        console.error("Error formatting date:", error);
+      }
+    }
+    return subtitle;
+  };
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   return (
     <div className="mb-5 clearfix">
@@ -97,14 +204,47 @@ export default function ProjectLayout({
             <Col md={6} lg={6}>
               <Form.Group className="mb-3">
                 <Form.Label>
-                  <strong>Sous-titre</strong>
+                  <strong>{subtitleLabel}</strong>
                 </Form.Label>
-                <Form.Control
-                  type="text"
-                  name="subtitle"
-                  value={formData.subtitle || ""}
-                  onChange={handleChange}
-                />
+                {useDatePicker ? (
+                  <Row>
+                    <Col>
+                      Début{" "}
+                      <DatePicker
+                        selected={startDate}
+                        onChange={handleDateChange}
+                        className="form-control"
+                        locale="fr"
+                        dateFormat="dd/MM/yyyy"
+                        minDate={today}
+                        dayClassName={(date) =>
+                          date < today ? "text-danger" : undefined
+                        }
+                      />
+                    </Col>
+                    <Col>
+                      Fin{" "}
+                      <DatePicker
+                        selected={endDate}
+                        onChange={handleEndDateChange}
+                        className="form-control"
+                        locale="fr"
+                        dateFormat="dd/MM/yyyy"
+                        minDate={startDate || today}
+                        dayClassName={(date) =>
+                          date < today ? "text-danger" : undefined
+                        }
+                      />
+                    </Col>
+                  </Row>
+                ) : (
+                  <Form.Control
+                    type="text"
+                    name="subtitle"
+                    value={formData.subtitle || ""}
+                    onChange={handleChange}
+                  />
+                )}
               </Form.Group>
             </Col>
             {isProjectPage && (
@@ -319,7 +459,9 @@ export default function ProjectLayout({
               />
             </div>
 
-            <h5 className="text-uppercase">{item.subtitle}</h5>
+            <h5 className="text-uppercase">
+              {formatSubtitle(item.subtitle, item.endDate)}
+            </h5>
 
             <p className="lh-1 no-padding-left">{item.article}</p>
             <p>
@@ -344,7 +486,7 @@ export default function ProjectLayout({
                 <div>
                   <Button
                     variant="warning"
-                    onClick={() => setIsEditing(!isEditing)}
+                    onClick={handleEditClick}
                     className="me-2"
                   >
                     {isEditing ? (

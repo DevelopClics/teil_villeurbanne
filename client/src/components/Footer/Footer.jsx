@@ -233,10 +233,19 @@ const Footer = ({ show, handleClose, handleShow, modalTitle, modalBody }) => {
                 >
                   <div className="social-icons">
                     <div className="social-icons-row">
-                      <a href="#facebook">
+                      <a
+                        href="https://www.facebook.com/profile.php?id=61556286526874"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <img src={facebookIconInverted} alt="Facebook" />
                       </a>
-                      <a href="#linkedin">
+
+                      <a
+                        href="https://www.linkedin.com/company/coop%C3%A9rationsterritoriales/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <img src={linkedinIconInverted} alt="LinkedIn" />
                       </a>
                     </div>

@@ -5,14 +5,14 @@ import { useForm } from "react-hook-form";
 import "./FormContact.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import ShowOptionsIndividualsDetails from "./ShowOptionsIndividualsDetails";
+// import ShowOptionsIndividualsDetails from "./ShowOptionsIndividualsDetails";
 
 const FormJoinus = () => {
   const {
     register,
     watch,
     setValue,
-    formState: { errors, isValid, isSubmitted },
+    formState: { errors, isValid, isSubmitted, touchedFields },
     handleSubmit,
     trigger,
   } = useForm({
@@ -25,27 +25,40 @@ const FormJoinus = () => {
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const sendEmail = () => {
+    setIsSubmitting(true);
     // e.preventDefault();
     emailjs
       .sendForm(
-        "service_04voz6b",
-        "template_vw8gevu",
+        "service_lusfaln",
+        "template_ysphumj",
         form.current,
-        "awYJXfOvl5Y_Sx9cQ"
+        "XrymAP2hWRxDAPrvE"
+        // awYJXfOvl5Y_Sx9cQ
       )
       .then(
         (result) => {
           console.log(result.text);
-          <p>ok</p>;
+          setIsSubmitting(false);
+          window.location.reload();
         },
         (error) => {
           console.log(error.text);
           <p>NON</p>;
+          setIsSubmitting(false);
         }
       );
     form.current.reset();
   };
+
+  const VOLUNTEER = "Etre bénèvole sur un projet",
+    COMPANY = "Association, entreprise",
+    STUDENT = "Elève, étudiant",
+    HOME_NETWORK =
+      "Faire partie du réseau d'hébergement ponctuel pour les acteurs de la cooperation qui viennent au Teil/à Villeurbane",
+    MORE_INFO = "Avoir plus d'information sur l'accompagnement de l'ADCT";
 
   const form = useRef();
   const [showOptionsCompany, setShowOptionsCompany] = useState(false);
@@ -60,9 +73,9 @@ const FormJoinus = () => {
   const associationRequestSelectValue = watch("associationRequestSelect");
 
   useEffect(() => {
-    const isEleve = status === "eleve";
+    const isEleve = status === STUDENT;
     const isHabitant = status === "habitant";
-    const isCompany = status === "association, entreprise";
+    const isCompany = status === COMPANY;
 
     setShowRequestSelect(isEleve);
     setShowHabitantRequestSelect(isHabitant);
@@ -83,8 +96,7 @@ const FormJoinus = () => {
     const show =
       (status === "eleve" && requestSelectValue === "Autre") ||
       (status === "habitant" && habitantRequestSelectValue === "Autre") ||
-      (status === "association, entreprise" &&
-        associationRequestSelectValue === "Autre");
+      (status === COMPANY && associationRequestSelectValue === "Autre");
     setShowOtherTextarea(show);
   }, [
     status,
@@ -103,9 +115,9 @@ const FormJoinus = () => {
       onSubmit={handleSubmit(sendEmail)}
       className="px-0 px-ld-0"
     >
-      <div className="row g-4">
+      <div className="row">
         {/* FIRSTNAME */}
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-6 col-xl-4">
           <span className="error text-danger">
             {errors.from_firstname?.type === "minLength" &&
               "Ecrire plus de 2 caractères"}
@@ -113,7 +125,7 @@ const FormJoinus = () => {
               "Ecrire moins de 20 caractères"}
             {errors.from_firstname?.type === "pattern: /^[A-Za-z]+$/i"}
             {errors.from_firstname?.type === "required" &&
-              "Entrez votre prénom"}
+              "Entrez votre prénom - facultatif"}
           </span>
           <Form.Control
             type="text"
@@ -121,7 +133,7 @@ const FormJoinus = () => {
             name="from_firstname"
             isInvalid={!!errors.from_firstname}
             {...register("from_firstname", {
-              required: true,
+              required: false,
               minLength: 3,
               maxLength: 19,
             })}
@@ -129,12 +141,13 @@ const FormJoinus = () => {
         </div>
         {/* END FIRSTNAME */}
         {/* LASTNAME */}
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-6 col-xl-4">
           <span className="error text-danger">
-            {errors.from_surname?.type === "Entrez votre nom"}
-            {errors.from_surname?.type === "minLength" &&
+            {errors.from_lastname?.type === "required" &&
+              "Entrez votre nom - facultatif"}
+            {errors.from_lastname?.type === "minLength" &&
               "Ecrire plus de 2 caractères"}
-            {errors.from_surname?.type === "maxLength" &&
+            {errors.from_lastname?.type === "maxLength" &&
               "Ecrire moins de 20 caractères"}
           </span>
           <Form.Control
@@ -143,7 +156,7 @@ const FormJoinus = () => {
             name="from_lastname"
             isInvalid={!!errors.from_lastname}
             {...register("from_lastname", {
-              required: true,
+              required: false,
               minLength: 3,
               maxLength: 19,
             })}
@@ -151,11 +164,11 @@ const FormJoinus = () => {
         </div>
         {/* END LASTNAME */}
         {/* EMAIL */}
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-6 col-xl-4">
           <Form.Group controlId="formBasicEmail">
             <span className="error text-danger">
               {errors.from_email?.type === "required" &&
-                "Entrez votre adresse e-mail"}
+                "Entrez votre adresse e-mail - requis"}
               {errors.from_email?.type === "pattern" &&
                 "L'email n'a pas un format correct"}
               {errors.from_email?.type === "minLength" &&
@@ -163,25 +176,25 @@ const FormJoinus = () => {
               {errors.from_email?.type === "maxLength" &&
                 "Ecrire 30 caractères au maximum"}
             </span>
-          <Form.Control
-            type="email"
-            placeholder="Email"
-            name="from_email"
-            isInvalid={!!errors.from_email}
-            {...register("from_email", {
-              required: true,
-              pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            })}
-          />
+            <Form.Control
+              type="email"
+              placeholder="Email"
+              name="from_email"
+              isInvalid={!!errors.from_email}
+              {...register("from_email", {
+                required: true,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              })}
+            />
           </Form.Group>
         </div>
         {/* END EMAIL */}
         {/* OBJECT */}
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-6 col-xl-4">
           <div className="col-12  col-md-12 col-lg-12 ps-lg-1">
             <span className="error text-danger">
               {errors.object?.type === "required" &&
-                "Indiquez l'objet de l'email"}
+                "Indiquez l'objet de l'email - requis"}
               {errors.object?.type === "minLength" &&
                 "Ecrire 10 caractères au minimum"}
               {errors.object?.type === "maxLength" &&
@@ -202,7 +215,7 @@ const FormJoinus = () => {
         </div>
         {/* END OBJECT */}
         {/* CITY */}
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-6 col-xl-4">
           <div className="col-12  col-md-12 col-lg-12 ps-lg-1">
             <span className="error text-danger">
               {errors.city?.type === "required" &&
@@ -230,38 +243,38 @@ const FormJoinus = () => {
 
       <div className="mt-4">
         <div className="row">
-          <div className="col-3">
-            <div className="col-md-6 col-xxl-12">
+          <div className="col-12 col-md-6 col-xl-4">
+            <div className="col-12 ">
               <Form.Select
                 aria-label="Default select example"
                 name="status"
                 {...register("status", { required: false })}
               >
-                <option value="">-- Je suis --</option>
-                <option value="association, entreprise">
-                  Association, entreprise
+                <option value="" className="text-center">
+                  -- Je suis --
                 </option>
+                <option value={COMPANY}>{COMPANY}</option>
                 <option value="habitant">Habitant</option>
-                <option value="eleve">Elève, étudiant</option>
+                <option value={STUDENT}>{STUDENT}</option>
               </Form.Select>
             </div>
           </div>
           {showRequestSelect && (
             // LISTE ET BOUTON RADIO
-            <div className="row col-8">
-              <div className="col-4">
+            <div className="row pt-4 pt-md-0 pt-xl-0 col-8 col-md-5 col-xl-3">
+              <div className="">
                 {/* JE CHERCHE LISTE */}
                 <Form.Select
                   aria-label="Default select example"
                   name="requestSelect"
                   {...register("requestSelect", { required: false })}
                 >
-                  <option value="">-- Je cherche --</option>
+                  <option value="" className="text-center">
+                    -- Je cherche --
+                  </option>
                   <option value="logement">Un logement</option>
                   <option value="Un stage">Un stage</option>
-                  <option value="A être bénèvole sur un projet">
-                    A être bénèvole sur un projet
-                  </option>
+                  <option value={VOLUNTEER}>{VOLUNTEER}</option>
                   <option value="Autre">Autre</option>
                 </Form.Select>
                 {/* END JE CHERCHE LISTE */}
@@ -270,20 +283,20 @@ const FormJoinus = () => {
           )}
 
           {showHabitantRequestSelect && (
-            <div className="row col-8">
-              <div className="col-4">
+            <div className="row pt-4 pt-md-0 pt-xl-0 col-8 col-md-5 col-xl-3">
+              <div className="">
                 <Form.Select
                   aria-label="Habitant request select"
                   name="habitantRequestSelect"
                   {...register("habitantRequestSelect", { required: false })}
                 >
-                  <option value="">-- Je souhaite --</option>
-                  <option value="option1">
-                    Faire partie du réseau d'hébergement ponctuel pour les
-                    acteurs de la cooperation qui viennent au Teil / à
-                    Villeurbane
+                  <option value="" className="text-center">
+                    -- Je souhaite --{" "}
                   </option>
-                  <option value="option2">Etre bénèvole sur un projet</option>
+                  <option value={HOME_NETWORK} style={{ whiteSpace: "normal" }}>
+                    {HOME_NETWORK}
+                  </option>
+                  <option value={VOLUNTEER}>{VOLUNTEER}</option>
                   <option value="Autre">Autre</option>
                 </Form.Select>
               </div>
@@ -291,20 +304,20 @@ const FormJoinus = () => {
           )}
 
           {showOptionsCompany && (
-            <div className="row col-8">
-              <div className="col-4">
+            <div className="row pt-4 pt-md-0 pt-xl-0 col-8 col-md-5 col-xl-3">
+              <div className="">
                 <Form.Select
                   aria-label="Association request select"
                   name="associationRequestSelect"
                   {...register("associationRequestSelect", { required: false })}
                 >
-                  <option value="">-- Je souhaite --</option>
+                  <option value="" className="text-center">
+                    -- Je souhaite --
+                  </option>
                   <option value="projet">
                     Proposer un projet entre Le Teil et Villeurbanne
                   </option>
-                  <option value="mentorat">
-                    Avoir plus d'information sur l'accompagnement de l'ADCT
-                  </option>
+                  <option value={MORE_INFO}>{MORE_INFO}</option>
                   <option value="Autre">Autre</option>
                 </Form.Select>
               </div>
@@ -315,7 +328,7 @@ const FormJoinus = () => {
 
       {/* MESSAGE */}
       {showOtherTextarea && (
-        <div className="mt-4 offset-xxl-1">
+        <div className="mt-2 offset-xxl-1">
           <FloatingLabel controlId="floatingTextarea">
             <span className="error text-danger">
               {isSubmitted &&
@@ -332,7 +345,9 @@ const FormJoinus = () => {
             placeholder="Autres envies/besoins"
             rows={1}
             name="message"
-            isInvalid={!!errors.message}
+            isInvalid={
+              !!errors.message && (isSubmitted || touchedFields.message)
+            }
             {...register("message", {
               required: showOtherTextarea,
               minLength: 100,
@@ -352,7 +367,7 @@ const FormJoinus = () => {
           size="lg"
           type="submit"
           className="envoyer-btn px-5 rounded-pill"
-          disabled={!isValid}
+          disabled={!isValid || isSubmitting}
         >
           Envoyer{" "}
         </Button>

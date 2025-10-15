@@ -82,6 +82,8 @@ export default function Places({ isNavbarHovered }) {
                 item={item}
                 isEditable={isAuthenticated}
                 onUpdate={handleUpdatePlace}
+                subtitleLabel="Sous-titre"
+                useDatePicker={false}
               />
             ))}
             <div className="d-flex justify-content-center mt-4"></div>
