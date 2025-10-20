@@ -58,11 +58,13 @@ const FormJoinus = () => {
     STUDENT = "Elève, étudiant",
     HOME_NETWORK =
       "Faire partie du réseau d'hébergement ponctuel pour les acteurs de la cooperation qui viennent au Teil/à Villeurbane",
-    MORE_INFO = "Avoir plus d'information sur l'accompagnement de l'ADCT";
+    MORE_INFO = "Avoir plus d'information sur l'accompagnement de l'ADCT",
+    PROJECT = "Proposer un projet entre Le Teil et Villeurbanne";
 
   const form = useRef();
   const [showOptionsCompany, setShowOptionsCompany] = useState(false);
   const [showOtherTextarea, setShowOtherTextarea] = useState(false);
+  const [showMyProjectTextarea, setShowMyProjectTextarea] = useState(false);
   const [showRequestSelect, setShowRequestSelect] = useState(false);
   const [showHabitantRequestSelect, setShowHabitantRequestSelect] =
     useState(false);
@@ -94,7 +96,7 @@ const FormJoinus = () => {
 
   useEffect(() => {
     const show =
-      (status === "eleve" && requestSelectValue === "Autre") ||
+      (status === STUDENT && requestSelectValue === "Autre") ||
       (status === "habitant" && habitantRequestSelectValue === "Autre") ||
       (status === COMPANY && associationRequestSelectValue === "Autre");
     setShowOtherTextarea(show);
@@ -106,8 +108,18 @@ const FormJoinus = () => {
   ]);
 
   useEffect(() => {
+    const show =
+      status === COMPANY && associationRequestSelectValue === PROJECT;
+    setShowMyProjectTextarea(show);
+  }, [status, associationRequestSelectValue]);
+
+  useEffect(() => {
     trigger("message");
   }, [showOtherTextarea, trigger]);
+
+  useEffect(() => {
+    trigger("my_object");
+  }, [showMyProjectTextarea, trigger]);
 
   return (
     <Form
@@ -123,8 +135,10 @@ const FormJoinus = () => {
               "Ecrire plus de 2 caractères"}
             {errors.from_firstname?.type === "maxLength" &&
               "Ecrire moins de 20 caractères"}
-            {errors.from_firstname?.type === "pattern: /^[A-Za-z]+$/i"}
-            {errors.from_firstname?.type === "required" &&
+            {errors.from_firstname?.type === "pattern" &&
+              "Ecrire uniquement des lettres"}
+            {touchedFields.from_firstname &&
+              !watch("from_firstname") &&
               "Entrez votre prénom - facultatif"}
           </span>
           <Form.Control
@@ -136,6 +150,7 @@ const FormJoinus = () => {
               required: false,
               minLength: 3,
               maxLength: 19,
+              pattern: /^[A-Za-z]+$/i,
             })}
           />
         </div>
@@ -144,11 +159,16 @@ const FormJoinus = () => {
         <div className="col-12 col-md-6 col-xl-4">
           <span className="error text-danger">
             {errors.from_lastname?.type === "required" &&
-              "Entrez votre nom - facultatif"}
+              "Entrez votre nom - requis"}
             {errors.from_lastname?.type === "minLength" &&
               "Ecrire plus de 2 caractères"}
             {errors.from_lastname?.type === "maxLength" &&
               "Ecrire moins de 20 caractères"}
+            {errors.from_lastname?.type === "pattern" &&
+              "Ecrire uniquement des lettres"}
+            {touchedFields.from_firstname &&
+              !watch("from_lastname") &&
+              "Entrez votre nom - facultatif"}
           </span>
           <Form.Control
             type="text"
@@ -159,6 +179,7 @@ const FormJoinus = () => {
               required: false,
               minLength: 3,
               maxLength: 19,
+              pattern: /^[A-Za-z]+$/i,
             })}
           />
         </div>
@@ -193,12 +214,13 @@ const FormJoinus = () => {
         <div className="col-12 col-md-6 col-xl-4">
           <div className="col-12  col-md-12 col-lg-12 ps-lg-1">
             <span className="error text-danger">
-              {errors.object?.type === "required" &&
-                "Indiquez l'objet de l'email - requis"}
               {errors.object?.type === "minLength" &&
                 "Ecrire 10 caractères au minimum"}
               {errors.object?.type === "maxLength" &&
                 "Ecrire moins de 50 caractères"}
+              {touchedFields.from_firstname &&
+                !watch("from_lastname") &&
+                "Indiquez l'objet de l'email - facultatif"}
             </span>
           </div>
           <Form.Control
@@ -207,9 +229,10 @@ const FormJoinus = () => {
             name="object"
             isInvalid={!!errors.object}
             {...register("object", {
-              required: true,
+              required: false,
               minLength: 10,
               maxLength: 49,
+              pattern: /^[a-zA-Z0-9\s]+$/,
             })}
           />
         </div>
@@ -224,6 +247,8 @@ const FormJoinus = () => {
                 "Ecrire 2 caractères au minimum"}
               {errors.city?.type === "maxLength" &&
                 "Ecrire moins de 30 caractères"}
+              {errors.city?.type === "pattern" &&
+                "Ecrire uniquement des lettres, espaces et tirets"}
             </span>
           </div>
           <Form.Control
@@ -235,6 +260,7 @@ const FormJoinus = () => {
               required: true,
               minLength: 2,
               maxLength: 29,
+              pattern: /^[A-Za-z -]+$/i,
             })}
           />
         </div>
@@ -314,9 +340,7 @@ const FormJoinus = () => {
                   <option value="" className="text-center">
                     -- Je souhaite --
                   </option>
-                  <option value="projet">
-                    Proposer un projet entre Le Teil et Villeurbanne
-                  </option>
+                  <option value={PROJECT}>{PROJECT}</option>
                   <option value={MORE_INFO}>{MORE_INFO}</option>
                   <option value="Autre">Autre</option>
                 </Form.Select>
@@ -358,6 +382,38 @@ const FormJoinus = () => {
         </div>
       )}
       {/* END MESSAGE */}
+      {/* MESSAGE PROJET */}
+      {showMyProjectTextarea && (
+        <div className="mt-2 offset-xxl-1">
+          <FloatingLabel controlId="floatingTextarea">
+            <span className="error text-danger">
+              {isSubmitted &&
+                errors.message?.type === "required" &&
+                "Merci de nous écrire un message"}
+              {errors.message?.type === "minLength" &&
+                "Ecrire plus de 100 caractères"}
+              {errors.message?.type === "maxLength" &&
+                "Ecrire moins de 700 caractères"}
+            </span>
+          </FloatingLabel>
+          <Form.Control
+            as="textarea"
+            placeholder="Mon projet"
+            rows={1}
+            name="my_project"
+            isInvalid={
+              !!errors.message && (isSubmitted || touchedFields.message)
+            }
+            {...register("my_project", {
+              required: showMyProjectTextarea,
+              minLength: 100,
+              maxLength: 699,
+            })}
+            style={{ height: "30vh" }}
+          />
+        </div>
+      )}
+      {/* END MESSAGE PROJET */}
 
       {/* BUTTON */}
       <div className="mt-4 col-12 text-end">

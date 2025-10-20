@@ -1,3 +1,6 @@
+require("dotenv").config(); // charge les variables d'environnement depuis .env
+console.log("PORT from .env:", process.env.PORT);
+console.log("SECRET_KEY from .env:", process.env.SECRET_KEY);
 console.log("server.js is running");
 const jsonServer = require("json-server");
 const multer = require("multer");
@@ -6,7 +9,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const fs = require("fs");
-
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
@@ -90,6 +92,7 @@ server.use((req, res, next) => {
 
   const publicGetPaths = [
     "/login",
+    "/health",
     "/places",
     "/citiesProjects",
     "/cultureProjects",
@@ -107,9 +110,7 @@ server.use((req, res, next) => {
     "/dropProjectText/:id",
   ];
 
-  const publicPutPaths = [
-    "/dropProjectText/:id",
-  ];
+  const publicPutPaths = ["/dropProjectText/:id"];
 
   if (req.method === "PUT") {
     const isPublicPutPath = publicPutPaths.some((p) => {
@@ -433,7 +434,10 @@ server.put("/teammembers/:category/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const updatedMember = req.body;
 
-  console.log(`Server: PUT /teammembers/${category}/${id} - req.body:`, updatedMember);
+  console.log(
+    `Server: PUT /teammembers/${category}/${id} - req.body:`,
+    updatedMember
+  );
 
   console.log(
     "PUT /teammembers - Category:",
@@ -715,7 +719,10 @@ server.put("/places/:id", placesUpload.single("image"), (req, res) => {
 
   const responsePlace = { ...newPlace }; // Create a new object for the response
 
-  console.log("[GEMINI-DEBUG] Place after update (responsePlace):", responsePlace);
+  console.log(
+    "[GEMINI-DEBUG] Place after update (responsePlace):",
+    responsePlace
+  );
 
   res.json(responsePlace);
 });
@@ -769,7 +776,7 @@ server.patch("/projects/:id/move_to_top", (req, res) => {
   const db = router.db;
   const projects = db.get("projects");
 
-  const projectIndex = projects.value().findIndex(p => p.id === projectId);
+  const projectIndex = projects.value().findIndex((p) => p.id === projectId);
 
   if (projectIndex === -1) {
     return res.status(404).json({ message: "Project not found" });
@@ -788,7 +795,7 @@ server.patch("/projects/:id/move_up", (req, res) => {
   const db = router.db;
   const projects = db.get("projects");
 
-  const projectIndex = projects.value().findIndex(p => p.id === projectId);
+  const projectIndex = projects.value().findIndex((p) => p.id === projectId);
 
   if (projectIndex === -1) {
     return res.status(404).json({ message: "Project not found" });
@@ -808,7 +815,7 @@ server.patch("/projects/:id/move_down", (req, res) => {
   const db = router.db;
   const projects = db.get("projects");
   const projectList = projects.value();
-  const projectIndex = projectList.findIndex(p => p.id === projectId);
+  const projectIndex = projectList.findIndex((p) => p.id === projectId);
 
   if (projectIndex === -1) {
     return res.status(404).json({ message: "Project not found" });
@@ -823,9 +830,12 @@ server.patch("/projects/:id/move_down", (req, res) => {
   res.status(200).json(projectList);
 });
 
-server.use(router);
+server.get("/health", (req, res) => {
+  res.sendStatus(200);
+});
 
-const PORT = 3001;
+server.use(router);
+const PORT = process.env.PORT || 3001; // prend le port du .env ou 3001 par défaut
 server.listen(PORT, () => {
   console.log(`JSON Server is running on port ${PORT}`);
 });

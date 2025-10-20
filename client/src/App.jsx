@@ -4,6 +4,7 @@ import Navigation from "./components/Navbar/Navbar";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import TopHeader from "./components/TopHeader/TopHeader";
+import { useAuth } from "./context/AuthContext";
 
 const Home = lazy(() => import("./pages/Home"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -42,6 +43,7 @@ function App() {
   const [show, setShow] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalBody, setModalBody] = useState("");
+  const { isServerOnline } = useAuth();
 
   const handleClose = () => setShow(false);
   const handleShow = (title, body) => {
@@ -104,6 +106,7 @@ function App() {
           socialIconsRef={socialIconsRef}
           socialIconsContainerRef={socialIconsContainerRef}
           onElementHover={setIsNavbarHovered}
+          isServerOnline={isServerOnline}
         />
         <Navigation
           onDropdownHoverChange={setIsNavbarHovered}
