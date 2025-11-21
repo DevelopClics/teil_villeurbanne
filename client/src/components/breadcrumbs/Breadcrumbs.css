@@ -11,7 +11,7 @@
   padding: 0 var(--breadcrumb-padding-x);
 }
 .blue-bar {
-  font-size: 0.97rem !important;
+  font-size: 0.85rem !important;
 }
 
 @media (min-width: 576px) {

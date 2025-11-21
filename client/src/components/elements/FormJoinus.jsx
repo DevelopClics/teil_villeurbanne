@@ -4,8 +4,9 @@ import { FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "./FormContact.css";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-// import ShowOptionsIndividualsDetails from "./ShowOptionsIndividualsDetails";
+import { Form, Row, Col } from "react-bootstrap";
+import "../layouts/ProjectLayout.css";
+import LinkBox from "./LinkBox";
 
 const FormJoinus = () => {
   const {
@@ -56,10 +57,10 @@ const FormJoinus = () => {
   const VOLUNTEER = "Etre bénèvole sur un projet",
     COMPANY = "Association, entreprise",
     STUDENT = "Elève, étudiant",
-    HOME_NETWORK =
-      "Faire partie du réseau d'hébergement ponctuel pour les acteurs de la cooperation qui viennent au Teil/à Villeurbane",
+    HOME_NETWORK = "Faire partie du réseau d'hébergement ponctuel",
     MORE_INFO = "Avoir plus d'information sur l'accompagnement de l'ADCT",
-    PROJECT = "Proposer un projet entre Le Teil et Villeurbanne";
+    PROJECT = "Proposer un projet entre Le Teil et Villeurbanne",
+    INTERNSHIP = "Accueillir un jeune en stage";
 
   const form = useRef();
   const [showOptionsCompany, setShowOptionsCompany] = useState(false);
@@ -68,6 +69,11 @@ const FormJoinus = () => {
   const [showRequestSelect, setShowRequestSelect] = useState(false);
   const [showHabitantRequestSelect, setShowHabitantRequestSelect] =
     useState(false);
+  const [showHomeNetworkLinks, setShowHomeNetworkLinks] = useState(false);
+  const [showInternshipLinks, setShowInternshipLinks] = useState(false);
+  const [placeholderText, setPlaceholderText] = useState(
+    "Autres envies/besoins"
+  );
 
   const status = watch("status");
   const requestSelectValue = watch("requestSelect");
@@ -96,15 +102,29 @@ const FormJoinus = () => {
 
   useEffect(() => {
     const show =
-      (status === STUDENT && requestSelectValue === "Autre") ||
-      (status === "habitant" && habitantRequestSelectValue === "Autre") ||
-      (status === COMPANY && associationRequestSelectValue === "Autre");
+      (status === STUDENT &&
+        (requestSelectValue === "Autre" ||
+          requestSelectValue === "logement" ||
+          requestSelectValue === "Un stage" ||
+          requestSelectValue === VOLUNTEER)) ||
+      (status === "habitant" &&
+        (habitantRequestSelectValue === "Autre" ||
+          habitantRequestSelectValue === HOME_NETWORK ||
+          habitantRequestSelectValue === VOLUNTEER)) ||
+      (status === COMPANY &&
+        (associationRequestSelectValue === "Autre" ||
+          associationRequestSelectValue === MORE_INFO ||
+          associationRequestSelectValue === INTERNSHIP));
     setShowOtherTextarea(show);
   }, [
     status,
     requestSelectValue,
     habitantRequestSelectValue,
     associationRequestSelectValue,
+    VOLUNTEER,
+    HOME_NETWORK,
+    MORE_INFO,
+    INTERNSHIP,
   ]);
 
   useEffect(() => {
@@ -121,71 +141,119 @@ const FormJoinus = () => {
     trigger("my_object");
   }, [showMyProjectTextarea, trigger]);
 
+  useEffect(() => {
+    setShowHomeNetworkLinks(habitantRequestSelectValue === HOME_NETWORK);
+  }, [habitantRequestSelectValue, HOME_NETWORK]);
+
+  useEffect(() => {
+    setShowInternshipLinks(
+      status === COMPANY && associationRequestSelectValue === INTERNSHIP
+    );
+  }, [status, associationRequestSelectValue, COMPANY, INTERNSHIP]);
+
+  useEffect(() => {
+    let newPlaceholder = "Autres envies/besoins";
+    if (status === STUDENT) {
+      if (requestSelectValue === "logement")
+        newPlaceholder =
+          "Précisez le type de logement, la localisation, et vos dates si possible.";
+      else if (requestSelectValue === "Un stage")
+        newPlaceholder =
+          "Indiquez le domaine du stage, la durée et la période souhaitée.";
+      else if (requestSelectValue === VOLUNTEER)
+        newPlaceholder =
+          "Sur quel type de projet ou de mission souhaitez-vous vous positionner ?";
+    } else if (status === "habitant") {
+      if (habitantRequestSelectValue === HOME_NETWORK)
+        newPlaceholder =
+          "Décrivez le type d'hébergement que vous proposez (chambre, canapé...), les disponibilités, etc.";
+      else if (habitantRequestSelectValue === VOLUNTEER)
+        newPlaceholder =
+          "Sur quel type de projet ou de mission souhaitez-vous vous positionner ?";
+    } else if (status === COMPANY) {
+      if (associationRequestSelectValue === MORE_INFO)
+        newPlaceholder =
+          "Quelles sont les informations que vous souhaitez recevoir ?";
+      else if (associationRequestSelectValue === INTERNSHIP)
+        newPlaceholder =
+          "Décrivez l'offre de stage (missions, durée, profil recherché).";
+    }
+    setPlaceholderText(newPlaceholder);
+  }, [
+    status,
+    requestSelectValue,
+    habitantRequestSelectValue,
+    associationRequestSelectValue,
+    VOLUNTEER,
+    HOME_NETWORK,
+    MORE_INFO,
+    INTERNSHIP,
+  ]);
+
   return (
     <Form
       ref={form}
       onSubmit={handleSubmit(sendEmail)}
       className="px-0 px-ld-0"
     >
-      <div className="row">
-        {/* FIRSTNAME */}
-        <div className="col-12 col-md-6 col-xl-4">
-          <span className="error text-danger">
-            {errors.from_firstname?.type === "minLength" &&
-              "Ecrire plus de 2 caractères"}
-            {errors.from_firstname?.type === "maxLength" &&
-              "Ecrire moins de 20 caractères"}
-            {errors.from_firstname?.type === "pattern" &&
-              "Ecrire uniquement des lettres"}
-            {touchedFields.from_firstname &&
-              !watch("from_firstname") &&
-              "Entrez votre prénom - facultatif"}
-          </span>
-          <Form.Control
-            type="text"
-            placeholder="Prénom"
-            name="from_firstname"
-            isInvalid={!!errors.from_firstname}
-            {...register("from_firstname", {
-              required: false,
-              minLength: 3,
-              maxLength: 19,
-              pattern: /^[A-Za-z]+$/i,
-            })}
-          />
-        </div>
-        {/* END FIRSTNAME */}
-        {/* LASTNAME */}
-        <div className="col-12 col-md-6 col-xl-4">
-          <span className="error text-danger">
-            {errors.from_lastname?.type === "required" &&
-              "Entrez votre nom - requis"}
-            {errors.from_lastname?.type === "minLength" &&
-              "Ecrire plus de 2 caractères"}
-            {errors.from_lastname?.type === "maxLength" &&
-              "Ecrire moins de 20 caractères"}
-            {errors.from_lastname?.type === "pattern" &&
-              "Ecrire uniquement des lettres"}
-            {touchedFields.from_firstname &&
-              !watch("from_lastname") &&
-              "Entrez votre nom - facultatif"}
-          </span>
-          <Form.Control
-            type="text"
-            placeholder="Nom"
-            name="from_lastname"
-            isInvalid={!!errors.from_lastname}
-            {...register("from_lastname", {
-              required: false,
-              minLength: 3,
-              maxLength: 19,
-              pattern: /^[A-Za-z]+$/i,
-            })}
-          />
-        </div>
-        {/* END LASTNAME */}
-        {/* EMAIL */}
-        <div className="col-12 col-md-6 col-xl-4">
+      <Row className="mb-1">
+        <Col lg={4}>
+          <Form.Group controlId="formBasicPrenom">
+            <span className="error text-danger">
+              {errors.from_firstname?.type === "minLength" &&
+                "Ecrire plus de 2 caractères"}
+              {errors.from_firstname?.type === "maxLength" &&
+                "Ecrire moins de 20 caractères"}
+              {errors.from_firstname?.type === "pattern" &&
+                "Ecrire uniquement des lettres"}
+              {touchedFields.from_firstname &&
+                !watch("from_firstname") &&
+                "Entrez votre prénom - facultatif"}
+            </span>
+            <Form.Control
+              type="text"
+              placeholder="Prénom"
+              name="from_firstname"
+              isInvalid={!!errors.from_firstname}
+              {...register("from_firstname", {
+                required: false,
+                minLength: 3,
+                maxLength: 19,
+                pattern: /^[A-Za-z]+$/i,
+              })}
+            />
+          </Form.Group>
+        </Col>
+        <Col lg={4}>
+          <Form.Group controlId="formBasicNom">
+            <span className="error text-danger">
+              {errors.from_lastname?.type === "required" &&
+                "Entrez votre nom - requis"}
+              {errors.from_lastname?.type === "minLength" &&
+                "Ecrire plus de 2 caractères"}
+              {errors.from_lastname?.type === "maxLength" &&
+                "Ecrire moins de 20 caractères"}
+              {errors.from_lastname?.type === "pattern" &&
+                "Ecrire uniquement des lettres"}
+              {touchedFields.from_firstname &&
+                !watch("from_lastname") &&
+                "Entrez votre nom - facultatif"}
+            </span>
+            <Form.Control
+              type="text"
+              placeholder="Nom"
+              name="from_lastname"
+              isInvalid={!!errors.from_lastname}
+              {...register("from_lastname", {
+                required: false,
+                minLength: 3,
+                maxLength: 19,
+                pattern: /^[A-Za-z]+$/i,
+              })}
+            />
+          </Form.Group>
+        </Col>
+        <Col lg={4}>
           <Form.Group controlId="formBasicEmail">
             <span className="error text-danger">
               {errors.from_email?.type === "required" &&
@@ -208,147 +276,162 @@ const FormJoinus = () => {
               })}
             />
           </Form.Group>
-        </div>
-        {/* END EMAIL */}
-        {/* OBJECT */}
-        <div className="col-12 col-md-6 col-xl-4">
-          <div className="col-12  col-md-12 col-lg-12 ps-lg-1">
-            <span className="error text-danger">
-              {errors.object?.type === "minLength" &&
-                "Ecrire 10 caractères au minimum"}
-              {errors.object?.type === "maxLength" &&
-                "Ecrire moins de 50 caractères"}
-              {touchedFields.from_firstname &&
-                !watch("from_lastname") &&
-                "Indiquez l'objet de l'email - facultatif"}
-            </span>
-          </div>
-          <Form.Control
-            type="text"
-            placeholder="Objet"
-            name="object"
-            isInvalid={!!errors.object}
-            {...register("object", {
-              required: false,
-              minLength: 10,
-              maxLength: 49,
-              pattern: /^[a-zA-Z0-9\s]+$/,
-            })}
-          />
-        </div>
-        {/* END OBJECT */}
-        {/* CITY */}
-        <div className="col-12 col-md-6 col-xl-4">
-          <div className="col-12  col-md-12 col-lg-12 ps-lg-1">
-            <span className="error text-danger">
-              {errors.city?.type === "required" &&
-                "Indiquez votre ville ou village"}
-              {errors.city?.type === "minLength" &&
-                "Ecrire 2 caractères au minimum"}
-              {errors.city?.type === "maxLength" &&
-                "Ecrire moins de 30 caractères"}
-              {errors.city?.type === "pattern" &&
-                "Ecrire uniquement des lettres, espaces et tirets"}
-            </span>
-          </div>
-          <Form.Control
-            type="text"
-            placeholder="Ville"
-            name="city"
-            isInvalid={!!errors.city}
-            {...register("city", {
-              required: true,
-              minLength: 2,
-              maxLength: 29,
-              pattern: /^[A-Za-z -]+$/i,
-            })}
-          />
-        </div>
-        {/* END CITY */}
-      </div>
+        </Col>
+      </Row>
 
-      <div className="mt-4">
-        <div className="row">
-          <div className="col-12 col-md-6 col-xl-4">
-            <div className="col-12 ">
-              <Form.Select
-                aria-label="Default select example"
-                name="status"
-                {...register("status", { required: false })}
-              >
-                <option value="" className="text-center">
-                  -- Je suis --
-                </option>
-                <option value={COMPANY}>{COMPANY}</option>
-                <option value="habitant">Habitant</option>
-                <option value={STUDENT}>{STUDENT}</option>
-              </Form.Select>
-            </div>
-          </div>
-          {showRequestSelect && (
-            // LISTE ET BOUTON RADIO
-            <div className="row pt-4 pt-md-0 pt-xl-0 col-8 col-md-5 col-xl-3">
-              <div className="">
-                {/* JE CHERCHE LISTE */}
+      <Row className="mb-4">
+        <Col lg={8}>
+          <Row className="mb-4">
+            <Col lg={6}>
+              <Form.Group controlId="formBasicObjet">
+                <span className="error text-danger">
+                  {errors.object?.type === "minLength" &&
+                    "Ecrire 10 caractères au minimum"}
+                  {errors.object?.type === "maxLength" &&
+                    "Ecrire moins de 50 caractères"}
+                  {touchedFields.from_firstname &&
+                    !watch("from_lastname") &&
+                    "Indiquez l'objet de l'email - facultatif"}
+                </span>
+                <Form.Control
+                  type="text"
+                  placeholder="Objet"
+                  name="object"
+                  isInvalid={!!errors.object}
+                  {...register("object", {
+                    required: false,
+                    minLength: 10,
+                    maxLength: 49,
+                    pattern: /^[a-zA-Z0-9\s]+$/,
+                  })}
+                />
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group controlId="formBasicVille">
+                <span className="error text-danger">
+                  {errors.city?.type === "required" &&
+                    "Indiquez votre ville ou village"}
+                  {errors.city?.type === "minLength" &&
+                    "Ecrire 2 caractères au minimum"}
+                  {errors.city?.type === "maxLength" &&
+                    "Ecrire moins de 30 caractères"}
+                  {errors.city?.type === "pattern" &&
+                    "Ecrire uniquement des lettres, espaces et tirets"}
+                </span>
+                <Form.Control
+                  type="text"
+                  placeholder="Ville"
+                  name="city"
+                  isInvalid={!!errors.city}
+                  {...register("city", {
+                    required: true,
+                    minLength: 2,
+                    maxLength: 29,
+                    pattern: /^[A-Za-z -]+$/i,
+                  })}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mb-1">
+            <Col lg={6} className="mb-4 mb-lg-0">
+              <Form.Group controlId="formBasicSelect1">
                 <Form.Select
                   aria-label="Default select example"
-                  name="requestSelect"
-                  {...register("requestSelect", { required: false })}
+                  name="status"
+                  {...register("status", { required: false })}
                 >
                   <option value="" className="text-center">
-                    -- Je cherche --
+                    -- Je suis --
                   </option>
-                  <option value="logement">Un logement</option>
-                  <option value="Un stage">Un stage</option>
-                  <option value={VOLUNTEER}>{VOLUNTEER}</option>
-                  <option value="Autre">Autre</option>
+                  <option value={COMPANY}>{COMPANY}</option>
+                  <option value="habitant">Habitant</option>
+                  <option value={STUDENT}>{STUDENT}</option>
                 </Form.Select>
-                {/* END JE CHERCHE LISTE */}
-              </div>
-            </div>
-          )}
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group controlId="formBasicSelect2">
+                {showRequestSelect && (
+                  <Form.Select
+                    aria-label="Default select example"
+                    name="requestSelect"
+                    {...register("requestSelect", { required: false })}
+                  >
+                    <option value="" className="text-center">
+                      -- Je cherche --
+                    </option>
+                    <option value="logement">Un logement</option>
+                    <option value="Un stage">Un stage</option>
+                    <option value={VOLUNTEER}>{VOLUNTEER}</option>
+                    <option value="Autre">Autre</option>
+                  </Form.Select>
+                )}
 
-          {showHabitantRequestSelect && (
-            <div className="row pt-4 pt-md-0 pt-xl-0 col-8 col-md-5 col-xl-3">
-              <div className="">
-                <Form.Select
-                  aria-label="Habitant request select"
-                  name="habitantRequestSelect"
-                  {...register("habitantRequestSelect", { required: false })}
-                >
-                  <option value="" className="text-center">
-                    -- Je souhaite --{" "}
-                  </option>
-                  <option value={HOME_NETWORK} style={{ whiteSpace: "normal" }}>
-                    {HOME_NETWORK}
-                  </option>
-                  <option value={VOLUNTEER}>{VOLUNTEER}</option>
-                  <option value="Autre">Autre</option>
-                </Form.Select>
-              </div>
-            </div>
-          )}
+                {showHabitantRequestSelect && (
+                  <Form.Select
+                    aria-label="Habitant request select"
+                    name="habitantRequestSelect"
+                    {...register("habitantRequestSelect", { required: false })}
+                  >
+                    <option value="" className="text-center">
+                      -- Je souhaite --{" "}
+                    </option>
+                    <option
+                      value={HOME_NETWORK}
+                      style={{ whiteSpace: "normal" }}
+                    >
+                      {HOME_NETWORK}
+                    </option>
+                    <option value={VOLUNTEER}>{VOLUNTEER}</option>
+                    <option value="Autre">Autre</option>
+                  </Form.Select>
+                )}
 
-          {showOptionsCompany && (
-            <div className="row pt-4 pt-md-0 pt-xl-0 col-8 col-md-5 col-xl-3">
-              <div className="">
-                <Form.Select
-                  aria-label="Association request select"
-                  name="associationRequestSelect"
-                  {...register("associationRequestSelect", { required: false })}
-                >
-                  <option value="" className="text-center">
-                    -- Je souhaite --
-                  </option>
-                  <option value={PROJECT}>{PROJECT}</option>
-                  <option value={MORE_INFO}>{MORE_INFO}</option>
-                  <option value="Autre">Autre</option>
-                </Form.Select>
-              </div>
-            </div>
+                {showOptionsCompany && (
+                  <Form.Select
+                    aria-label="Association request select"
+                    name="associationRequestSelect"
+                    {...register("associationRequestSelect", {
+                      required: false,
+                    })}
+                  >
+                    <option value="" className="text-center">
+                      -- Je souhaite --
+                    </option>
+                    <option value={PROJECT}>{PROJECT}</option>
+                    <option value={MORE_INFO}>{MORE_INFO}</option>
+                    <option value={INTERNSHIP}>{INTERNSHIP}</option>
+                    <option value="Autre">Autre</option>
+                  </Form.Select>
+                )}
+              </Form.Group>
+            </Col>
+          </Row>{" "}
+        </Col>
+
+        <Col lg={4}>
+          {showHabitantRequestSelect && showHomeNetworkLinks && (
+            <LinkBox
+              title="Accueil solidaire chez l'habitant·e"
+              link1_text="Le Teil"
+              link1_href="https://framaforms.org/accueil-solidaire-chez-lhabitante-au-teil-1756226187"
+              link2_text="Villeurbanne/Lyon"
+              link2_href="https://framaforms.org/accueil-solidaire-chez-lhabitante-a-villeurbannelyon-1751563637"
+            />
           )}
-        </div>
-      </div>
+          {showInternshipLinks && (
+            <LinkBox
+              title="Accueil de stagiaires"
+              link1_text="Adéchois"
+              link1_href="https://framaforms.org/accueil-de-stagiaires-ardechois-1751562246 "
+              link2_text="Villeurbannais"
+              link2_href="https://framaforms.org/accueil-de-stagiaires-villeurbannais-1753107724"
+            />
+          )}
+        </Col>
+      </Row>
 
       {/* MESSAGE */}
       {showOtherTextarea && (
@@ -366,7 +449,7 @@ const FormJoinus = () => {
           </FloatingLabel>
           <Form.Control
             as="textarea"
-            placeholder="Autres envies/besoins"
+            placeholder={placeholderText}
             rows={1}
             name="message"
             isInvalid={
@@ -398,7 +481,7 @@ const FormJoinus = () => {
           </FloatingLabel>
           <Form.Control
             as="textarea"
-            placeholder="Mon projet"
+            placeholder="Mon projet *"
             rows={1}
             name="my_project"
             isInvalid={
@@ -411,6 +494,13 @@ const FormJoinus = () => {
             })}
             style={{ height: "30vh" }}
           />
+          <figcaption>
+            <i>
+              * Ceci ne constitue pas une demande formelle de financement, nous
+              vous recontacterons pour échanger de votre projet plus en
+              profondeur.
+            </i>
+          </figcaption>
         </div>
       )}
       {/* END MESSAGE PROJET */}

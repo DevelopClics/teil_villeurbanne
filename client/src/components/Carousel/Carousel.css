@@ -3,7 +3,7 @@
 .carousel-control-prev {
   top: 50%;
   transform: translateY(-50%);
-  height: 200px; /* Increased height for larger icons */
+  height: 50px; /* Increased height for larger icons */
 }
 
 .carousel-control-next-icon,
@@ -36,6 +36,10 @@
   padding-left: 0; /* Remove horizontal padding */
   padding-right: 0; /* Remove horizontal padding */
   background-color: var(--primary-color);
+}
+
+.hero-section .carousel {
+  min-height: 60vh;
 }
 
 .hero-image {
@@ -100,13 +104,14 @@
 
 .carousel-item-container {
   position: relative;
+  overflow: visible !important;
 }
 
 .carousel-admin-buttons {
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 10;
+  z-index: 999 !important;
   display: flex;
   gap: 10px;
 }
@@ -133,7 +138,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 55vh; /* Same height as hero-image */
+  height: 60vh !important; /* Same height as hero-image */
   background-color: var(--primary-color); /* Light gray background */
   color: #666;
   font-size: 1.2em;
@@ -152,6 +157,8 @@
     left: 4vw;
   }
   .hero-title-block h1 {
+    font-size: 2.3em;
+
     max-width: 90vw !important;
     line-height: 5vh;
   }

@@ -33,7 +33,18 @@ export default function AllProj({ isNavbarHovered }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [projectsPerPage, setProjectsPerPage] = useState(12); // Number of projects per page
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_API_URL;
+  const rawApiUrl = import.meta.env.VITE_API_URL;
+  const API_URL =
+    rawApiUrl ||
+    "https://developpement-des-cooperations-territoriales-asso.org/api";
+  const BASE_URL = API_URL.replace(/\/api\/?$/, "").replace(/\/+$/, "");
+
+  const getImageUrl = (src) => {
+    if (!src) return "";
+    if (src.startsWith("http")) return src;
+    const path = src.startsWith("/") ? src : `/${src}`;
+    return `${BASE_URL}${path}`;
+  };
   console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
   // `${API_URL}/projects`
   useEffect(() => {
@@ -56,7 +67,7 @@ export default function AllProj({ isNavbarHovered }) {
           );
         }
         const data = await response.json();
-        const sortedData = data.sort((a, b) => new Date(a.subtitle) - new Date(b.subtitle));
+        const sortedData = data.sort((a, b) => new Date(b.endDate) - new Date(a.endDate));
         setAllProjects(sortedData);
       } catch (error) {
         console.error("Error fetching all projects:", error);
@@ -67,91 +78,56 @@ export default function AllProj({ isNavbarHovered }) {
   }, [isAuthenticated]);
 
   const handleMoveToTop = async (projectId) => {
-    setAllProjects((prevProjects) => {
-      const projectToMove = prevProjects.find(
-        (project) => project.id === projectId
-      );
-      if (!projectToMove) {
-        return prevProjects;
-      }
-      const filteredProjects = prevProjects.filter(
-        (project) => project.id !== projectId
-      );
-      const newOrder = [projectToMove, ...filteredProjects];
-
-      // Send update to backend
-      const updateOrder = async () => {
-        try {
-          const token = localStorage.getItem("token");
-          await axios.patch(
-            `${API_URL}/projects/${projectId}/move_to_top`,
-            {},
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          console.log("Project moved to top successfully on backend.");
-        } catch (error) {
-          console.error("Error moving project to top on backend:", error);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        `${API_URL}/projects/${projectId}/move_to_top`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      };
-      updateOrder();
-
-      return newOrder;
-    });
+      );
+      setAllProjects(response.data);
+    } catch (error) {
+      console.error("Error moving project to top on backend:", error);
+    }
   };
 
   const handleMoveUp = async (projectId) => {
-    const projectIndex = allProjects.findIndex((p) => p.id === projectId);
-    if (projectIndex > 0) {
-      const newProjects = [...allProjects];
-      const [movedProject] = newProjects.splice(projectIndex, 1);
-      newProjects.splice(projectIndex - 1, 0, movedProject);
-      setAllProjects(newProjects); // Optimistic update
-
-      try {
-        const token = localStorage.getItem("token");
-        await axios.patch(
-          `${API_URL}/projects/${projectId}/move_up`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-      } catch (error) {
-        console.error("Error moving project up:", error);
-        setAllProjects(allProjects); // Revert on error
-      }
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        `${API_URL}/projects/${projectId}/move_up`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setAllProjects(response.data);
+    } catch (error) {
+      console.error("Error moving project up:", error);
     }
   };
 
   const handleMoveDown = async (projectId) => {
-    const projectIndex = allProjects.findIndex((p) => p.id === projectId);
-    if (projectIndex < allProjects.length - 1) {
-      const newProjects = [...allProjects];
-      const [movedProject] = newProjects.splice(projectIndex, 1);
-      newProjects.splice(projectIndex + 1, 0, movedProject);
-      setAllProjects(newProjects); // Optimistic update
-
-      try {
-        const token = localStorage.getItem("token");
-        await axios.patch(
-          `${API_URL}/projects/${projectId}/move_down`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-      } catch (error) {
-        console.error("Error moving project down:", error);
-        setAllProjects(allProjects); // Revert on error
-      }
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.patch(
+        `${API_URL}/projects/${projectId}/move_down`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setAllProjects(response.data);
+    } catch (error) {
+      console.error("Error moving project down:", error);
     }
   };
 
@@ -213,14 +189,13 @@ export default function AllProj({ isNavbarHovered }) {
                     <div
                       className="square-img-container"
                       onClick={() => {
-                        if (item.category) {
-                          navigate(`/projects/${item.category.toLowerCase()}`, {
-                            state: {
-                              projectId: item.id,
-                              projectCategory: item.category,
-                            },
-                          });
-                        }
+                        const categoryToNavigate = item.category ? item.category.toLowerCase() : 'all';
+                        navigate(`/projects/${categoryToNavigate}`, {
+                          state: {
+                            projectId: item.id,
+                            projectCategory: item.category,
+                          },
+                        });
                       }}
                       style={{ cursor: "pointer" }}
                     >
@@ -228,15 +203,17 @@ export default function AllProj({ isNavbarHovered }) {
                         {categoryMap[item.category] || item.category}
                       </div>
 
-                      <LazyLoadImage
-                        wrapperClassName="square-img"
-                        className="img-content-fit"
-                        src={`${import.meta.env.BASE_URL}${item.src}`}
-                        alt={item.alt}
-                        effect="blur"
-                        width="100%"
-                        height="100%"
-                      />
+                      {item.src && (
+  <LazyLoadImage
+    wrapperClassName="square-img"
+    className="img-content-fit"
+    src={getImageUrl(item.src)}
+    alt={item.alt}
+    effect="blur"
+    width="100%"
+    height="100%"
+  />
+)}
                       {/* {isAuthenticated && (
                         <Button
                           variant="info"

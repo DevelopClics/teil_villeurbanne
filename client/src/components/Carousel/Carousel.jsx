@@ -4,40 +4,37 @@ import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./Carousel.css";
-import { useAuth } from "../../context/AuthContext"; // Added import
+import { useAuth } from "../../context/AuthContext";
 
 const CarouselComponent = ({
   isNavbarHovered,
   isEditable,
-  category, // New prop for carousel category
+  category,
   startFaded,
 }) => {
-  const API_URL = import.meta.env.VITE_API_URL;
-  console.log("API_URL =", API_URL); // Pour tester si elle est bien lue
-  const [localSlides, setLocalSlides] = useState([]); // Initialize as empty array
+  const rawApiUrl = import.meta.env.VITE_API_URL;
+  const API_URL =
+    rawApiUrl ||
+    "https://developpement-des-cooperations-territoriales-asso.org/api";
+  const BASE_URL = API_URL.replace(/\/api\/?$/, "").replace(/\/+$/, "");
+
+  const [localSlides, setLocalSlides] = useState([]);
   const [isFaded, setIsFaded] = useState(startFaded);
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
+  const formRef = useRef(null);
+  const heroSectionRef = useRef(null);
 
-  const formRef = useRef(null); // Add this line
-  const heroSectionRef = useRef(null); // Add this line
-
-  // State for inline editing of slides
   const [editingSlideId, setEditingSlideId] = useState(null);
   const [formData, setFormData] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
   const [isCreatingNewSlide, setIsCreatingNewSlide] = useState(false);
 
-  const { token } = useAuth(); // Get token from AuthContext
+  const { token } = useAuth();
 
   useEffect(() => {
     if (startFaded) {
-      const timer = setTimeout(() => {
-        setIsFaded(false);
-      }, 500); // Delay before fading in
+      const timer = setTimeout(() => setIsFaded(false), 500);
       return () => clearTimeout(timer);
     }
   }, [startFaded]);
@@ -46,23 +43,16 @@ const CarouselComponent = ({
     const fetchCarouselImages = async () => {
       try {
         const response = await axios.get(`${API_URL}/carouselImages`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
-
-        // Filter slides based on the category prop
         setLocalSlides(response.data[category] || []);
       } catch (error) {
         console.error("Error fetching carousel images:", error);
-        setLocalSlides([]); // Set to empty array on error
+        setLocalSlides([]);
       }
     };
-
-    if (category) {
-      fetchCarouselImages();
-    }
-  }, [category]); // Re-fetch when category changes
+    if (category) fetchCarouselImages();
+  }, [category, token]);
 
   useEffect(() => {
     if ((editingSlideId || isCreatingNewSlide) && formRef.current) {
@@ -70,65 +60,55 @@ const CarouselComponent = ({
     }
   }, [editingSlideId, isCreatingNewSlide]);
 
+  const handleSelect = (selectedIndex) => setIndex(selectedIndex);
+
   const handleDelete = async (slideId) => {
-    if (window.confirm("Voulez-vous vraiment supprimer cette image ?")) {
-      try {
-        const allCarouselImagesResponse = await axios.get(
-          `${API_URL}/carouselImages`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const allCarouselImages = allCarouselImagesResponse.data;
+    if (!window.confirm("Voulez-vous vraiment supprimer cette image ?")) return;
+    try {
+      const response = await axios.get(`${API_URL}/carouselImages`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const allCarouselImages = response.data;
+      const updatedAllCarouselImages = { ...allCarouselImages };
+      let found = false;
 
-        const updatedAllCarouselImages = { ...allCarouselImages };
-        let slideFound = false;
-        for (const cat in updatedAllCarouselImages) {
-          if (Array.isArray(updatedAllCarouselImages[cat])) {
-            const initialLength = updatedAllCarouselImages[cat].length;
-            updatedAllCarouselImages[cat] = updatedAllCarouselImages[
-              cat
-            ].filter((slide) => slide.id !== slideId);
-            if (updatedAllCarouselImages[cat].length < initialLength) {
-              slideFound = true;
-              break;
-            }
+      for (const cat in updatedAllCarouselImages) {
+        if (Array.isArray(updatedAllCarouselImages[cat])) {
+          const initialLength = updatedAllCarouselImages[cat].length;
+          updatedAllCarouselImages[cat] = updatedAllCarouselImages[cat].filter(
+            (s) => s.id !== slideId
+          );
+          if (updatedAllCarouselImages[cat].length < initialLength) {
+            found = true;
+            break;
           }
         }
-
-        if (!slideFound) {
-          console.error("Slide not found in any category.");
-          return;
-        }
-
-        await axios.put(`${API_URL}/carouselImages`, updatedAllCarouselImages, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setLocalSlides((prevSlides) =>
-          prevSlides.filter((slide) => slide.id !== slideId)
-        );
-      } catch (error) {
-        console.error("Error deleting slide:", error);
       }
+
+      if (!found) return;
+
+      await axios.put(`${API_URL}/carouselImages`, updatedAllCarouselImages, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setLocalSlides((prev) => prev.filter((s) => s.id !== slideId));
+    } catch (error) {
+      console.error("Error deleting slide:", error);
     }
   };
 
   const handleCreate = () => {
     setIsCreatingNewSlide(true);
-    setEditingSlideId(null); // Ensure no existing slide is being edited
-    setFormData({}); // Clear form data for new slide
-    setSelectedFile(null); // Clear selected file
+    setEditingSlideId(null);
+    setFormData({});
+    setSelectedFile(null);
   };
 
   const handleEditSlideClick = (slide) => {
+    console.log("--- EDIT CLICKED ---");
+    console.log("Setting isCreatingNewSlide to false");
     setEditingSlideId(slide.id);
-    setIsCreatingNewSlide(false); // Ensure we are not in creation mode
-    setFormData(slide);
+    setIsCreatingNewSlide(false);
+    setFormData({ ...slide }); // conserver l'id et src
     setSelectedFile(null);
   };
 
@@ -137,33 +117,40 @@ const CarouselComponent = ({
     setFormData({});
     setSelectedFile(null);
     setIsCreatingNewSlide(false);
-
-    if (heroSectionRef.current) {
+    if (heroSectionRef.current)
       heroSectionRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
-    }
   };
 
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const handleFormChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    const file = e.target.files[0];
+    if (!file) return;
+    setSelectedFile(file);
+
+    // Mettre à jour formData.src pour l'aperçu
+    setFormData((prev) => ({
+      ...prev,
+      src: `/uploads/temp/${file.name}`, // chemin temporaire pour preview
+    }));
   };
 
   const handleSaveSlideClick = async () => {
-    let imageUrl = formData.src;
+    console.log("--- SAVE CLICKED ---");
+    console.log("isCreatingNewSlide:", isCreatingNewSlide);
+    console.log("formData:", formData);
+    try {
+      let uploadedImageUrl = formData.src;
 
-    if (selectedFile) {
-      const uploadFormData = new FormData();
-      uploadFormData.append("image", selectedFile);
-
-      try {
-        const response = await axios.post(
+      // Upload si fichier sélectionné
+      if (selectedFile) {
+        const uploadFormData = new FormData();
+        uploadFormData.append("image", selectedFile);
+        const uploadResponse = await axios.post(
           `${API_URL}/upload/carousel`,
           uploadFormData,
           {
@@ -173,28 +160,21 @@ const CarouselComponent = ({
             },
           }
         );
-        imageUrl = response.data.url;
-      } catch (error) {
-        console.error("Error uploading image:", error);
-        return;
+
+        uploadedImageUrl = uploadResponse.data.src.replace(
+          /^images/,
+          "/uploads"
+        );
+        formData.src = uploadedImageUrl; // mettre à jour formData.src
       }
-    }
 
-    const slideDataToSave = { ...formData, src: imageUrl };
-
-    try {
-      const allCarouselImagesResponse = await axios.get(
-        `${API_URL}/carouselImages`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const allCarouselImages = allCarouselImagesResponse.data;
-
+      // Récupérer JSON complet
+      const response = await axios.get(`${API_URL}/carouselImages`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const allCarouselImages = response.data;
       const updatedAllCarouselImages = { ...allCarouselImages };
-      let targetCategoryArray = updatedAllCarouselImages[category] || [];
+      let slides = updatedAllCarouselImages[category] || [];
 
       if (isCreatingNewSlide) {
         const allSlides = Object.values(allCarouselImages).flat();
@@ -202,35 +182,44 @@ const CarouselComponent = ({
           allSlides.length > 0
             ? Math.max(...allSlides.map((s) => s.id)) + 1
             : 1;
-        slideDataToSave.id = newId;
-        targetCategoryArray.push(slideDataToSave);
+        const newSlide = { ...formData, id: newId, src: uploadedImageUrl };
+        slides.push(newSlide);
       } else {
-        targetCategoryArray = targetCategoryArray.map((s) =>
-          s.id === formData.id ? { ...s, ...slideDataToSave } : s
+        slides = slides.map((s) =>
+          s.id === formData.id
+            ? { ...s, ...formData, src: uploadedImageUrl }
+            : s
         );
       }
 
-      updatedAllCarouselImages[category] = targetCategoryArray;
+      updatedAllCarouselImages[category] = slides;
 
+      // Sauvegarde finale
       await axios.put(`${API_URL}/carouselImages`, updatedAllCarouselImages, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      setLocalSlides(targetCategoryArray);
-
+      setLocalSlides(slides);
       setEditingSlideId(null);
       setSelectedFile(null);
       setIsCreatingNewSlide(false);
 
-      if (heroSectionRef.current) {
+      if (heroSectionRef.current)
         heroSectionRef.current.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
-      }
     } catch (error) {
       console.error("Error saving slide:", error);
     }
+  };
+
+  const getSlideUrl = (src) => {
+    if (!src) return null;
+    if (src.startsWith("http")) return src;
+    // Ensure there's a single slash between the base and the path
+    const path = src.startsWith("/") ? src : `/${src}`;
+    return `${BASE_URL}${path}`;
   };
 
   return (
@@ -241,50 +230,44 @@ const CarouselComponent = ({
         } carousel-${category}`}
         ref={heroSectionRef}
       >
+        {isEditable && (
+          <div className="carousel-admin-buttons">
+            <Button variant="success" size="sm" onClick={handleCreate}>
+              Ajouter
+            </Button>
+            {localSlides.length > 0 && (
+              <>
+                <Button
+                  variant="warning"
+                  size="sm"
+                  onClick={() => handleEditSlideClick(localSlides[index])}
+                >
+                  Modifier
+                </Button>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleDelete(localSlides[index].id)}
+                >
+                  Supprimer
+                </Button>
+              </>
+            )}
+          </div>
+        )}
         <Carousel
           activeIndex={index}
           onSelect={handleSelect}
-          controls={true}
-          indicators={true}
+          controls
+          indicators
         >
           {localSlides.length > 0 ? (
             localSlides.map((slide) => (
               <Carousel.Item key={slide.id} className="carousel-item-container">
-                {isEditable && (
-                  <div className="carousel-admin-buttons">
-                    <Button
-                      variant="success"
-                      size="sm"
-                      onClick={handleCreate}
-                      className="carousel-admin-button"
-                    >
-                      Ajouter
-                    </Button>
-                    <Button
-                      variant="warning"
-                      size="sm"
-                      onClick={() => handleEditSlideClick(slide)}
-                      className="carousel-admin-button"
-                    >
-                      Modifier
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleDelete(slide.id)}
-                      className="carousel-admin-button"
-                    >
-                      Supprimer
-                    </Button>
-                  </div>
-                )}
                 <LazyLoadImage
-                  src={`${import.meta.env.BASE_URL}${
-                    slide.src
-                  }?v=${Date.now()}`}
-                  alt={slide.alt}
-                  className="            
-                  w-100 hero-image"
+                  src={getSlideUrl(slide.src)}
+                  alt={slide.alt || ""}
+                  className="w-100 hero-image"
                   effect="blur"
                   width="100%"
                   height="100%"
@@ -295,27 +278,22 @@ const CarouselComponent = ({
             <Carousel.Item className="carousel-item-container">
               <div className="empty-carousel-placeholder">
                 {isEditable && (
-                  <div className="carousel-admin-buttons">
-                    <Button variant="success" size="sm" onClick={handleCreate}>
-                      Ajouter
-                    </Button>
-                  </div>
+                  <p>
+                    Aucune image. Cliquez sur "Ajouter" pour en afficher une.
+                  </p>
                 )}
-                <p>
-                  Aucune image. Cliquer sur le bouton "Ajouter" pour en afficher
-                  une.
-                </p>
               </div>
             </Carousel.Item>
           )}
         </Carousel>
+
         <div className="hero-text">
-          {localSlides[index] && localSlides[index].title && (
+          {localSlides[index]?.title && (
             <div className="hero-title-block">
               <h1>{localSlides[index].title}</h1>
             </div>
           )}
-          {localSlides[index] && localSlides[index].text && (
+          {localSlides[index]?.text && (
             <div className="hero-paragraph-block">
               <p>{localSlides[index].text}</p>
             </div>
@@ -332,6 +310,7 @@ const CarouselComponent = ({
                   ? "Ajouter une nouvelle image"
                   : "Modifier l'image"}
               </h4>
+
               <Form.Group className="mb-3">
                 <Form.Label>Fichier image</Form.Label>
                 <Form.Control
@@ -340,10 +319,23 @@ const CarouselComponent = ({
                   onChange={handleFileChange}
                 />
               </Form.Group>
+
               <Form.Group className="mb-3">
-                <Form.Label>
-                  Texte alternatif (Alt) au cas où l'imge ne s'affiche pas
-                </Form.Label>
+                <Form.Label>URL ou chemin de l’image</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="src"
+                  placeholder="/uploads/photos/team/carousel/monimage.jpg"
+                  value={formData.src || ""}
+                  onChange={handleFormChange}
+                />
+                <Form.Text className="text-muted">
+                  Laisse vide pour conserver l’image actuelle.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Texte alternatif (Alt)</Form.Label>
                 <Form.Control
                   type="text"
                   name="alt"
@@ -351,6 +343,7 @@ const CarouselComponent = ({
                   onChange={handleFormChange}
                 />
               </Form.Group>
+
               <Form.Group className="mb-3">
                 <Form.Label>Titre</Form.Label>
                 <Form.Control
@@ -360,6 +353,7 @@ const CarouselComponent = ({
                   onChange={handleFormChange}
                 />
               </Form.Group>
+
               <Form.Group className="mb-3">
                 <Form.Label>Texte</Form.Label>
                 <Form.Control
@@ -370,6 +364,7 @@ const CarouselComponent = ({
                   onChange={handleFormChange}
                 />
               </Form.Group>
+
               <Button
                 variant="success"
                 onClick={handleSaveSlideClick}

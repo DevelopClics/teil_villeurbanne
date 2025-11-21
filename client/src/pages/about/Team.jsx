@@ -169,22 +169,48 @@ export default function Team({ isNavbarHovered }) {
   }, []);
 
   const handleCreateTeamMember = async (category, newMember, imageFile) => {
-    const formData = new FormData();
-    Object.keys(newMember).forEach((key) => {
-      formData.append(key, newMember[key]);
-    });
+    let imageUrl = "";
     if (imageFile) {
-      formData.append("image", imageFile);
+      const uploadFormData = new FormData();
+      uploadFormData.append("image", imageFile);
+
+      try {
+        const token = localStorage.getItem("token");
+        const uploadResponse = await fetch(`${API_URL}/upload/${category}`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: uploadFormData,
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error(`HTTP error! status: ${uploadResponse.status}`);
+        }
+
+        const uploadResult = await uploadResponse.json();
+        imageUrl = uploadResult.url;
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        return; // Stop if image upload fails
+      }
     }
+
+    const memberToCreate = {
+      ...newMember,
+      src: imageUrl, // Include the uploaded image URL
+      cacheBust: Date.now(),
+    };
 
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(`${API_URL}/teammembers/${category}`, {
         method: "POST",
         headers: {
+          "Content-Type": "application/json", // Ensure Content-Type is set for JSON body
           Authorization: `Bearer ${token}`,
         },
-        body: formData,
+        body: JSON.stringify(memberToCreate),
       });
 
       if (!response.ok) {

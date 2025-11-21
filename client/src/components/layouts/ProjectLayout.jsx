@@ -15,6 +15,7 @@ import { fr } from "date-fns/locale";
 registerLocale("fr", fr);
 
 import "../../App.css";
+import "./ProjectLayout.css";
 
 export default function ProjectLayout({
   item,
@@ -179,6 +180,17 @@ export default function ProjectLayout({
     return subtitle;
   };
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  const BASE_URL = API_URL.replace(/\/api\/?$/, "").replace(/\/+$/, "");
+
+  const getImageUrl = (src) => {
+    if (!src) return null;
+    if (src.startsWith("http")) return src;
+    // Ensure there's a single slash between the base and the path
+    const path = src.startsWith("/") ? src : `/${src}`;
+    return `${BASE_URL}${path}`;
+  };
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -216,10 +228,6 @@ export default function ProjectLayout({
                         className="form-control"
                         locale="fr"
                         dateFormat="dd/MM/yyyy"
-                        minDate={today}
-                        dayClassName={(date) =>
-                          date < today ? "text-danger" : undefined
-                        }
                       />
                     </Col>
                     <Col>
@@ -230,10 +238,6 @@ export default function ProjectLayout({
                         className="form-control"
                         locale="fr"
                         dateFormat="dd/MM/yyyy"
-                        minDate={startDate || today}
-                        dayClassName={(date) =>
-                          date < today ? "text-danger" : undefined
-                        }
                       />
                     </Col>
                   </Row>
@@ -444,15 +448,7 @@ export default function ProjectLayout({
               style={{ width: item.size + "%" }}
             >
               <LazyLoadImage
-                src={
-                  item.src
-                    ? `${
-                        item.src.startsWith("http")
-                          ? item.src
-                          : import.meta.env.BASE_URL + item.src
-                      }?v=${item.cacheBust || 0}`
-                    : ""
-                }
+                src={getImageUrl(item.src)}
                 alt={item.alt}
                 effect="blur"
                 width="100%"
@@ -467,8 +463,7 @@ export default function ProjectLayout({
             <p>
               <strong>
                 <span>{item.contacts}</span>&nbsp;
-                <span>{item.typelink01} </span>
-                <a href={item.links01} target="_blank">
+                <a className="underline" href={item.links01} target="_blank">
                   {item.namelink01}
                 </a>
               </strong>
@@ -476,7 +471,7 @@ export default function ProjectLayout({
             <p>
               <strong>
                 <span>{item.typelink02} </span>
-                <a href={item.links02} target="_blank">
+                <a className="underline" href={item.links02} target="_blank">
                   {item.namelink02}
                 </a>
               </strong>

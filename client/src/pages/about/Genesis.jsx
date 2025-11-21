@@ -6,7 +6,7 @@ import GenesisComp from "../../components/GenesisComp";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Genesis({ isNavbarHovered }) {
-  const SUB = "La genèse";
+  const SUB = "La génèse";
   const { isAuthenticated } = useAuth();
 
   return (

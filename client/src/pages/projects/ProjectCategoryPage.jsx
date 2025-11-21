@@ -25,6 +25,11 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
   const location = useLocation();
   const projectRefs = useRef(new Map());
   const [isCreatingNewProject, setIsCreatingNewProject] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(urlCategory === 'undefined' ? 'culture' : urlCategory || 'culture');
+
+  useEffect(() => {
+    setCurrentCategory(urlCategory === 'undefined' ? 'culture' : urlCategory || 'culture');
+  }, [urlCategory]);
 
   const categoryMap = {
     culture: "Culture",
@@ -32,7 +37,6 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
     youth: "Jeunesse",
     economy: "Économie",
   };
-  const currentCategory = urlCategory || "culture";
   const displayCategory = categoryMap[currentCategory] || currentCategory;
 
   const categoryToCarouselId = {
@@ -87,7 +91,7 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
               ? project.category.includes(currentCategory)
               : project.category === currentCategory
           );
-          const sortedProjects = filteredProjects.sort((a, b) => new Date(a.subtitle) - new Date(b.subtitle));
+          const sortedProjects = filteredProjects.sort((a, b) => new Date(b.endDate) - new Date(a.endDate));
           console.log("Filtered projects:", sortedProjects);
           setProjects(sortedProjects);
 
@@ -204,6 +208,11 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
       // Append all new data fields
       for (const key in newData) {
         formData.append(key, newData[key]);
+      }
+
+      // Ensure category is always included
+      if (!newData.category) {
+        formData.append("category", currentCategory);
       }
 
       // Append the file if it exists
@@ -348,6 +357,8 @@ export default function ProjectCategoryPage({ isNavbarHovered }) {
   const handleCancelCreateNewProject = () => {
     setIsCreatingNewProject(false);
   };
+
+  console.log({ urlCategory, currentCategory });
 
   return (
     <>

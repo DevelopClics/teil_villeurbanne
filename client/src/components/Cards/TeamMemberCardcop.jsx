@@ -99,11 +99,7 @@ export default function TeamMemberCard({
         >
           <img
             className="square-img"
-            src={`${
-              item.src.startsWith("http")
-                ? item.src
-                : import.meta.env.BASE_URL + item.src
-            }?v=${item.cacheBust || 0}`}
+            src={`${API_URL.replace('/api', '')}${item.src}?v=${item.cacheBust || 0}`}
             alt={item.alt || "Team member"}
             width="100%"
             height="100%"
